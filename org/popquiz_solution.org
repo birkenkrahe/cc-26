@@ -1,0 +1,153 @@
+* Review: Control flow with ~if~, ~else~, ~else if~
+#+OPTIONS: toc:nil num:nil ^:nil: 
+1. Guess the type of ~if~ structure and the required pseudocode.
+   #+BEGIN_QUOTE
+   You’re exploring a dungeon. If you have enough gold (> 50), you repair
+   your armor. If your health is low (< 30), you rest to recover. These
+   actions are independent and can both happen. Write pseudocode with the
+   correct ~if~ structure.
+   #+END_QUOTE
+   #+BEGIN_EXAMPLE Sequential if structure
+   SET gold = 75
+   SET health = 20
+   PRINT "You take a moment to assess your status..."
+
+   IF gold > 50 THEN
+      PRINT "You repair your armor!"
+   END IF
+
+   IF health < 30 THEN
+      PRINT "You rest and recover some health!"
+   END IF
+  #+END_EXAMPLE
+
+2. Guess the type of ~if~ structure and the required pseudocode.
+   #+BEGIN_QUOTE
+   You trigger a trap in the dungeon. Your fate depends on your
+   agility (1-100). Write pseudocode with the correct ~if~ structure for
+   these outcomes: Agility ≥ 80: "You dodge the trap easily!", Agility
+   ≥ 50: "You stumble but avoid the trap.", Agility ≥ 20: "You’re hit
+   but survive.", Otherwise: "The trap defeats you."
+   #+END_QUOTE
+   #+BEGIN_EXAMPLE Stacked if structure
+   SET agility = 45
+   PRINT "A trap springs in the dungeon!"
+
+   IF agility >= 80 THEN
+      PRINT "You dodge the trap easily!"
+   ELSE IF agility >= 50 THEN
+       PRINT "You stumble but avoid the trap."
+   ELSE IF agility >= 20 THEN
+       PRINT "You’re hit but survive."
+   ELSE
+       PRINT "The trap defeats you."
+   END IF
+  #+END_EXAMPLE
+
+3. Guess the type of ~if~ structure and the required pseudocode.
+   #+BEGIN_QUOTE
+   You find a locked chest. To open it and claim a reward, you need a
+   lockpick (true/false) and dexterity (0-100) of at least 60. Write
+   pseudocode with the correct ~if~ structure for these outcomes:
+   Lockpick and dexterity ≥ 60: "You open the chest and find
+   treasure!", Lockpick but dexterity < 60: "You fail to pick the
+   lock.", No lockpick: "You can’t attempt to open the chest."
+   #+END_QUOTE
+   #+BEGIN_EXAMPLE Nested if structure
+   SET has_lockpick = true
+   SET dexterity = 55
+   PRINT "You discover a locked chest!"
+
+   IF has_lockpick THEN
+       IF dexterity >= 60 THEN
+           PRINT "You open the chest and find treasure!"
+       ELSE
+           PRINT "You fail to pick the lock."
+       END IF
+   ELSE
+       PRINT "You can’t attempt to open the chest."
+   END IF
+   #+END_EXAMPLE
+
+4. What do you think of this problem/pseudocode?
+   #+BEGIN_QUOTE
+   You’re ambushed by goblins. If your strength is high (> 80), you fight
+   them off. If you have a shield (true/false), you take less
+   damage. These are separate actions that can both occur. Write
+   pseudocode with the correct ~if~ structure.
+   #+END_QUOTE
+   Pseudocode:
+   #+BEGIN_EXAMPLE Wrong
+   SET strength = 85
+   SET has_shield = true
+   PRINT "Goblins ambush you!"
+
+   IF strength > 80 THEN
+       PRINT "You fight off the goblins!"
+   ELSE IF has_shield THEN
+       PRINT "You take less damage!"
+   END IF
+  #+END_EXAMPLE
+   Solution:
+   #+begin_quote
+   This uses a stacked ~if~ structure, implying only one outcome can
+   happen, but both actions (fighting and reducing damage) should be
+   independent.
+   #+end_quote
+   #+BEGIN_EXAMPLE Correct
+   SET strength = 85
+   SET has_shield = true
+   PRINT "Goblins ambush you!"
+
+   IF strength > 80 THEN
+       PRINT "You fight off the goblins!"
+   END IF
+
+   IF has_shield THEN
+       PRINT "You take less damage!"
+   END IF
+   #+END_EXAMPLE
+
+5. What do you think of this problem/pseudocode?
+   #+BEGIN_QUOTE
+   You approach a magical door. To enter, you need a magic gem
+   (true/false) and mana (0-100) of at least 50. Write pseudocode with
+   the correct ~if~ structure for: Both true: "You pass through the
+   door!", Gem but mana < 50: "The door blocks you.", No gem: "The
+   door remains sealed."
+   #+END_QUOTE
+   #+BEGIN_EXAMPLE STACKED
+   SET has_gem = true
+   SET mana = 40
+   PRINT "You face a magical door!"
+
+   IF has_gem THEN
+       PRINT "You pass through the door!"
+   ELSE IF mana >= 50 THEN
+       PRINT "The door blocks you."
+   ELSE
+       PRINT "The door remains sealed."
+   END IF
+   #+END_EXAMPLE
+   Solution:
+   #+begin_quote
+   This uses a stacked ~if~ structure, but passing through requires both
+   conditions (gem AND mana) to be checked together, not as
+   alternatives.
+   #+end_quote
+   #+BEGIN_EXAMPLE NESTED
+   SET has_gem = true
+   SET mana = 40
+   PRINT "You face a magical door!"
+
+   IF has_gem THEN
+       IF mana >= 50 THEN
+           PRINT "You pass through the door!"
+       ELSE
+           PRINT "The door blocks you."
+       END IF
+   ELSE
+       PRINT "The door remains sealed."
+   END IF
+   #+END_EXAMPLE
+

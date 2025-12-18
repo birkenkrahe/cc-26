@@ -1,0 +1,179 @@
+#+title: Operators - Lab practice
+#+AUTHOR: Marcus Birkenkrahe (pledged)
+#+startup: overview hideblocks indent
+#+PROPERTY: header-args:C :main yes :includes <stdio.h> :results output :exports both
+* Overview
+
+- *Duration*: 50 minutes
+- *Goal*: Practice logical operators and basic conditionals in C
+- *Class Size*: 30 students
+- *Tools*: Google Cloud Shell (ide.cloud.google.com), ~nano~ editor
+- *Plan*:
+  - 2 min: Introduction
+  - 35 min: Hands-on exercises (3 tasks)
+  - 10 min: Review and discussion
+  - 3 min: Zip files and wrap-up
+
+- This section follows chapter 3 in Davenport/Vine (2015) and chapters
+  4 and 5 in King (2008).
+
+- This lesson plan was designed with assistance from Grok, an AI
+  created by xAI, to help tailor exercises for your learning
+  experience.
+
+* READ Instructions
+
+- Follow along as we work through these exercises together.
+- Predict outputs before running the code—write your guesses down!
+- Ask questions if you get stuck.
+
+* TODO Logical Operators (15 min)
+
+1) Open Google Cloud Shell (ide.cloud.google.com).
+
+2) Download the template:
+   #+begin_src bash :results none
+     wget -O logical.c tinyurl.com/logical-template-c
+   #+end_src
+
+   Check with any of these commands if all's OK:
+   #+begin_example
+   ls -lt logical.c   # lists the file
+   cat logical.c      # prints the file
+   file logical.c     # analyzes the file
+   #+end_example
+
+3) Open ~logical.c~ in ~nano~:
+   #+begin_example
+   nano logical.c
+   #+end_example
+
+4) Complete the ~printf~ statements by filling in the ~...~ with logical
+   expressions based on the comments. Replace ~?~ with your predicted
+   output (0 or 1).
+
+5) Code template (that's what you downloaded):
+   #+begin_src C :main no :includes :tangle ../src/logical_template.c
+     #include <stdio.h>
+     int main(void) {
+       int i, j, k;
+
+       // 1. Check if i is greater than j
+       i = 10, j = 5;
+       printf("%d = %d\n", ... , ?);
+
+       // 2. Check if i AND j are both true (non-zero)
+       i = 5, j = 0;
+       printf("%d = %d\n", ... , ?);
+
+       // 3. Check if NOT i OR j is true
+       i = 0, j = 2;
+       printf("%d = %d\n", ... , ?);
+
+       return 0;
+     }
+   #+end_src
+
+6) Compile and run:
+   #+begin_src bash
+     gcc logical.c -o logical && ./logical
+   #+end_src
+
+7) Check if your predictions match the output.
+
+* TODO Upper/Lower Case Check (10 min)
+
+1) Download the template:
+   #+begin_src bash
+     wget -O letter.c tinyurl.com/letter-template-c
+   #+end_src
+
+   Check with any of these commands if all's OK:
+   #+begin_example
+   ls -lt letter.c   # lists the file
+   cat letter.c      # prints the file
+   file letter.c     # analyzes the file
+   #+end_example
+
+2) Open ~letter.c~ in ~nano~.
+
+3) Complete the code to check if the input letter is 'b' or 'B':
+   #+begin_src C :main no :includes :tangle ../src/letter_template.c
+     #include <stdio.h>
+     int main(void) {
+       char letter;
+       printf("Enter a letter: ");
+       scanf("%c", &letter);
+       printf("%c\n", letter);
+       if (...) {
+         printf("You entered 'b' or 'B'.\n");
+       } else {
+         printf("You entered something else.\n");
+       }
+       return 0;
+     }
+   #+end_src
+
+   #+RESULTS:
+
+4) Compile and test with 'b', 'B', and another letter:
+   #+begin_src bash
+     gcc letter.c -o letter && ./letter
+   #+end_src
+
+* CANCELLED Range Check (10 min)
+
+1) Download the template:
+   #+begin_src bash
+     wget -O range.c tinyurl.com/range-template-c
+   #+end_src
+
+   Check with any of these commands if all's OK:
+   #+begin_example
+   ls -lt range.c   # lists the file
+   cat range.c      # prints the file
+   file range.c     # analyzes the file
+   #+end_example
+
+2) Open ~range.c~ in ~nano~.
+
+3) Complete the code to check if ~i=5~ is in the interval ~[0,10)~:
+   #+begin_src C :main no :includes :tangle ../src/range_template.c
+     #include <stdio.h>
+     int main(void) {
+       int i, m, n;
+       printf("Enter i, m, n: ");
+       scanf("%d %d %d", &i, &m, &n);
+       printf("%d %d %d", i, m, n);
+       if (...) {
+         printf("%d is in [%d,%d).\n", i, m, n);
+       } else {
+         printf("%d is NOT in [%d,%d).\n", i, m, n);
+       }
+       return 0;
+     }
+   #+end_src
+
+4) Compile and test with:
+   - ~5 0 10~ (should be in range)
+   - ~11 0 10~ (should be out of range)
+
+   #+begin_src bash
+     gcc range.c -o range && ./range
+   #+end_src
+
+* TODO Wrap-Up (3 min)
+
+1) Zip your files:
+   #+begin_src bash
+     zip operators.zip logical.c letter.c range.c
+   #+end_src
+
+2) Verify the archive:
+   #+begin_src bash
+     file operators.zip
+   #+end_src
+
+3) Download the .zip file using the Google Cloud Shell *editor* to your PC.
+
+5) Upload ~operators.zip~ from your PC to Canvas.

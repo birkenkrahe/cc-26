@@ -1,0 +1,3310 @@
+#+title: Agenda Notebook
+#+author: Marcus Birkenkrahe
+#+subtitle: CSC 100
+#+SEQ_TODO: TODO NEXT IN-PROGRESS | DONE CANCELLED
+#+startup: overview hideblocks indent entitiespretty
+#+property: header-args:C      :main yes :includes <stdio.h> :results output :exports both
+#+property: header-args:python :session *Python* :python python3 :results output :exports both
+#+property: header-args:R      :session *R* :results graphics output file :exports both
+#+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
+* DONE Week 1: Orientation & Introduction
+#+attr_html: :width 300px:
+#+caption: Pufferfish woodcut
+[[../img/pufferfish.png]]
+
+- [X] Classroom situation (bring your laptop)
+- [X] Orientation - introduction to the course
+- [X] Introduction to the topic of the course
+
+** 30 students - 24 available PCs (at best)
+
+- Bring your own laptop to class (best)
+- Work on one PC with someone else (take turns)
+- Work through the material using the recording
+
+** Review (Overview)
+
+- When you hear the question, try to think of an answer.
+- When you hear my answer(s), compare yours with mine.
+- Sometimes my answers will contain additional information.
+- Ask if anything is unclear this second time round.
+
+1. What are the parts of our online programming environment?
+   #+attr_html: :width 300px:
+   [[../img/onecompiler2.png]]
+
+2. Which online platforms are we going to use (know at least 2):
+   #+begin_quote
+   1) Canvas (learning management system)
+   2) GitHub (lectures)
+   3) Google Drive (whiteboard)
+   4) Google Space (discussion)
+   5) OneCompiler (programming)
+   #+end_quote
+
+3. What is "pseudocode"?
+   #+begin_quote
+   Instructions without syntax rules.
+   #+end_quote
+   Example:
+   #+begin_example
+   Start the program
+   Count to 10
+   Print number
+   End the program
+   #+end_example
+   #+attr_html: :width 400px:
+
+4. What does a typical "computing infrastructure" include?
+   #+begin_quote
+   1) An Operating system (like Windows or Linux) to do anything.
+   2) Files to save source files (like =hello.c=).
+   3) A Shell (or command-line) like =bash= to pass commands to the OS
+   4) An editor to write, debug and save source code files.
+   5) A network (like the Internet) for cloud applications.
+   #+end_quote
+
+5. What sits at the heart of the computer and what does it do?
+   #+begin_quote
+   At the heart of the computer sits the kernel program juggling
+   thousands of system and user processes simultaneously while
+   maintaining the illusion (for you) that it is only there for you.
+   #+end_quote
+
+6. How will you be evaluated in this class?
+   #+begin_quote
+   1) 50% for your programming assignments.
+   2) 25% for your tests.
+   3) 25% for your final exam (optional).
+   #+end_quote
+
+7. How can you get help for this class?
+   #+begin_quote
+   1) Ask me during class.
+   2) During office hours (tinyurl.com/sp25-booking).
+   3) Post your question to the Google class chat.
+   4) Check one of the free, online textbooks.
+   5) Use AI and don't forget to credit it.
+   6) Attend all classes and/or work through the recordings.
+   #+end_quote
+
+* DONE Week 2: C Language & First program
+#+attr_html: :width 300px:
+#+caption: 1970s Jesus Fish woodcut
+[[../img/jesus_fish.png]]
+
+- [X] Test preview / week review
+- [X] C Programming language
+- [X] Online programming platforms
+- [X] Compiling with onecompiler.com
+- [X] Uploading an in-class assignment
+- [X] Assignments for next week
+
+** Review/Test preview (Way of the Program)
+
+- The review questions are related to one or more questions on the
+  weekly tests. In this case they come from the chapter you just read.
+
+-----
+
+1. What's the difference between interpreted and compiled languages?
+   Examples for such languages?
+   #+begin_comment
+   /Interpreted/ languages (like Python) go straight from /source code/ to
+   result, while /compiled/ languages (like C++) require an intermediate
+   step, machine or /object/ code, before they can be run.
+   #+end_comment
+
+2. Who does what with what until a C program can be run?
+   #+begin_comment
+   1) The /user/ write /source code/ in an /editor/.
+   2) The user saves the source code in a =.c= file.
+   3) The /compiler/ translates the =.c= file into object code (=a.out=)
+   4) The /shell/ executes the program.
+   #+end_comment
+
+3. What is the anatomy (dissection) of this command: =printf("Hello\n");=
+   #+begin_comment
+   1) =printf= is a function defined in the =<stdio.h>= header file.
+   2) The function argument is a string ="..."=.
+   3) The string consists of a /string literal/ (constant) =Hello= and a
+   new line character, =\n=.
+   4) The command is delimited by a =;= character.
+   #+end_comment
+
+4. Which programming errors do you know, when do they occur, and do
+   you have an example?
+   #+begin_comment
+   1) /Syntax errors/ when the language rules are violated, for example
+   a missing semicolon - program will not compile.
+   2) /Logical errors/ when your algorithm does not work, for example
+   the wrong formula - program will not crash.
+   3) /Run-time errors/ when the program is executed - for example when
+   you divide by zero - program crashes or behaves unexpectedly.
+   4) /Semantic error/ when program compiles and runs but produces
+   incorrect results due to incorrect meaning - for example, using
+   a variable incorrectly.
+
+   *Exercise: write little programs that produce each of these errors.*
+   #+end_comment
+
+5. Explain the structure of a typical C program.
+   #+begin_src C
+     // preprocessing: include header files for input/output
+     #include <stdio.h>
+
+     // main program:
+     int main(void)
+     {
+       // action
+       puts("Hello");
+       // confirm success
+       return 0;
+     }
+   #+end_src
+
+6. What is "parsing"?
+   #+begin_comment
+   Analyzing the structure of a program - e.g. finding =main= to mark
+   the beginning of the program, or =printf= to begin printing.
+   #+end_comment
+
+7. Does C code have to be indented like this to work?
+   #+begin_src C
+     int main()
+     {
+       float pi = 3.14;
+       printf("%.2f",pi);
+     }
+   #+end_src
+
+8. Do you always have to have a =main= program?
+   #+begin_comment
+   Yes.
+   #+end_comment
+
+9. What's debugging?
+   #+begin_center
+   Finding and fixing programming mistakes. Helpful: using a debugging
+   program like =gdb= ("GNU Debugger") that allows you to step through
+   the code to print intermediate results.
+   #+end_center
+
+10. Which program translates human-readable source code into
+    machine-executable object code?
+    #+begin_center
+    =gcc= - the GNU C Compiler.
+    #+end_center
+
+** Assignments of the week
+
+1. Complete a simple extension of the "hello world" program: Comment
+   every line of the program and upload the URL to Canvas (Monday)
+
+2. Read the second chapter (Variables and Types): 8 pages (you'll be
+   tested on the content in test 2 at the end of the week - Friday).
+
+3. There are two bonus assignments, which you can tackle at any point
+   between now and May 9 (last day of class). One is simple, the other
+   one is not so simple.
+
+* DONE Week 3: Printing formatted values & Variables
+#+attr_html: :width 600px:
+[[../img/fishermen.jpg]]
+
+- [X] Results: Test 1 & missing in action
+- [X] P/review: Introduction
+- [X] Practice: Printing formatted values in C
+- [X] Lecture: Variables & Types
+
+** Test 1 results and MIA
+
+#+attr_html: :width 450px:
+[[../img/t1_hist.png]]
+
+- Four students missed the deadline!? (->  Max 50%)
+
+- Good, almost excellent average! (89.44%)
+
+- Code to draw the diagram shown (6 lines in R):
+  #+begin_example R
+  ## Variables
+  t1 <- c(15,18,18,24,25,26,rep(27,3),rep(28,4),rep(29,5),rep(30,6))
+  t1_normal <- t1/30 * 100
+  t1_mean = mean(t1_normal)
+  t1_mean_fmt <- as.numeric(format(t1_mean,digits=4))
+  ## Plot
+  hist(t1_normal,
+       main="CSC 100: Test 1 (N=24)",
+       xlab="Percentage",
+       ylab="Number of participants",
+       col="mistyrose")
+  abline(v=mean(t1_mean),lwd=3,col="red")
+  ## Legend
+  legend("top",
+         legend=paste("Average:",t1_mean_fmt,"%"),
+         lty=1,lwd=3,
+         col="red")
+  #+end_example
+
+** Review/Test preview: Introduction
+
+1. What are the current assignments? How can you find out?
+   #+attr_html: :width 700px:
+   [[../img/calendar.png]]
+
+   - The next assignment is test 2 (Friday, 31 January, 9 am).
+
+   - The test is based on chapter 2 of the handout (Think C).
+
+   - The next programming assignment is also due on Friday.
+
+2. Which language has more rules and more words - C or English?
+   #+begin_quote
+   C has hundreds of clear rules collected in a few hundred pages of
+   documentation, and only 30 reserved words.
+
+   English has thousands of constantly evolving rules of grammar,
+   spelling, pronunciation, and style, and hundreds of thousands of
+   words.
+   #+end_quote
+
+3. What is =\n= called, and what does it do?
+   #+begin_quote
+   =\n= is an "escape character" that escapes the =n= using the =\=.
+
+   When the machine sees =\n= it prints a new line.
+   #+end_quote
+
+4. When you type =main= in the editor, what does the machine see?
+   #+begin_example
+   The machine sees a sequence of ASCII characters that correspond to
+   a binary stream (bits):
+
+   m: ASCII code = 109, binary = 01101101
+   a: ASCII code = 97, binary = 01100001
+   i: ASCII code = 105, binary = 01101001
+   n: ASCII code = 110, binary = 01101110
+   #+end_example
+
+   #+begin_src C :results table
+     printf("%c %c %c %c\n",'m','a','i','n');
+     printf("%i %i %i %i\n",'m','a','i','n');
+     printf("%b %b %b %b\n",'m','a','i','n');
+   #+end_src
+
+5. What are the three main elements of computer architecture?
+   #+attr_html: :width 500px:
+   #+Caption: Central Processing Unit, Random Access Memory, Non Volatile Memory
+   [[../img/computer_architecture.png]]
+
+6. What's the main problem of computer architecture?
+   #+Caption: The CPU is super-fast, the RAM is fast, and the NVM is very slow
+   #+attr_html: :width 500px:
+   [[../img/computer_architecture2.png]]
+
+7. What does "tokenizing" mean?
+   #+begin_quote
+   "Tokenizing" means breaking down a sequence of text into smaller
+   units called "tokens". In programming, these are the smallest
+   elements of the source code that have meaning, such as keywords
+   (e.g. =main=, =printf=), operators (=+=, ===), and punctuation =(;, {)=.
+   #+end_quote
+
+8. What's an IDE?
+   #+begin_quote
+   IDE = Integrated Development Environment - an application that
+   integrates the editor, the compiler, and the shell so that you can
+   write, compile and execute programs without leaving the app.
+
+   Example: Emacs + Org-mode, or Onecompiler.com.
+   #+end_quote
+
+9. What is pseudocode?
+   #+begin_quote
+   Code in prose that encodes only the program logic and the program
+   flow, but that does not comply with the syntax rules of any
+   programming languages. A flowchart is pseudocode with graphics.
+   #+end_quote
+
+10. What is "Syntax highlighting"?
+    #+begin_quote
+    Syntax highlighting shows programming language syntax elements in
+    different colors and/or fonts. Very helpful for writing/debugging
+    code.
+    #+end_quote
+
+11. What should your source code include?
+    #+begin_quote
+    A program header with program name, input, output, author, date
+    and license information.
+    #+end_quote
+
+12. What happens  if you  assign a  string value  like "Hello"  to an
+    integer variable?
+    #+begin_src C :tangle ../src/test.c
+      int x;
+      x = "Hello";
+    #+end_src
+    #+begin_quote
+    - You can try this best in pythontutor (unless you have Emacs).
+    - I will show you both pythontutor and the manual way.
+    #+end_quote
+
+** Review - printing with =%s=
+
+1. What is ="%s %s"= ?
+   #+begin_quote
+   Two format specifiers waiting for two string values, for example
+   ="Hello"= and ="World"=.
+   #+end_quote
+
+2. What's the difference between =%s%s\n= and =%s %s \n= ?
+   #+begin_quote
+   =%s%s\n= prints two strings without a space followed by a new line.
+
+   =%s %s \n= prints two strings with a space between them followed by a
+   space followed by a new line.
+   #+end_quote
+
+3. How many ways are there to print two words on two lines?
+
+   #+begin_quote
+   Many. You saw at least three.
+   #+end_quote
+
+   #+begin_src C :results output :includes <stdio.h>
+     // print with `puts` (newline included)
+     puts("Hello,");
+     puts("world!\n");
+     // Print two strings, one call, newline in the format part
+     printf("%s\n%s", "Hello,", "world!");
+     // Print one string per call
+     printf("\n\n%s", "Hello");
+     printf("\n%s", "world");
+     // Print one string, newline in the value part
+     printf("\n\n%s", "Hello\nworld!");
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   Hello,
+   world!
+
+   Hello,
+   world!
+
+   Hello
+   world
+
+   Hello
+   world!
+   #+end_example
+
+4. You want to print five numbers. How many format specifiers do you
+   need?
+   #+begin_quote
+   Five - one for each number.
+   #+end_quote
+   #+begin_src C
+     // Print five integer values
+     printf("%i %i %i %i %i\n", 0, 1, 2, 3, 4);
+   #+end_src
+
+   #+RESULTS:
+   : 0 1 2 3 4
+
+5. How many arguments does =printf= accept?
+   #+begin_quote
+   As many as it takes & as much memory as there is available.
+   The general form is:
+   printf( [format string], [arguments] );
+   #+end_quote
+
+** Printing formatted values (in-class practice with upload)
+
+#+attr_html: :width 700px:
+#+caption: Tokenized printf command
+[[../img/whiteboard.png]]
+
+** Test 1 deadline is this Friday (11:59 pm)!
+
+- First results look promising!
+- Take your merry time with the test!
+- When asked about code, try it out!
+
+** Assignment review: Hello world program with comments
+
+- *Puzzled:* Many of you did not follow the instructions!? (AVG=8.76)
+
+- *Note*: Instructions are everything, creativity means nothing.
+
+- *Always ask* if you're unsure or confused. I'm here to help!
+
+- *Review questions*:
+
+  1) What does the program header contain?
+     #+begin_quote
+     Program name, purpose, input, output, author, pledge, date
+     #+end_quote
+  2) What does the function header contain?
+     #+begin_quote
+     Function name, return type, parameters (function arguments)
+     #+end_quote
+  3) What would the function header for this function look like?
+     #+begin_example C
+       void hello(char name) {
+         printf("Hello, Mr. %c!", name);
+       }
+     #+end_example
+
+     #+begin_src C :results output
+       // hello: print a greeting and a character
+       // returns: nothing (void)
+       // parameters: character `name`
+       void hello(char name) {
+         printf("Hello, Mr. %c!", name);
+       }
+       int main(){
+         hello('X');
+         return 0;
+       }
+     #+end_src
+
+     #+RESULTS:
+     : Hello, Mr. X!
+  4) What exactly happens in =printf("Hello, world.\n");=
+     #+begin_example C
+     // function `printf` is called
+     // string "Hello, world." is printed
+     // escape character `\n` moves cursor to next line
+     // statement is closed with the delimiter `;`
+     #+end_example
+  5) Where should one put meta data like headers and comments?
+     #+begin_quote
+     - All meta data are placed ahead of what they're accompanying
+     - Headers are placed immediately before functions
+     - Comments =//= or =/* */= are placed immediately before or next to
+       what they' commenting upon.
+     #+end_quote
+
+     #+begin_src C
+       // hello: Print greeting
+       // Returns: nothing (void)
+       // Parameters: none (void)
+       void hello(void) {
+         puts("Hello.");
+       }
+
+       /*
+        ,*   main program
+        ,*/
+       int main(void)
+       {
+
+         hello(); // call function
+
+         return 0;
+       }
+     #+end_src
+
+** Review (last lecture)
+
+1. What's wrong with this code?
+   #+begin_src C
+     printf(%s\n, "Hello");
+   #+end_src
+
+   #+RESULTS:
+   : Hello
+
+   #+begin_quote
+   The format string =%s\n= is not formatted as a string.
+
+   Syntax error. Correct: =printf("%s\n", "Hello");=
+   #+end_quote
+
+2. What's wrong with this code?
+   #+begin_src C :results output
+     puts("I am %i years old", 22);
+     puts("I am 22 years old");
+     printf("I am %i years old", 22);
+   #+end_src
+
+   #+RESULTS:
+   : I am %i years old
+   : I am 22 years old
+   : I am 22 years old
+
+   #+begin_quote
+   The =puts= function only prints a string + a new line.
+
+   Logic error. Correct: =puts("I am 22 years old");=
+   #+end_quote
+
+3. What's wrong with this code?
+   #+begin_src C :tangle main.c :includes <stdio.h>
+     void main()
+     {
+       puts("");
+     }
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   The =main= function must =return= an =int=, not =void=.
+
+   Run-time error. Correct: =int main() { puts(""); return 0;}=
+   #+end_quote
+
+4. What's wrong with this code?
+   #+begin_src C
+     printf("I have %c\n", "character.");
+   #+end_src
+
+   #+RESULTS:
+   : I have 
+
+   #+begin_quote
+   A string argument is provided but a character argument is expected.
+
+   Type mismatch error. Correct: =printf("I have %s\n", "character.");=
+   #+end_quote
+
+5. What's wrong with this code?
+   #+begin_src C  :tangle main2.c :includes <stdio.h>
+     printf("%i + %i = %i \n", 224);
+   #+end_src
+
+   #+RESULTS:
+   : 224 + 1768136904 = -1361404480
+
+   #+begin_quote
+   One integer argument is provided but three are expected.
+
+   Run-time error. Correct: =printf("%i + %i = %i \n", 2, 2, 4);=
+   #+end_quote
+
+* DONE Week 4: Constants and keyboard input
+#+attr_html: :width 400px:
+#+caption: Graphic art by M.C. Escher
+[[../img/escher_fish.jpg]]
+
+- [X] *Programming assignments:* The purpose of "Sample output".
+- [X] Review of the last lecture
+- [X] Lecture & practice: Variables & Assignments (continued)
+- [X] Lecture & practice: Constants & Keyboard input
+
+** Review of the last lecture - Integer types
+
+1. What's wrong with this code?
+   #+begin_src C
+     height = 10;
+     int height;
+   #+end_src
+   #+begin_quote
+   The variable =height= is used before it is declared.
+   #+end_quote
+
+2. What's wrong with this code?
+   #+begin_src C
+     int main(void) {
+       int height;
+       printf("The height is %d\n", height);
+       return 0;
+     }
+   #+end_src
+
+   #+RESULTS:
+   : The height is 0
+
+   #+begin_quote
+   The variable =height= is uninitialized, so its value is undefined.
+   #+end_quote
+
+3. What's wrong with this code?
+   #+begin_src C
+     8 = height;
+   #+end_src
+   #+begin_quote
+   Literals like =8= cannot be assigned values because they are
+   constants.
+   #+end_quote
+
+4. What's wrong with this multi-variable declaration/definition?
+   #+begin_src C
+     int height = 3, width = 2, volume
+   #+end_src
+   #+begin_quote
+   The statement is missing a semicolon (=;=).
+   #+end_quote
+
+5. What's wrong with this variable reassignment?
+   #+begin_src C
+     int main(void) {
+       int foo;
+       foo = 8;
+       int foo = 18;
+       return 0;
+     }
+   #+end_src
+   #+begin_quote
+   A variable cannot be redeclared within the same scope.
+   #+end_quote
+
+** Review of the in-class programming practice
+#+attr_html: :width 400px:
+#+caption: To the AI, nerds are always insanely attractive
+[[../img/coding_couple.png]]
+
+- 50% of you did not get the correct result. That's not a surprise!
+
+- I've written to you with some recommendation:
+
+  1. *Check* the instructions and try to write the code again in your
+     own time.
+  2. Even if it works, *compare* it with my sample solution.
+  3. *Fix* the errors, try again until you have a working solution that
+     you wrote yourself (= with your own hands).
+  4. Now go back to your original (failed) program and make sure that
+     you *understand* what you did wrong, and what every line means.
+  5. You could go crazy and read the program again from the bottom
+     line proceeding from right to left.
+
+If after this you're still in need of tutoring: *come by my office*
+(book at: [[https://tinyurl.com/sp25-booking][tinyurl.com/sp25-booking]])!  We'll sort you out in 30 min!
+
+There's no shame in failing at coding at this stage but you need to
+work at it a little at least to keep your head above water.
+
+It'll do to check out the lectures and the code before/after class and
+spend enough time on the programing assignments & perhaps try a bonus.
+
+** Where can I get more practice problems?
+
+1. Make up your own problems by minimally changing the programs that
+   you wrote or that you saw in class.
+2. Use AI: Paste the last program that you successfully wrote yourself
+   into the interface, confess to being a complete noob and beginner &
+   ask for 5 similar problems (without solutions).
+3. Check out the "Challenges" tab in OneCompiler.com
+4. Ask me.
+5. More challenging: Go to leetcode.com and look for beginner problems
+   in C.
+
+** Review of the last lecture - Floating point types
+
+1. What's wrong with this assignment? Will it compile? Will it run?
+   #+begin_src C
+     float profit = 2150.48;
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   What's wrong?
+   - Yes, it will compile and run.
+   - The floating-point literal =2150.48= is a =double= by default.
+   - While it can still be assigned to a =float=, this may cause
+     implicit *type conversion* issues.
+   - To explicitly indicate a =float=, the =f= suffix should be used.
+   #+end_quote
+
+2. What's wrong with this assignment? Will it compile? Will it run?
+   #+begin_src C
+     int iProfit = 2150.48;
+   #+end_src
+   #+begin_quote
+   What's wrong?
+   - Yes, it will compile and run.
+   - A floating-point number is being assigned to an integer.
+   - The compiler does not warn about this, but it will truncate the
+     decimal portion.
+   - =iProfit= will store =2150=, not =2150.48=, which may lead to
+     unexpected results.
+   #+end_quote
+
+3. How can you show what's wrong with the last assignment?
+   #+begin_src C
+     int iProfit = 2150.48;  // wrong assignment
+     printf("iProfit = %i or is it %f?\n", iProfit, (float)iProfit);
+   #+end_src
+
+   #+RESULTS:
+   : iProfit = 2150 or is it 2150.000000?
+
+   #+begin_quote
+   - You have to print the memory content.
+   - This shows that the fractional part of =iProfit= is lost forever.
+   #+end_quote
+
+4. What's wrong with this formatted output? What will it print?
+   #+begin_src C
+     float half = 0.5 * 10.0;
+     printf("Half the number is: %i\n", half);
+   #+end_src
+
+   #+RESULTS:
+   : Half the number is: 1074283832
+
+   #+begin_quote
+   What's wrong?
+   - The format specifier =%i= is for integers, but =half= is a =float=.
+   - Using =%i= for a floating-point value results in *undefined behavior*.
+   - The correct format specifier should be =%f= instead.
+   #+end_quote
+
+5. What's wrong with this code?
+   #+begin_src C
+     int height = 8, length = 12, width = 10;
+     printf("Volume = %i\n", height + length + width);
+   #+end_src
+
+   #+RESULTS:
+   : Volume = 30
+
+   #+begin_quote
+   What's wrong?
+   - The calculation inside =printf= is incorrect.
+   - Instead of multiplying =height=, =length=, and =width=, the code mistakenly adds them.
+   - The correct computation should be =height * length * width=.
+   - Don't be so focused on the language that you forget math & logic!
+   #+end_quote
+
+6. What's wrong with this program? Will it compile? Will it run?
+   #+begin_src C :results output
+     #include <stdio.h>
+
+     int main(void)
+     {
+       int num = 10;
+       int doubleNum = 2 * num;
+       float half = 0.5 * num;
+
+       printf("The number is: %i\nDouble the number is: %i\nHalf the number is: %f",
+              num, doubleNum, half);
+     }
+   #+end_src
+   #+begin_quote
+   What's wrong?
+   - Yes it will compile (usually) and run.
+   - The =main= function is missing a =return 0;= statement at the end.
+   - While some compilers allow this omission, returning 0 explicitly
+     indicates successful execution.
+   - Best practice is to include =return 0;= at the end of =main=.
+   #+end_quote
+
+7. What's wrong with this code - why won't it compile?
+   #+begin_src C :includes <stdio.h> :results output
+     int num = 10;
+     int doubleNum = 2 * num;
+     float half = 0.5 * num;
+
+     printf("The number is: %i\n\
+     Double the number is: %i\nHalf the number is: %f",
+            num,
+            doubleNum,
+            half);
+   #+end_src
+
+   #+RESULTS:
+   : The number is: 10
+   : Double the number is: 20
+   : Half the number is: 5.000000
+
+   #+begin_quote
+   What's wrong?
+   - The formatting string is not finished (error message: ="missing
+     terminating character"=) - to extend a string over a new line, you
+     need to terminate it with a ~\~.
+   - The syntax highlighting already reveals that something's not
+     right.
+   #+end_quote
+
+** Review of the last lecture
+
+1. What's wrong with this code? Will it compile? Will it run?
+
+   #+begin_src C
+     #define PI 3.141593;
+     printf("Pi is %f\n", PI);
+   #+end_src
+
+   #+begin_quote
+   - It won't compile.
+   - The semicolon (=;=) at the end of =#define PI 3.141593;= is incorrect.
+   - Macro definitions are not *statements*; they are simple *text
+     substitutions*. The semicolon will be included in every
+     replacement, causing a *syntax error* when used in expressions.
+   #+end_quote
+
+2. What's wrong with this code? Will it compile? Will it run?
+
+   #+begin_src C :results output
+     #define VALUE 1.0
+     printf("Constant value is %.1f\n", VALUE);
+     #define VALUE 2.0
+     printf("Constant value is %.1f\n", VALUE);
+   #+end_src
+
+   #+RESULTS:
+   : Constant value is 1.0
+   : Constant value is 2.0
+
+   #+begin_quote
+   - The code compiles and runs.
+   - The constant =VALUE= is redefined using =#define= without an =#undef=
+     directive.
+   - While this is allowed in C, it generates a compiler warning.
+   - Redefining a macro without =#undef= can lead to unexpected
+     behavior. A proper approach is:
+   #+end_quote
+   #+begin_src C
+     #define VALUE
+     // ...
+     #undef VALUE
+     #define VALUE 2.0
+   #+end_src
+
+3. What's wrong with this code? Will it compile? Will it run?
+
+   #+begin_src C
+     #include <stdio.h>
+     printf("Pi is %f\n", M_PI); // M_PI is the mathematical constant \pi
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   - Program will not compile.
+   - The program is missing the =#include <math.h>= header, which
+     defines =M_PI=.
+   - Without this, the compiler does not recognize =M_PI=, leading to an
+     "undeclared identifier" error.
+   #+end_quote
+
+4. What's wrong with this code? Will it compile? Will it run?
+
+   #+begin_src C
+     #include <stdio.h>
+     #define apple_pie M_PI
+
+     int main(void) {
+       printf("Pi is %f\n", apple_pie);
+       return 0;
+     }
+   #+end_src
+
+   #+begin_quote
+   - It will not compile.
+   - The program is missing =#include <math.h>=, which defines
+     =M_PI=. Since =apple_pie= is defined as =M_PI=, but =M_PI= is not
+     recognized, the program will fail to compile.
+   #+end_quote
+
+5. What's wrong with this code? Will it compile? Will it run?
+   #+begin_src C :main no :includes
+     #include <stdio.h>
+     #include <math.h>
+     #define e M_E
+     printf("%.16f\n", e);
+     int main() {
+
+       return 0;
+     }
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   - It will not compile.
+   - The =printf= statement is outside a function. In C, all executable
+     statements must be inside a function, typically =main()=.
+   #+end_quote
+
+** New programming assignment "Your height in light-years"
+
+- Define physics constants (speed of light, year in seconds).
+
+- Convert height (in meters) into light-years (the distance that
+  photons travel in the course of one year).
+
+- You can use the formula: $$ 1 [m] \equiv \frac{1}{c [m/s] \times y [s]} $$
+  where $c$ is the speed of light, and $y$ is the year in seconds.
+
+- For example, the Eifeltower in Paris is 330 m high. In light-years:
+  #+begin_src C
+    printf("%.2E", 330/(299792458.0 * 31536000.0)); // using the %e format
+  #+end_src
+
+  #+RESULTS:
+  : 3.49e-14
+
+- To avoid having to print 1/3.49049200000000, the =printf= statement
+  uses scientific or E-notation with the =%e= format specifier.
+
+- *Remember*: You must reproduce the sample output exactly, you must
+  respect the constraints, and you must adequatly comment your code.
+
+- The *bonus* assignment is a reloaded version, which will include
+  accepting keyboard input to compute the height in light-years.
+
+* DONE Week 5: Naming, =printf=, and =scanf=
+#+attr_html: :width 600px:
+[[../img/japanese.jpg]]
+
+- [X] Test 3 still available (50%) - excellent results!
+  #+attr_html: :width 600px:
+  [[../img/test3.png]]
+
+- [X] Review: Print constant values - read keyboard input
+
+- [X] *Lecture/Practice:* Naming conventions and rules
+
+- [X] *Lecture/Practice*: Printing to =stdout= with =printf=
+
+- [X] *Lecture/Practice:* Reading from =stdin= with =scanf=
+
+- [X] New bonus assignment: "Statistical formula"
+
+- [X] New home assignment: "Phone number conversion".
+
+** Review: Print constant values - read keyboard input
+
+*Sample files:*
+
+- Printing constants: [[https://onecompiler.com/c/437ukkdbb][onecompiler.com/c/437ukkdbb]]
+
+- Reading keyboard input: [[https://onecompiler.com/c/437up425x][onecompiler.com/c/437up425x]]
+
+*Questions:*
+
+1. How can you print =6.5%=?
+   #+begin_src C
+     printf("6.5%%\n"); // escape `%` with `%`
+   #+end_src
+
+   #+RESULTS:
+   : 6.5%
+
+2. How can you print =2.7182818285= as =2.71=?
+   #+begin_src C
+     printf("%.2f\n",2.7182818285); // retain two digits only
+   #+end_src
+
+   #+RESULTS:
+   : 2.72
+
+3. How can you define a permanent constant?
+   #+begin_src C
+     const int perm = 1;  // this is what you saw in class
+     int const perm2 = 2; // you can swap `const` and `int`
+
+     printf("%i %i\n",perm,perm2);
+   #+end_src
+
+   #+RESULTS:
+   : 1 2
+
+4. What is =stdin=? How can you get it in C++?
+   #+begin_quote
+   =stdin= stands for "standard input" = incoming data, for example from
+   a keyboard, or a touchscreen, or a camera.
+
+   You can fetch standard input with the =scanf= function.
+   #+end_quote
+
+5. How would you fetch =100= from the keyboard and store it in =x=?
+   #+begin_src C :cmdline < 100
+     int x;   // first declare an integer variable
+     scanf("%i",&x);  // get the value from the keyboard
+     printf("%i\n",x); // print what you got
+   #+end_src
+
+   #+RESULTS:
+   : 100
+
+
+** Practice with =printf=
+
+- Open [[https://tinyurl.com/6-printf-practices][tinyurl.com/6-printf-practices]] in your browser.
+
+- Using OneCompiler.com (or Emacs) work through the exercises.
+
+- When you're done, upload your file on Canvas.
+
+- Solution here: https://onecompiler.com/c/438vbkaby
+
+
+** Assignments
+
+- *Bonus assignment:* Compute the standard deviation for four integers.
+  #+attr_html: :width 250px:
+  [[../img/formula.png]]
+
+  Output in OneCompiler:
+  #+attr_html: :width 400px:
+  [[../img/sd2.png]]
+
+- *Programming assignment:* Phone number conversion.
+
+  Input and output in OneCompiler:
+  #+attr_html: :width 300px:
+  [[../img/phone.png]]
+
+* DONE Week 6: =scanf= practice
+#+attr_html: :width 400px:
+#+caption: Francisco de Goya, Still Life with Golden Bream (1808)
+[[../img/goya.jpg]]
+
+** *Test 5*: =printf= and =scanf=. Deadline: 21 Feb (closes: 28 Feb)
+
+- 35 questions!
+- Take your time!
+- Use the compiler!
+- Ask me if confused!
+- You can now solve 155 C programming language problems!
+- After only 5 weeks of training!
+- After 15 hours of class and 10 hours of practice!
+- That's 31 problems per week!
+- Or more than 5 problems per work day!
+
+** Checked your programming assignments - who needs tutoring?
+
+- I will grade your submissions closer to the deadline now (but not
+  before the deadline) so that you can submit improved versions for
+  50% of the maximum available points.
+
+- Many of you don't seem to read the instructions, or decide, perhaps
+  in the last minute, before submission, to violate them. You've
+  suffered small point losses for that. Think of me as a machine.
+
+- Example output (to be reproduced exactly):
+  #+begin_example
+  The integer value is: 10.
+  The floating-point value is: 3.14.
+  The character value is: A.
+
+  The values are: 10, 3.14, and A.
+  #+end_example
+
+- These (authentic) output examples *do not* satisfy the requirements:
+  #+begin_example
+  ----------------------------- Exhibit A
+  10
+  3.140000
+  A
+  10 3.140000 A
+
+  ----------------------------- Exhibit B
+
+  2025439560
+
+  3.140000
+
+  51
+  3.140000
+  3.14 - 3 = 0.14
+
+  ----------------------------- Exhibit C
+
+  integer: 41
+  floating-point: 3.14
+  character: A
+
+  ----------------------------- Exhibit D
+
+  main.c:10 10: fatal error: studio.h: no such file or directory
+   10 | #include <studio.h> // Standard input-output
+      |             ^----------------
+  compilation terminated
+  #+end_example
+
+- To bring your point average back up: Submit a few bonus
+  assignments. The points will be counted for midterms/finals.
+
+- I'll make solution videos of past assignments as soon as I
+  can. Arrange office hours with me: [[https://tinyurl.com/sp25-booking][tinyurl.com/sp25-booking]]
+
+** *Videos* on Google Cloud Shell ("Panopto" tab in Canvas):
+
+#+begin_quote
++ How to *log* into cloud shell ([[https://cloud.google.com][cloud.google.com]]).
++ How to *open* the terminal (aka command-line shell).
++ How to *edit* source code with the GNU =nano= editor.
++ How to *save* and *rename* your =.c= source file.
++ How to *compile* your code using the GNU CC compiler =gcc=.
++ How to *rename* your executable (object =.o=) file.n
++ How to *list* (=ls=) and *view* (=cat=) files
++ How to *run* an executable (object) file with a relative path (=./=)
++ How to *exit* the shell (=exit=)
++ How to *open* the cloud editor.
++ How to *download* a source code (=.c=) file for Canvas upload.
+
+*Google Cloud Shell has three limitations:*
+1) You need a Google account to use it.
+2) You need an Internet connection.
+3) You need to stay within 50 hours per week.
+#+end_quote
+
+** *Practice*: Linux commands (=ls=, =cd=, =mkdir=, =rm=, =echo=, =history=
+
+- Log into Google Cloud Shell now and follow my lead.
+
+| COMMAND | MEANING                 | EXAMPLE    |
+|---------+-------------------------+------------|
+| =ls=      | list files              | =ls *.c=     |
+| =mkdir=   | make directory          | =mkdir cc=   |
+| =cd=      | change directory        | =cd cc=      |
+| =rm=      | remove file             | =rm a.out=   |
+| =echo=    | print to screen         | =echo hello= |
+| =history= | show last 1000 commands | =!100=       |
+
+** *Bonus assignment:* Download Google Cloud Shell to your PC.
+
+- Install Google Cloud Shell as a Chrome app on your PC
+- Follow the steps (includes testing with "hello world")
+- For points, submit screenshot of your console/terminal to Canvas
+
+** *Practice:* =scanf= exercises in Google Cloud Shell
+
+- Open [[https://tinyurl.com/7-scanf-practice][tinyurl.com/7-scanf-practice]] in your browser.
+
+- Use Google Cloud Shell with me to learn it.
+
+- When you're done, upload your ZIP file on Canvas.
+
+- I recorded a video of the first exercise in Panopto (Canvas):
+  "[[https://lyon.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d9ea9517-36f9-40ac-ae0b-b286017ea35c][Editing, Compiling, Running C files on the Shell]]"
+
+** Review: The command-line shell / GCC compiler / ~nano~ editor
+
+1. How can you create a new file =hello.c=? Will this command work?
+   #+begin_example sh
+     nano hello
+   #+end_example
+   #+begin_quote
+   No, you need to enter =nano hello.c=
+   #+end_quote
+
+2. How can you compile =hello.c=? Will this command work?
+   #+begin_example sh
+     GCC hello.c
+   #+end_example
+   #+begin_quote
+   No, it will not work because the compiler is =gcc=. You have to enter
+   =gcc hello.c=
+   #+end_quote
+
+3. How can you run the machine code after the successful compilation?
+   You are in the directory =/home/you=. Which command will work?
+   #+begin_example sh
+     a.out             # computer cannot find a.out
+     ../a.out          # computer cannot find a.outf one level up
+     /home/you/a.out   # yes! absolute path to a.out is ound
+     .a.out            # no: there is no file `.a.out`
+     ./a.out           # yes! relative path to a.out is found
+   #+end_example
+
+4. Which command tells you were you are?
+   #+begin_src bash :results output :exports both
+     pwd
+   #+end_src
+
+   #+RESULTS:
+   : /home/marcus/GitHub/admin/spring25/csc100/org
+
+5. You are in =/home/me/one= and you want to go to =/home/me/two= - how
+   can you get there? Which of the following commands would work?
+   #+begin_example sh
+   cd /home/me/two   # using absolute path
+   cd ../two         # using relative path
+   #+end_example
+
+6. You want to see the files in your present working directory
+   (=pwd=). Which command would do that?
+   #+begin_example sh
+     ls       # yes
+     ls ..    # no: looks one level up
+     ls .     # yes
+     ls ./    # yes - same as . but possible to add a file name after it
+   #+end_example
+
+7. Which command clears the screen when it's full?
+   #+begin_example
+   clear
+   #+end_example
+
+8. Which command shows you all of your past commands?
+   #+begin_example
+   history
+   #+end_example
+
+9. How can you re-use a past command without having to retype it?
+   #+begin_quote
+   1. Find the command ID number =num= in =history= and enter =!num=
+   2. Scroll back with the =<up-arrow>=
+   #+end_quote
+
+10. Which command shows you all C files in the current directory?
+    #+begin_src bash :results output :exports both
+      ls *.c   # `*` is called a `glob` or a `wildcard`
+      ls
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    sd.c
+    100
+    1_overview.org
+    1_practice.org
+    1_practice_print.org
+    2_introduction.org
+    2_practice.org
+    2_practice_print.org
+    3_practice.org
+    3_practice_print.org
+    3_printing_values_class.org
+    3_printing_values.org
+    4_variables_class.org
+    4_variables.org
+    4_variables.tex
+    5_constants_class.org
+    5_constants.org
+    6_printf.org
+    6_printf_practice.org
+    6_printf_practice_solution.org
+    6_printf_print.org
+    6_printf_solution.org
+    7_scanf.org
+    7_scanf_practice.org
+    7_scanf_practice_solution.org
+    8_operators.org
+    agenda.org
+    analysis.org
+    assignments.org
+    input2
+    install.org
+    notes.org
+    OneCompiler.org
+    projects.org
+    sd
+    sd.c
+    syllabusCPP.org
+    syllabus.org
+    syllabus_print.org
+    tests.org
+    #+end_example
+
+* DONE Week 7: Operators I
+#+attr_html: :width 400px :float nil:
+#+caption: Picasso - Still Life with Fish (1923)
+[[../img/picasso.jpg]]
+
+** Wrong test 5 question
+
+This turned out to be tricky! Everybody who did the test by Friday got
+1 extra point & James got 2 points for discovering the mistake first.
+
+1) *Question:* How can you print *2.7182818285* as *2.71* in C?
+   - [X] `printf("%.2f\n", 2.7182818285);`
+   - [ ] `printf("%.3f\n", 2.7182818285);`
+   - [ ] `printf("%0.2lf\n", 2.7182818285);`
+   - [ ] `printf("%.2lf\n", 2.7182818285);`
+
+2) Solution: The question was ill-posed because ~printf~ *rounds* unless
+   explictly instructed to *truncate*.
+   #+begin_src C :results output
+     #include <stdio.h>
+
+     int main() {
+       double num = 2.7182818285; // `double`: `long` %lf
+       printf("%.2f\n", num);     // precision 2 - rounds
+       printf("%0.2lf\n", num);   // precision 2 - rounds
+       printf("%.2lf\n", num);    // precision 2 - rounds
+       printf("%.3f\n", num);     // precision 3 - rounds
+       printf("%.2f\n", (int) (num * 100)/100.0); // truncated
+       return 0;
+     }
+   #+end_src
+
+   #+RESULTS:
+   : 2.72
+   : 2.72
+   : 2.72
+   : 2.718
+   : 2.71
+
+3) Explanation:
+
+   - Multiplication by 100 shifts the decimal point to the right:
+     #+begin_src C
+       float num = 2.7182818285;
+       printf("Shift %f to the right: %f\n",num, num * 100);
+     #+end_src
+
+     #+RESULTS:
+     : Shift 2.718282 to the right: 271.828186
+
+   - Cast with ~(int)~ removes the decimal part (truncates it):
+     #+begin_src C :results output
+       float num = 2.7182818285;
+       printf("Shift %f to the right: %f\n",num, num * 100);
+       printf("Truncate %f: %d\n",num * 100, (int) (num * 100));
+     #+end_src
+
+     #+RESULTS:
+     : Shift 2.718282 to the right: 271.828186
+     : Truncate 271.828186: 271
+
+   - Division by 100 shifts it back by two places:
+     #+begin_src C :results output
+       float num = 2.7182818285;
+       printf("Shift %f to the right: %f\n",num, num * 100);
+       printf("Truncate %f: %d\n",num * 100, (int) (num * 100));
+       printf("Shift %d back: %.2f\n",(int) (num * 100), (int)(num*100)/100.0);
+     #+end_src
+
+     #+RESULTS:
+     : Shift 2.718282 to the right: 271.828186
+     : Truncate 271.828186: 271
+     : Shift 271 back: 2.71
+   a
+** Review programming assignment
+
+- Results:
+  #+attr_html: :width 400px:
+  [[../img/grade2.png]]
+
+  #+attr_html: :width 400px:
+  [[../img/grade3.png]]
+
+- [X] "Your height in light-years" graded and feedback given:
+  1) *Permanent* constants should be defined with ~const~
+  2) *Constants* should be named with UPPER CASE: =SPEED_OF_LIGHT=
+  3) *Variable* & constant names should be meaningful: =height_m_napoleon=
+
+- [X] Everybody should have received my sample solution:
+  [[https://tinyurl.com/light-years-solution][tinyurl.com/light-years-solution]] (modified on Sunday to more clearly
+  separate input/output variables, conversion, and printing.
+
+- [X] There is an easy *bonus assignment:* Get the input in meters from
+  using ~scanf~ - "Bonus: Your height in light-years (reloaded)".
+
+** Review - arithmetic operators and shell compilation
+
+1. What's wrong with this program?
+   #+begin_src C
+     int i = 2;
+     printf("%d\n", i**2); // no such operator!
+   #+end_src
+
+   #+RESULTS:
+   : 4
+
+   #+begin_quote
+   C does not have a power operator =**=.
+   #+end_quote
+
+2. How do humans vs. machines solve problems?
+   #+begin_quote
+   - Humans: with *heuristics* ("tinkering" / "trial and error")
+   - Machines: with *algorithms* (strict instruction sets)
+   #+end_quote
+
+3. What's a *unary operator*? Can you give an example?
+   #+begin_quote
+   - An operator (a built-in function) with one operand is "unary"
+   - =NOT= (Boolean op.), =++= (compound op.), negation =-= (arithmetic op.)
+   #+end_quote
+
+4. What's the difference between ==== and === ? Can you give an example?
+   #+begin_src C
+     int x = 1;  // assignment operator
+     printf("%d\n", x == x); // equality operator (conditional)
+   #+end_src
+
+   #+RESULTS:
+   : 1
+
+5. When asked to "build a simple calculator", how should you proceed?
+   #+begin_quote
+   1) Start simple: one operation, fixed values.
+   2) Variable declaration, computation, print result.
+   3) Complete calculator for all remaining operations.
+   4) Add user interface (keyboard input).
+   5) Compile, run and test it again and again and again...
+   #+end_quote
+
+6. You compile a file called =amazing.c=. What's the output file called?
+   #+begin_quote
+   The standard output or *object* file is called =a.out=.
+   #+end_quote
+
+7. How can you run the executable file =a.out= on the command-line if
+   you and the file are both in your home directory?
+   #+begin_quote
+   You have to give the computer the *path* to the file:
+   1) =./a.out=             // relative path to =a.out=
+   2) =/myHome/a.out=       // absolute path to =a.out=
+   #+end_quote
+
+8. What is the golden rule for the format string of ~scanf~?
+   #+begin_quote
+   The format string of ~scanf~ should be minimal, and contain only the
+   format specifiers required for the input data types, e.g. ="%d%d"=
+   requires you to enter two numbers like this: =11= and not =1 1=.
+   #+end_quote
+
+9. What is the rule for the arguments of ~scanf~?
+   #+begin_quote
+   Variables need to be declared with the *address-of* operator ~&~.
+   #+end_quote
+
+10. How many operators does C have?
+    #+begin_quote
+    C has 44 operators - arithmetic, relational, logical, bitwise,
+    assignment, increment/decrement, conditional/ternary, comma,
+    pointer, type casting, SizeOf, structure/member.
+    #+end_quote
+
+
+** *Lecture & Practice:* Operators (=++=, =*==, =&&=)
+
+*Three types of operators:*
+1) [X] arithmetic operators like ~*~
+2) [X] logical and relational operators like ~==~ and ~<~
+3) [ ] compound operators like ~++~ and ~+=~
+
+In this session you produce 7 C files which in the end you
+must upload as a ZIP file - if you miss a session, please
+create the file on your own (ask me ask me ask me).
+
+** NOT ~!~ question by Nichole (with a preview)
+
+#+begin_quote
+Does the operator ! convert the value of the operand to a binary value
+and then act to reverse that value?
+#+end_quote
+
+​Yes, very good observation. Reverse = inverse.
+
+#+begin_quote
+If x=5, ! causes the machine to see the five as TRUE and returns the
+reverse of that, so !x will return FALSE because what the machine
+sees is NOT TRUE, i.e. !1?
+#+end_quote
+
+In C, all values except =0= are considered =TRUE= by the machine.
+
+#+begin_src C :results output :main yes :includes <stdio.h>
+  float truth[]={0,1,-100,3.14};  // Boolean array (collection)
+
+  for (int i=0; i<4;i++) {  // for loop (iteration)
+    if(truth[i])  // condition statement
+      printf("%g is TRUE\n",truth[i]);
+    else
+      printf("%g is FALSE\n",truth[i]);
+   }
+#+end_src
+
+#+RESULTS:
+: 0 is FALSE
+: 1 is TRUE
+: -100 is TRUE
+: 3.14 is TRUE
+
+For your example: the =stdbool= header file allows you to define a data
+type =bool= but C still only uses 1 and 0 internally for TRUE and FALSE.
+
+#+begin_src C
+  #include <stdbool.h>  // standard header file
+  bool x = 5;
+  printf("%d %d",x, !x); // 5 is TRUE and !5 = 0 is FALSE
+#+end_src
+
+#+RESULTS:
+: 1 0
+
+#+begin_quote
+And if x=0, ! causes the machine to see the zero as FALSE so the
+machine will return TRUE because what it sees is NOT FALSE, i.e. !0?
+#+end_quote
+
+#+begin_src C
+  #include <stdbool.h>
+  bool x = 0;
+  printf("%d %d",x, !x); // 5 is TRUE and !5 = 0 is FALSE
+#+end_src
+
+#+RESULTS:
+: 0 1
+
+#+attr_html: :width 400px
+[[../img/NOT.png]]
+
+** Review: AND (~&&~), OR (~||~), NOT (~!~)
+
+(Solution to =boolean.c=)
+
+1. What is: (100 && 1) ? (Boolean operator AND)
+   #+begin_src C
+     printf("(100 && 1) is %d\n", 100 && 1);
+   #+end_src
+
+   #+RESULTS:
+   : (100 && 1) is 1
+
+2. What is (100 || 0) ? (Boolean operator OR)
+   #+begin_src C  :results output
+     printf("(100 || 0) is %d\n", 100 || 0);
+   #+end_src
+
+   #+RESULTS:
+   : (100 || 0) is 1
+
+3. What is (1 == 0) ? (Logical, not Boolean operator)
+   #+begin_src C
+     printf("(1 == 0) is %d\n", 1 == 0); // not assignment!
+   #+end_src
+
+   #+RESULTS:
+   : (1 == 0) is 0
+
+4. What is !(-1) and !!10 ?
+   #+begin_src C :results output
+     printf("!(-1) is %d, !!(10) is %d\n", !(-1), !!10);
+   #+end_src
+
+   #+RESULTS:
+   : !(-1) is 0, !!(10) is 1
+
+5. What is (1 < 0) || (0 < 1) ? (FALSE OR TRUE)
+   #+begin_src C :results output
+     printf("(1 < 0) || (0 < 1) is %d\n", (1 < 0) || (0 < 1));
+   #+end_src
+
+   #+RESULTS:
+   : (1 < 0) || (0 < 1) is 1
+
+** Next programming assignments
+
+Three simple assignments:
+- Add and divide floating point numbers
+- Compute Boolean expressions
+- Compute compound operators
+
+* DONE Week 8: Operators II
+#+attr_html: :width 400px :float nil:
+#+Caption: Jonah and the Whale by Pieter Lastman (1621)
+[[../img/jonah.jpg]]
+
+This week, we'll finish the basics, and we're moving on to bigger and
+better things: conditional statements, iterations, data structures.
+
+** New test - Command-line and Operators
+
+This test covers our Google Cloud Shell exploration and the lecture
+and practice on operators in C.
+
+- 40 questions but lots of repetition (drill test).
+- Take your time with it and use available sources.
+- Hard deadline March 10 (because of midterms 12-Mar).
+
+** Three simple programming assignments
+
+The instructions for these exercises are way longer than the programs
+themselves. They are simple because there's not much you can do by way
+of programming without ~if-else~ statements, ~loops~ and ~arrays~.
+
+- 6 Command-line floating-point calculator.
+- 7 De Morgan's Law Demonstrator.
+- 8 Number Change with Increment/Decrement.
+- Hard deadline March 10 (because of midterms 12-Mar).
+- Submission as URL in OneCompiler (b/c I must grade fast).
+- You'll get sample solutions on March 11.
+
+** Review
+
+1. How can you get a program from the web?
+   #+begin_example C
+   wget -O program.c https://example.com/program-c
+   #+end_example
+
+2. Where is this command executed?
+   #+begin_quote
+   On the command-line - e.g. via Google Cloud Shell (or Linux).
+   #+end_quote
+
+3. How can you check the program was downloaded?
+   #+begin_example C
+   ls -lt program.c
+   #+end_example
+
+4. How can you edit it?
+   #+begin_example C
+   nano program.c
+   #+end_example
+
+5. How can you save the program and exit?
+   #+begin_quote
+   In nano: CTRL + S to save, CTRL + X to exit
+   #+end_quote
+
+6. How can you compile =program.c=, name the executable =pgm= and run it?
+   #+begin_example sh
+   gcc program.c -o pgm && ./pgmg
+   #+end_example
+
+7. How can you "Check if =i= OR =j= are both ~TRUE~" translate to C?
+   #+begin_src C
+     i || j
+   #+end_src
+
+8. How can you "Check if the input variable =letter= was entered as X"?
+   #+begin_src C
+     letter == 'X'
+   #+end_src
+
+9. How can you "Check if =i= is in the interval =(0,10]="
+   #+begin_src
+   0 < i && i <= 10
+   #+end_src
+
+10. How can you archive =p1.c= and =p2.c= and check the archive file?
+    #+begin_example sh
+    zip archive.zip p1.c p2.c && file archive.zip
+    #+end_example
+
+** Operators Practice (Lab)
+
+- In Google Chrome, open [[https://tinyurl.com/operators-practice][tinyurl.com/operators-practice]].
+
+- Follow the instructions.
+
+- You complete one part then we compare solutions.
+
+- At the end, you upload a ZIP file to Canvas.
+
+* DONE Week 9: Control Flow - ~if~ / ~else~ / ~else if~
+#+attr_html: :width 400px :float nil:
+#+caption: Source: Cover of "Moby Dick" by Herman Melville
+[[../img/mobydick.png]]
+
+- [X] Beyond the basics: Roadmap to Happy Hunting
+- [X] Pseudocode & Practice & Process diagrams
+- [ ] Control flow keywords (if, else, else if, switch)
+
+- [X] New programming assignment available
+- [X] New script available (online only)
+- [X] All programming assignments are open for late submission
+
+** Beyond the basics
+
+- What you've learnt so far: The *basics*
+  1) Values & expressions
+  2) Variables & constants
+  3) Statements
+  4) Operators
+
+- The next step is: *Control* of the program flow
+  1) Decisions (~if~, ~else~, ~else if,~ and ~switch~)
+  2) Loops (~for~, ~while~, and ~do while~)
+  3) Collections (arrays)
+  4) Modules (functions)
+  5) Memory (pointers)
+
+- This leads us to *data structures* like
+  1) Strings
+  2) Structs
+  3) Linked lists
+  4) Trees
+  5) Graphs
+
+- Data structures are subject of CSC 240 (Fall'25).
+
+** Continued: Pseudocode/if-else
+
+- Open the starter code again (clean this time):
+
+- Fix the program according to the pseudocode!
+
+- Check that it works with the input "1 100" and "2 100".
+
+- Then we'll move on.
+
+** Review: Programming assignments
+
+- For the "Command-line floating-point calculator" you actually had to
+  enter command-line arguments (rather than static values).
+
+- Many submissions for the "De Morgan's Law Demonstrator" looked
+  correct but did not exactly reproduce the test output.
+
+- For the "Number changer with increment/decrement" exercise, the
+  following statement is undefined even though it may compile and run!
+  #+begin_src C
+    int number = -5;
+
+    number == ++number;   // undefined state! Not correct!
+    printf("%d\n",number);
+
+  #+end_src
+
+  #+RESULTS:
+  : -4
+
+- If you think that I made a mistake, you can still let me know after
+  this class (by 11 am today).
+
+- I reduced the grade impact from the programming assignments (40%)
+  and increased the impact of the tests (35%). Final exam still 25%.
+
+** Midterm results
+
+- Final grades
+  #+begin_src R :file ../img/midterm.png :session *R* :results graphics output file :exports both
+    grades <- c(26.92, 43.1, 45.75, 57.78, 59.77, 60.71, 69.8, 74.05, 76.22, 82.32,
+                84.16, 84.33, 84.55, 85.27, 86.05, 86.87, 88.36, 90.25, 90.44, 90.65,
+                91.3, 91.8, 92.25, 92.78, 93.73, 94.42, 96.46, 97.33, 97.88)
+    plot(density(grades), col="red", lwd=2, main="Density Plot of Midterm Grades")
+    abline(v=mean(grades), col="blue", lwd=2, lty=2)
+    #text(mean(grades), max(density(grades)$y), paste("Mean =", round(mean(grades), 2)), pos=2, col="blue")
+    legend("topleft", legend=c("Density", paste("Mean =", round(mean(grades), 2))), col=c("red", "blue"), lty=c(1, 2), lwd=2)
+  #+end_src
+
+  #+RESULTS:
+  [[file:../img/midterm.png]]
+
+- Programming assignments vs. Tests
+  #+begin_src R :file ../img/midterm2.png :session *R* :results graphics output file :exports both
+    pgrades <- c(22.5, 27.5, 11.25, 37.5, 53.13, 30.63, 66.25, 65, 83.13, 78.13, 86.88, 78.75, 91.88, 80.63, 91.88, 91.88, 90, 93.13, 93.75, 97.5, 90, 89.38, 98.75, 99.38, 98.13, 98.13, 98.75, 96.88)
+    tgrades <- c(31.97, 60.92, 85.18, 80.96, 67.37, 95.09, 73.86, 84.39, 68.33, 87.11, 81.05, 90.7, 76.18, 90.57, 79.39, 81.14, 86.49, 86.97, 87.37, 87.11, 93.86, 95.53, 85.96, 87.28, 90.18, 94.56, 95.7, 90.04)
+
+    dens_p <- density(pgrades)
+    dens_t <- density(tgrades)
+
+    x_range <- range(dens_p$x, dens_t$x)
+    y_range <- range(dens_p$y, dens_t$y)
+
+    plot(dens_p,
+         col="red",
+         lwd=2,
+         xlab="Grades (%)",
+         ylab="Density",
+         main="Density Plot of Programming Assignment vs Test Grades",
+         xlim=x_range,
+         ylim=c(0, max(y_range) * 1.1))
+
+    lines(dens_t, col="blue", lwd=2)
+
+    abline(v=mean(pgrades), col="red", lty=2, lwd=2)
+    abline(v=mean(tgrades), col="blue", lty=2, lwd=2)
+
+    legend("topleft",
+           legend=c("Programming Assignments", "Tests",
+                    paste("Mean (Prog.) =", round(mean(pgrades), 2)),
+                    paste("Mean (Tests) =", round(mean(tgrades), 2))),
+           col=c("red", "blue", "red", "blue"),
+           lty=c(1, 1, 2, 2),
+           lwd=2)
+  #+end_src
+
+  #+RESULTS:
+  [[file:midterm2.png]]
+
+** Review: Pseudocode
+
+1. *What is pseudocode?*
+   #+begin_quote
+   Pseudocode: Outline algorithm/heuristics without worrying about
+   syntax. Write as C comments for insertion into source code.
+   #+end_quote
+
+2. *When should you use pseudocode?*
+   #+begin_quote
+   Always start with pseudocode before writing actual code to design
+   solutions; revert to it when stuck (not due to syntax issues).
+   #+end_quote
+
+3. *What's Pólya’s problem-solving method?*
+   #+begin_quote
+   Pólya’s Heuristic Problem-Solving Method: Understand the problem,
+   devise a plan, carry out the plan, and look back to verify/improve.
+   #+end_quote
+
+4. *Which example did we use for pseudocode?*
+   #+begin_quote
+   Practical Example: Game logic in Pseudocode. Shows how pseudocode
+   mirrors problem descriptions. Use problem language as given.
+   #+end_quote
+
+5. *How do you transition from pseudocode to source code?*
+   #+begin_quote
+   Applying Pseudocode to Code: Fill in the bits first, then add error
+   handling for everything that could possibly go wrong with input.
+   #+end_quote
+
+6. *Translate to pseudocode:*
+   #+begin_quote
+   "In a platform game, if an obstacle is high (above 5 units), the
+   player should duck. If it’s low (5 units or less), the player
+   should jump."
+   #+end_quote
+   #+begin_src C
+     // If obstacle > 5
+     // duck
+     // If obstacle <= 5
+     // jump
+   #+end_src
+
+7. *Translate this pseudocode to source code:*
+   #+begin_src C
+     // If obstacle > 5
+     // duck
+     // If obstacle <= 5
+     // jump
+   #+end_src
+   #+begin_src C
+     int obstacle = 7; // high; try 3 for low
+
+     if (obstacle > 5) // If obstacle > 5
+       puts("Duck!");
+      else              // If obstacle <= 5
+        puts("Jump!");
+
+   #+end_src
+
+   #+RESULTS:
+   : Duck!
+
+8. *Translate to pseudocode:*
+   #+begin_quote
+   "In an adventure game, if the player’s inventory has less than 10
+   items, they can collect a treasure. If the inventory has 10 or more
+   items, they must drop one."
+   #+end_quote
+   #+begin_src C
+     // If inventory.items < 10
+     // collect treasure
+     // If inventory.items >= 10
+     // drop item
+   #+end_src
+
+9. *Translate this pseudocode to source code:*
+   #+begin_src C
+     // If inventory items < 10
+     // collect treasure
+     // print inventory count
+     // If inventory items >= 10
+     // drop item
+     // print inventory count
+   #+end_src
+   #+begin_src C :results output
+     int items = 12; // test: change to 12 items
+
+     if (items <10) { // If inventory items < 10
+       items = items + 1; // collect treasure
+       printf("Treasure collected. Inventory = %d\n", items);
+      } else {       // If inventory items >= 10
+       items = items - 1; // drop item
+       printf("Item dropped. Inventory count: %d\n", items);
+      }
+   #+end_src
+
+   #+RESULTS:
+   : Item dropped. Inventory count: 11
+
+10. What's wrong with this pseudocode?
+    #+begin_quote
+    "In a combat game, if the player’s health is below 50, heal if
+    mana is above 20. Otherwise, attack the enemy."
+    #+end_quote
+    #+begin_src C
+      // if health < 50
+      // if mana > 20
+      // Heal
+      // else
+      // Attack
+      // else
+      // Heal
+    #+end_src
+    Correct version:
+    #+begin_src C
+      // if health < 50 AND mana > 20
+      // Heal
+      // else
+      // Attack
+    #+end_src
+    Explanation:
+    #+begin_quote
+    - Let’s break it down:
+      + *Condition:* ~if health < 50 AND mana > 20~ means both must be true to heal.
+      + *Intent Match:* The problem says "if health is below 50, heal if
+        mana is above 20," implying healing only occurs when *both*
+        conditions are met (low health *and* enough mana). Your
+        pseudocode aligns with this.
+      + *Else Clause:* "Otherwise, attack" covers all other cases (e.g.,
+        ~health >= 50~ or ~mana <= 20~), which matches the problem’s
+        intent to attack when not healing.
+
+    - *Test Cases:*
+      - ~health = 40, mana = 30~: Health < 50 and mana > 20 →
+        Heal. (Correct)
+      - ~health = 40, mana = 10~: Health < 50 but mana <= 20 →
+        Attack. (Correct)
+      - ~health = 60, mana = 30~: Health >= 50 → Attack. (Correct)
+      - ~health = 60, mana = 10~: Health >= 50 → Attack. (Correct)
+    #+end_quote
+
+* DONE Week 10: Control ~switch~ & ~while~ loops
+#+attr_html: :width 400px :float nil:
+#+caption: Medieval woodcut
+[[../img/woodcut.jpg]]
+
+- [X] *Wednesday 19 March*: Last day to drop class with *W* (Withdrawal).
+- [X] *Popquiz:* Test your knowledge of pseudocode and ~IF~ structures!
+- [X] *Test 7* is live and due Friday, March 21
+- [X] *Programming assignment:* "Equip a weapon or shield".
+- [X] *Bonus assignment*: "Boss fight!"
+- [X] *Lecture/practice:* ~switch~ structures.
+- [X] *Home assignment*: Telephone area codes with ~switch~ (April 4).
+
+** Popquiz
+
+- Complete [[https://github.com/birkenkrahe/cc-25/blob/main/pdf/popquiz.pdf][this popquiz (PDF)]] in 30 minutes or less.
+- It is ungraded and only serves to aid your understanding.
+- We will discuss the solution afterwards (also online).
+- This quiz will make you fit for the next test (Mar 21).
+- You can find the solution at [[https://tinyurl.com/if-popquiz][tinyurl.com/if-popquiz]].
+- Important:
+  1) Understand first, then plan, then execute, then evaluate (Polya)
+  2) Your pseudocode is yours - it can be personal and different
+  3) Stay away from C syntax if you can to get the logic clear first
+
+** The ~switch~ and ~break~ commands
+
+This lecture explores the ~switch~ statement in C, a powerful control
+structure for handling multiple conditions.
+
+- You'll learn how ~switch~ uses an integer expression to select from
+  ~case~ labels—constant values triggering specific statements.
+
+- The ~break~ keyword controls execution by exiting the ~switch~ block,
+  preventing fall-through to subsequent cases unless omitted
+  intentionally.
+
+- Through *examples* and a *practice* exercise, we’ll cover its syntax,
+  behavior, and practical applications, like /grading systems/ and /day
+  classification/.
+
+** IN-PROGRESS Loops / Control flow statements that iterate
+
+- Collections of objects (like numbers, words) are usually stored
+  efficiently in so-called /data structures/, e.g. /arrays/.
+
+- There are three /control flow (aka looping) statements/ that allow you
+  to /iterate/ over data:
+  - [X] ~while~ loops
+  - [ ] ~do while~ loops
+  - [ ] ~for~ loops
+
+- We'll cover them using the same approach, with practice:
+  1) A simple example
+  2) A counting example
+  3) A summing example (home assignment)
+
+* DONE Week 11: ~do-while~ and ~for~ loops
+#+attr_html: :width 400px :float nil:
+#+caption: Fishing Boats on the Beach at Saintes-Maries, van Gogh (1888)
+[[../img/fishing_boats_van_gogh.jpg]]
+
+*Assignments due Friday April 4:*
+- [X] *Assignment* with ~switch~ - Georgia Telephone Codes
+- [X] *Assignment* with ~while~ - Sum of integers
+- [X] *Test 8* on ~while~ loops (15 questions)
+
+*This week:*
+- [X] *Review with coding:* ~while~ loops
+- [ ] *Lecture/practice:* ~do while~ loops
+- [ ] *Lecture/practice:* ~for~ loops
+
+** Loops / Control flow statements that iterate
+
+- Collections of objects (like numbers, words) are usually stored
+  efficiently in so-called /data structures/, e.g. /arrays/.
+
+- There are three /control flow (aka looping) statements/ that allow you
+  to /iterate/ over data:
+  - [X] ~while~ loops
+  - [X] ~do while~ loops
+  - [X] ~for~ loops
+
+- We'll cover them using the same approach, with practice:
+  1) A simple example
+  2) A counting example
+  3) A summing example (home or bonus assignment)
+
+** DONE Review: ~while~ loops
+
+1. The ~while~ loop allows you to print numbers 0 to 9. True or false?
+   #+begin_quote
+   True! ~while~ tests a condition, enters the loop body, and will
+   execute any command as long as the condition is ~TRUE~.
+   #+end_quote
+
+2. Will this program do that?[fn:1]
+   #+begin_src C
+     int i = 0;      // SET loop counter to zero
+     while (i<10) {     // WHILE loop counter is less than 10
+       printf("%d ",i);    // PRINT loop counter
+       i++;
+      }                 // END WHILE
+   #+end_src
+
+   #+begin_quote
+   The loop body has no way of changing the value of =i= so that the
+   condition remains ~TRUE~ at all times - the loop's infinite!
+   #+end_quote
+
+   More concise code:
+   #+begin_src C :results output :main yes :includes <stdio.h>
+     int i = 0;
+     while(i<10) printf("%d ",i++);
+   #+end_src
+
+3. What's the difference if you want to print numbers 9 to 0?
+   #+begin_src C :main yes :includes <stdio.h>
+     int i = 9;             // SET loop counter to 9
+     while (i>=0) {         // WHILE loop counter is greater or equal to zero
+       printf("%d ",i--);      // PRINT loop counter then decrement it
+      }                     // END WHILE
+   #+end_src
+
+4. *Challenge!* Print the squares of all integers from i=1 to N.
+
+   - Starter Code: [[https://onecompiler.com/c/43d7pgg3d][onecompiler.com/c/43d7pgg3d]]
+     #+begin_example C
+     // SET limit N to 10
+     // SET loop variable i to 1
+     // WHILE i smaller or equal than N
+          // PRINT i, i^2
+          // increment i
+     // END WHILE
+     #+end_example
+
+   - *Sample output (N=10):*
+     #+begin_example
+     1       1
+     2       4
+     3       9
+     4      16
+     5      25
+     6      36
+     7      49
+     8      64
+     9      81
+    10     100
+  #+end_example
+
+   - *Challenge:* Modify the program so that you enter =N= on the
+     command-line. Sample output:
+     #+begin_example
+     Enter limit (integer): 10
+            1       1
+            2       4
+            3       9
+            4      16
+            5      25
+            6      36
+            7      49
+            8      64
+            9      81
+           10     100
+     #+end_example
+
+5. *Challenge!* What's the code to get a sequence of numbers from the
+   keyboard if the end of the sequence is signalled by a =0= input?
+
+   - Pseudocode:
+     #+begin_example C
+       // SET num to non-zero value
+       // WHILE num is not zero
+         // GET next value for num
+         // PRINT num
+      // END WHILE
+      // PRINT "You're done."
+     #+end_example
+
+   - Code:
+     #+begin_src C :tangle input.c :main yes :includes <stdio.h>
+       int num=1; // SET num to non-zero value
+       while (num != 0) { // WHILE num is not zero
+         scanf("%d",&num);  // GET next value for num
+         printf("You entered: %d.\n",num); // PRINT num
+        } // END WHILE
+       puts("You're done."); // PRINT "You're done."
+     #+end_src
+
+     #+RESULTS:
+     : You're done.
+
+** DONE Review  ~do-~while~ loops
+
+1) What's wrong with this loop? It only prints one line.
+   #+begin_src C
+     int x = 0;
+     do {
+       printf("Counting: %d\n", x);
+      } while (x > 0);
+   #+end_src
+
+   #+begin_quote
+   The loop runs only once because the condition =x > 0= is immediately
+   =FALSE= since =x == 0= from the start. Either adjust the condition or
+   increment =x= inside the loop.
+   #+end_quote
+
+2) What's wrong with this loop? It does not run at all.
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     int num = 5;
+     do {
+       printf("Number: %d\n", num);
+       num--;
+      } while (num > 0)
+   #+end_src
+
+   #+begin_quote
+   There's a missing ; after the ~while~ condition.
+   #+end_quote
+
+3) What's wrong with this loop? It runs forever.
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     int i = 5;
+     do {
+       printf("Value: %d\n", i);
+       i--;
+      } while (i < 5);
+   #+end_src
+
+   #+begin_quote
+   It runs infinitely because the =i--= decrements the initial value of
+   =i= from =5= to =4=, and =i < 5= remains true forever.
+   #+end_quote
+
+4) What's wrong with this loop? It runs forever.
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     int count = 0;
+     do {
+       count++;
+       printf("Count: %d\n", count);
+      } while (count = 1);
+   #+end_src
+
+   #+begin_quote
+   The break condition is ill-conceived: =count = 1= is not a comparison
+   ~count==1~ but an assignment: =count= is always =1= (~TRUE~), irrespective
+   of the former value of =count=.
+   #+end_quote
+
+5) What's wrong with this loop? It runs forever.
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     int x = 0;
+     do {
+       printf("Looping...\n");
+      } while (x < 10);
+     x++;
+   #+end_src
+
+   #+begin_quote
+   =x= is incremented outside of the loop instead of inside it -
+   therefore =x = 0= forever, and =x < 0= remains true forever.
+   #+end_quote
+
+** DONE ~for~ loops
+
+* DONE Week 12: Arrays
+#+attr_html: :width 400px :float nil:
+#+caption: Two fishermen by a boat - Michael Peter Ancher (1889)
+[[../img/Fishermen.jpg]]
+
+- [X] *New assignment:* 'Fancy loops' with ~for~.
+- [X] *New test*: ~do~ and ~for~ loops.
+- [X] *Review* of ~for~ loops (for the assignments).
+- [X] *Lecture + practice:* One-dimensional arrays.
+- [X] *Lecture + practice*: Two-dimensional arrays.
+
+** DONE Review: ~for~ loops
+
+*** ~for~ loops with post and pre operators.
+
+
+1. =TRUE= or =FALSE=? These two loops have different outputs (as long as
+   they have identical loop bodies) - explain your answer.
+   #+begin_example C
+   for (int i = 0; i < 5; i++) ... // postfix operator i = i + 1
+   for (int i = 0; i < 5; ++i) ... // prefix operator  i = i + 1
+   #+end_example
+
+   #+begin_quote
+   =TRUE= because only the ~return~ value of the increment expression is
+   used: =i++= is =i = i + 1=. They are semantically identical.
+   #+end_quote
+
+2. =TRUE= or =FALSE=? The two loops in this program have different
+   outputs - explain your answer.
+   #+begin_src C
+     for (int i = 0; i++ < 5; ) printf("%d ",i); puts("");
+     for (int i = 0; ++i < 5; ) printf("%d ",i);
+   #+end_src
+
+   #+RESULTS:
+   : 1 2 3 4 5
+   : 1 2 3 4
+
+   #+begin_quote
+   =TRUE= because the increment is part of the condition (not
+   standalone): =i++= checks =i < 5= first and then increments, which is
+   why the =5= in the first loop is printed, while =++i= increments first,
+   and checks then.
+   #+end_quote
+
+*** ~for~ loops with multiple variables (assignment)
+
+A ~for~ loop can go over multiple variables (of the same type) at once:
+
+#+begin_src C
+  for (int i = 0, j = 0; i < 5 && j < 5; i++, j++) // test with AND
+    printf("i = %d, j = %d\n",i,j); // loop runs 5 times
+#+end_src
+
+#+RESULTS:
+: i = 0, j = 0
+: i = 1, j = 1
+: i = 2, j = 2
+: i = 3, j = 3
+: i = 4, j = 4
+
+*** Nested ~for~ loops (bonus assignment)
+
+A ~for~ loop can be part of another ~for~ loop:
+
+#+begin_src C
+  for (int i = 0; i < 5; i++) { // enter first loop controlled by i
+    for (int j = 0; j < 5; j++) { // enter second loop controlled by j
+      printf("i = %d, j = %d\n",i,j); // loop runs 5 * 5 = 25 times
+    }
+   }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+i = 0, j = 0
+i = 0, j = 1
+i = 0, j = 2
+i = 0, j = 3
+i = 0, j = 4
+i = 1, j = 0
+i = 1, j = 1
+i = 1, j = 2
+i = 1, j = 3
+i = 1, j = 4
+i = 2, j = 0
+i = 2, j = 1
+i = 2, j = 2
+i = 2, j = 3
+i = 2, j = 4
+i = 3, j = 0
+i = 3, j = 1
+i = 3, j = 2
+i = 3, j = 3
+i = 3, j = 4
+i = 4, j = 0
+i = 4, j = 1
+i = 4, j = 2
+i = 4, j = 3
+i = 4, j = 4
+#+end_example
+
+*** ~for~ loop over non-integer variables
+
+~for~ loops can use non-integer (~float~) counter variables:
+
+#+begin_src C
+  for (float x = 0.0; x <= 1.0; x += 0.1) { // x = x + 0.1
+    printf("x = %.1f\n", x);
+   }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+x = 0.0
+x = 0.1
+x = 0.2
+x = 0.3
+x = 0.4
+x = 0.5
+x = 0.6
+x = 0.7
+x = 0.8
+x = 0.9
+#+end_example
+
+** DONE Thanks for making teaching a joy!
+#+attr_html: :width 400px :float nil:
+[[../img/award.jpg]]
+
+** DONE Where you are at with C / C++
+#+attr_html: :width 600px :float nil:
+[[../img/skills.png]]
+
+** DONE Review: Array declarations
+
+1. What's wrong with this code?
+   #+begin_src C
+     int a[5];
+     for (int i = 0; i <= 5; ++i) {
+       a[i] = i;
+       printf("%d ", a[i]);
+      }
+   #+end_src
+
+   #+RESULTS:
+   : 0 1 2 3 4 5
+
+   #+begin_quote
+   The loop goes *out of bounds*: ~i <= 5~ means the loop accesses ~a[5]~,
+   which is *outside* the valid range (~a[0]~ to ~a[4]~). This causes
+   *undefined behavior* (go to 6: "stack smashing detected")
+   #+end_quote
+
+2. What's wrong with this code?
+   #+begin_src C
+     int a[3] = {1, 2, 3, 4}; // initializing an array
+     printf("%d\n", a[3]);
+   #+end_src
+
+   #+RESULTS:
+   : 974493184
+
+   #+begin_quote
+   The initializer has *too many elements*. You can only initialize ~a[0]~
+   to ~a[2]~ because the array size is 3. Accessing ~a[3]~ is a memory
+   violation.
+   #+end_quote
+
+3. What's wrong with this code?
+   #+begin_src C
+     int a[4];  // an array that has not been initialized
+     printf("%d\n", a[4]); // printing 0 here means NOTHING
+   #+end_src
+
+   #+RESULTS:
+   : 0
+
+   #+begin_quote
+   This prints an *uninitialized value*. Since ~a[4]~ was never assigned,
+   it may contain garbage. C does *not* zero-initialize local arrays
+   automatically (some compilers do).
+   #+end_quote
+
+4. What's wrong with this code?
+   #+begin_src C
+     char str[] = {'h','e','l','l','o'}; // must have an \0 at end!
+     printf("%s\n", str); // correct printing means NOTHING
+   #+end_src
+
+   #+RESULTS:
+   : hello
+
+   #+begin_quote
+   There's *no null terminator*. ~printf("%s", s)~ expects a string ending
+   with ~'\0'~. Without it, the output may include random memory past
+   the array.
+   #+end_quote
+
+5. What's wrong with this code?
+   #+begin_src C
+     int i = -4;  // negative integer
+     int a[5] = {0};  // initialize the array a with 0
+     printf("%d\n", a[i]); // negative indices are now allowed
+   #+end_src
+
+   #+RESULTS:
+   : 0
+
+   #+begin_quote
+   Using a *negative index* like ~a[-4]~ is *undefined behavior*. C arrays
+   don’t check bounds, and negative indexing will access memory
+   outside the array.
+   #+end_quote
+
+* DONE Week 13: Functions
+#+attr_html: :width 400px :float nil:
+#+caption: Image source: ChatGPT-4o
+[[../img/functions3.png]]
+
+Tips:
+- [X] *Calculus*: If it math scares you, learn it with Python!
+
+This week:
+- [X] *New test:* Arrays!
+- [X] *New programming assignment:* [[https://lyon.instructure.com/courses/3113/assignments/43868][Fibonacci series with arrays]].
+- [X] *New bonus problem:* [[https://lyon.instructure.com/courses/3113/assignments/43867][Euler number approximation with loops]].
+- [X] *More on multidimensional *arrays* and ~sizeof~: read the script!
+- [X] *Lecture/practice:* C functions.
+
+Next week:
+- [X] *Home programming assignment:* Encapsulate formula in function.
+- [X] *Bonus assignment*: Design function for weighted averages.
+- [X] *Test*: C functions
+
+** Review: Introduction to functions
+
+1. What does it mean for a C function to be "doubly ~void~"? Example?
+   #+begin_quote
+   A function is "doubly void" if it has no return value (~void~) and no
+   parameters (~void~ or empty parentheses).
+   #+end_quote
+
+   #+begin_example C
+     void hello(void); // no return value, no arguments
+   #+end_example
+
+2. Why should you declare a function before ~main()~ in a C program?
+   #+begin_quote
+   Declaring a function (also called prototyping) before ~main()~ allows
+   the compiler to recognize the function when it is called, even if
+   the definition comes later in the file.
+   #+end_quote
+
+   #+begin_example C
+     float average(float, float); // compiler is told:
+     // expect a function that returns a `float` and needs 2 `float` arguments
+   #+end_example
+
+3. What is the argument of the function ~hi2(char name[])~?
+   #+begin_quote
+   The argument is a string (represented in C as a character array),
+   which holds the name to be included in the greeting (sample pgm).
+   #+end_quote
+
+4. How many functions are declared/defined/called in the following code?
+   #+begin_src C
+     #include <stdio.h>
+     #include <math.h>
+
+     double cube(double x);
+
+     int main(void) {
+       double number = 3.0;
+       double result = cube(number);
+
+       printf("The cube of %g is %g\n", number, result);
+       return 0;
+     }
+
+     double cube(double x) {
+       return pow(x, 3); // library function
+     }
+   #+end_src
+
+   #+begin_quote
+   Four functions are used: ~cube()~ is declared and defined by the
+   user, ~main()~ is defined as required, and ~printf()~ and ~pow()~ are
+   library functions called inside the program.
+   #+end_quote
+
+5. Why does the prototype of the function ~average~ look like this:
+   ~float average(float, float);~? What's the difference to the function
+   *definition*?
+   #+begin_quote
+   This prototype tells the compiler that the function ~average~ will
+   return a ~float~ value and will take two ~float~ arguments. It's a
+   forward declaration that allows the function to be used before it's
+   defined. Specifying the types ensures correct type checking during
+   compilation.
+
+   For the function definition, the semicolon has to be replaced by a
+   function body enclosed in ={ }=, and the arguments need to have names.
+   #+end_quote
+
+   #+begin_src C
+     float average(float, float); // function declaration aka prototype
+
+     int main() {
+       printf("%g",average(5.9, 8.1)); // function call with arguments
+     }
+
+     float average(float a, float b) { // function definition with parameters
+       return (a+b)/2.;
+     }
+   #+end_src
+
+* DONE Week 14: Pointers to memory
+#+attr_html: :width 400px :float nil:
+[[../img/pointers.png]]
+
+- [X] There will be *one more test* (on pointers & structs)
+- [X] There will be *one more programming assignment* (with pointers)
+- [X] There will be *two more bonus programming assignments*
+- [X] *I will drop your worst test result and 1 programming assignnment*
+- [X] The lectures 1-18 are now available as PDFs in GitHub.
+
+** Invitation - Join me on Friday 4pm in Nucor
+#+attr_html: :width 600px:
+[[../img/talk.png]]
+
+** Review 1: Pointers (creation to initialization)
+
+1. What is the purpose of RAM in a computer system?
+   #+begin_quote
+   RAM (Random Access Memory) is a type of fast, temporary storage
+   that holds the data and instructions a computer is actively
+   using. It allows the CPU to quickly read from and write to memory
+   while running programs. Unlike long-term storage (like a hard
+   drive), the contents of RAM are lost when the computer is turned
+   off.
+   #+end_quote
+
+2. What does it mean when we say a pointer holds the “address” of a
+   variable?
+   #+begin_quote
+   A pointer stores the *memory location* where a variable is stored,
+   not the value itself. It's like holding an envelope with a street
+   address on it — the pointer tells you where to find the data in
+   memory.
+   #+end_quote
+
+3. How is memory access different in languages like Java or Python
+   compared to C/C++?
+   #+begin_quote
+   Languages like Java and Python abstract away direct memory
+   access. They use references to manage objects and rely on garbage
+   collection. In contrast, C exposes memory addresses through
+   pointers, giving the programmer low-level control — and
+   responsibility — for memory management.
+   #+end_quote
+
+4. What does the ~%p~ format specifier print in a C ~printf~ statement?
+   #+begin_quote
+   The ~%p~ specifier prints a memory address — that is, a pointer’s
+   value. It shows where in memory a variable is stored, which is
+   useful for understanding how indirection works.
+   #+end_quote
+
+5. Why is pointer manipulation considered both powerful and dangerous
+   in C?
+   #+begin_quote
+   Pointers allow precise control over memory — you can directly read,
+   write, and allocate memory at runtime. However, incorrect use
+   (e.g., dereferencing invalid addresses, memory leaks, or buffer
+   overflows) can easily lead to crashes or unpredictable behavior,
+   making them error-prone without careful handling.
+   #+end_quote
+
+6. What is a pointer in C, and how is it declared?
+   #+begin_quote
+   A pointer is a variable that stores the *memory address* of another
+   variable. It is declared using the asterisk (`*`) symbol.
+   #+end_quote
+
+   #+begin_src C
+     int x = 42; // x is an integer with the value 42
+     int *p = &x; // p is a pointer to x with the address-of x
+   #+end_src
+
+7. What does the indirection (dereferencing) operator ~*~ do?
+   #+begin_quote
+   The ~*~ operator, when used with a pointer, accesses the *value at the
+   memory address* stored in the pointer.  Example: ~*p~ gives us the
+   value stored in ~x~, because ~p~ points to ~x~.
+   #+end_quote
+
+   #+begin_src C
+     int x = 10; // variable x stores value 10
+     int *p = &x; // pointer p  stores address-of x
+     printf("%d\n", *p); // prints value of x as dereferenced pointer to &x
+     printf("%d\n", x); // prints value of x as dereferenced pointer to &x
+   #+end_src
+
+   #+RESULTS:
+   : 10
+   : 10
+
+8. What happens if you assign a literal integer (like 1) to a pointer?
+   #+begin_quote
+   Assigning a literal like ~p = 1;~ to a pointer is unsafe. It tells
+   the pointer to point to memory address ~1~, which is typically
+   invalid and can cause a segmentation fault.  The compiler will warn
+   about this. Always assign a pointer with a valid address, like ~p =
+   &x;~.
+   #+end_quote
+   #+begin_example
+   warning: assignment to ‘int *’ from ‘int’
+   makes pointer from integer without a cast
+   #+end_example
+
+9. What does the ~sizeof~ operator tell us about arrays?
+   #+begin_quote
+   ~sizeof(a)~ returns the total number of bytes used by the array ~a~,
+   while ~sizeof(a[0])~ gives the size of a single element. This
+   technique is commonly used to determine the length of statically
+   allocated arrays.
+   #+end_quote
+
+   #+begin_src C
+     int a[100];
+     int size = sizeof(a) / sizeof(a[0]); // gives 100
+     printf("%d\n", size);
+   #+end_src
+
+   #+RESULTS:
+   : 100
+
+10. Why must you use ~&i~ in a call to ~scanf("%d", &i);~?
+    #+begin_quote
+    The ~scanf~ function needs the *address* of the variable to store the
+    input in the correct memory location. ~&i~ passes that address.
+    Without the ~&~, ~scanf~ would receive just a value and wouldn’t be
+    able to modify the original variable.
+    #+end_quote
+
+
+** Pointer challenge
+
+- Open your online C editor.
+- Solve this challenge in 2 lines of code.
+- Time: 10 minutes.
+#+attr_html: :width 400px :float nil:
+[[../img/pointer_challenge.png]]
+
+- Solution:
+  #+begin_src C
+    int x = 100, y = 200, *p = &x, *q = &y; // line 1
+    printf("x = %d, y = %d\n", x, y);
+    printf("p = %p, q = %p\n", p, q);
+    (*p) = (*q), p = q; // line 2
+    printf("x = %d, y = %d\n", x, y);
+    printf("p = %p, q = %p\n", p, q);
+  #+end_src
+
+  #+RESULTS:
+  : x = 100, y = 200
+  : p = 0x7fffd1d12780, q = 0x7fffd1d12784
+  : x = 200, y = 200
+  : p = 0x7fffd1d12784, q = 0x7fffd1d12784
+
+* DONE Week 15: Structures - C's classes
+#+attr_html: :width 400px :float nil:
+[[../img/structures.png]]
+
+*Remember that all bonus assignments must be turned in by Friday this week!*
+
+** Housekeeping
+
+- [X] At the end of next week, you will know if you need to write the
+  (optional) final exam to bump up your grade (by at most 25%).
+
+- [X] The last test (pointers) is available (full points if you
+  complete by May 2nd).
+
+- [X] Now is the time to put in a little effort for bonus exercises,
+  to offset missing points in tests or assignments!
+
+- [X] I published one last bonus assigmnent - changing the values of
+  two variables using pointers.
+
+- [X] If you missed out on tests or assignments, you can still
+  complete them for 50% of the points!
+
+
+** Review: Pointers (pass by value or reference)
+
+1. What's wrong with this code fragment? How would you fix
+   it?
+   #+begin_src C
+     int *p = &i;
+     int i = 42;
+   #+end_src
+   #+begin_quote
+   Variable =i= is used before it is declared. The pointer =p= tries to
+   point to a variable that the compiler has not seen yet.
+
+   Fix: Declare =i= before assigning a pointer =p= to its address.
+   #+end_quote
+   #+begin_src C
+     int i = 42;
+     int *p = &i;
+     printf("i = %d, p = %p\n",i,p);
+   #+end_src
+
+   #+RESULTS:
+   : i = 42, p = 0x7ffc3a83466c
+
+2. What's wrong with this code fragment? How would you fix
+   it?
+   #+begin_src C
+     int *p;
+     p = 2;
+     (*p) = 5;
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   =p = 2;= sets the pointer =p= to address =2= which is most likely invalid
+   memory. Dereferencing =p= in =*p = 5;= causes a segmentation fault -
+   there is no syntax error here.
+
+   Fix: Declare a variable =i= and assign =p= to its address (=p = &i=)
+   before attempting to change its value with =*p = 5=.
+   #+end_quote
+   #+begin_src C
+     int i, *p = &i;
+     (*p) = 2;
+     printf("i = *p = %d\n",*p);
+   #+end_src
+
+   #+RESULTS:
+   : i = *p = 2
+
+3. What's wrong with this code fragment? How would you fix it?
+   #+begin_src C
+     //int i = 100, *p = &i;
+     int i;
+     int *p;
+     i = 100;
+     p = &i;
+     printf("i = *p = %d\n",*p);
+   #+end_src
+
+   #+RESULTS:
+   : i = *p = 100
+
+   #+begin_quote
+   Nothing is wrong with it! You can declare (=int *=) and initialize
+   (=&i=) the pointer =p= on the same line! Same as: =int i=100; int *p=&i=
+   #+end_quote
+
+4. What's wrong with the following function? How would you fix it?
+   #+begin_src C
+     int plusTwo(int *x)
+     {
+       return (x + 2);
+     }
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   The error is *type mismatch*: =x= is a pointer to an =int=. =x + 2=
+   performs *pointer arithmetic* (moves the pointer along in memory by 2
+   integers (8 bytes).
+   #+end_quote
+   #+begin_src C
+     int plusTwo(int *x)
+     {
+       return (*x + 2); // calling plusTwo(2) will return 2 + 2 = 4
+     }
+   #+end_src
+
+5. What's wrong with the following function, how would you fix it?
+   #+begin_src C
+     int square(int *n) {
+       return n * n;
+     }
+   #+end_src
+   #+begin_quote
+   =n= is a pointer to an =int(int *)=. =n * n= multiplies two pointers,
+   which is invalid (since pointers are addresses and not numeric
+   values).
+   #+end_quote
+   #+begin_src C
+     int square(int *n) {
+       return (*n) * (*n); // calling square(2) will return 2 * 2 = 4
+     }
+   #+end_src
+
+
+** Pointers II
+
+- [X] Pass by value (variables & functions)
+- [X] Pass by reference (pointers & functions)
+- [X] Passing an array to a function
+- [X] Passing a pointer to a function
+
+** Please fill in the course evaluation!
+#+attr_html: :width 400px :float nil:
+[[../img/course_eval.png]]
+
+*Spread the love!* *Suggest changes and improvements!*
+
+** C structures
+
+- The C ~struct~ is a public *class* of objects.
+- It's a precursor of C++ classes.
+- This is the beginning of *object-oriented* programming (OOP).
+- OOP is the standard for building large-scale applications.
+
+* DONE Week 16: Transitioning to C++
+#+attr_html: :width 400px :float nil:
+#+caption: The guy in the picture is Bjarne Stroustrup
+[[../img/cpp.png]]
+
+- The gradebook is complete from my perspective - please check.
+- The purpose of this week is "C++ without (much) C".
+- It will be a preparation for CSC 240 (Data structures with C++).
+- We'll also discuss what you could do in the summer to prepare.
+
+** Review: C ~struct~
+
+1. What is a ~struct~ in C and why would you use it?
+   #+begin_quote
+   A ~struct~ is a *container* - it groups related variables (e.g.,
+   coordinates, player stats) into a single data type to improve code
+   organization and readability.
+   #+end_quote
+
+2. How would you declare a ~struct Date~ with calendar information?
+   #+begin_src C :results none
+     struct Date {
+       int day;
+       int month;
+       int year;
+     };
+   #+end_src
+
+3. How do you declare and initialize a ~struct Point~ with ~x = 3~ and ~y = 4~?
+   #+begin_example C
+     struct Point pt = {3, 4};
+   #+end_example
+
+4. How would you store and initialize 1000 ~struct Point~ values
+   efficiently to the value 1?
+   #+begin_quote
+   Use an array and loop to initialize each ~points[i]~.
+   #+end_quote
+   #+begin_example C
+     struct Point points[1000]; // Define 1000 Points
+     for (int i=0;i<1000;i++) { points[i].x=1; points[i].y=1; }
+   #+end_example
+
+5. Why is it better to pass a pointer to a ~struct~ rather than the
+   ~struct~ itself to a function?
+   #+begin_quote
+   Passing a pointer avoids copying the entire ~struct~, which saves
+   memory and improves performance for large data sets.
+   #+end_quote
+
+6. What is the difference between ~.~ and ~->~ when accessing ~struct~
+   members?
+   #+begin_quote
+   ~.~ is used for struct variables; ~->~ is used when accessing members
+   via a pointer to a struct.
+   #+end_quote
+   #+begin_src C
+     struct Person { int age; char sex; int height; }; // Any person
+     struct Person Jack = { 23, 'm', 180 }; // A specific person - Jack
+
+     printf("Jack is a %d old %cale of %d cm height.\n",
+            Jack.age, Jack.sex, Jack.height); // Access values with .
+
+     struct Person *aboutJack = &Jack; // points at Jack
+     printf("Jack is a %d old %cale of %d cm height.\n",
+            aboutJack->age, aboutJack->sex, aboutJack->height); // Access
+                                                           // addresses
+                                                           // with ->
+   #+end_src
+
+   #+RESULTS:
+   : Jack is a 23 old male of 180 cm height.
+   : Jack is a 23 old male of 180 cm height.
+
+** C to C++ Transition
+
+- [ ] Transform C ~struct~ into C++ ~class~
+- [ ] Understand that data can be ~private~ or ~public~
+- [ ] Access ~private~ data with =getHealth=
+- [ ] Create a =Player= class with =takeDamage= and =heal=
+- [ ] Define ~class~ constructors and destructors
+- [ ] Apply the ~this~ pointer inside ~class~ methods
+- [ ] Create ~static~ members to track state across instances
+- [ ] Understand the object lifecycle
+
+** Review Questions: From struct in C to class in C++
+
+1. What's an object?
+   #+begin_quote
+   In OOP, an "object" is anything that has attributes or features,
+   and methods or abilities. For example, a ~Car~ object has the
+   features ~color~, ~speed~, and ~fuel_level~, and the abilities to
+   ~accelerate~, ~brake~, and ~refuel~.
+   #+end_quote
+
+2. What's OOP (Object-Oriented Programming)?
+   #+begin_quote
+   OOP is programming with objects and their ~private~ and ~public~
+   abilities. Alternatively, you can also imagine that everything is
+   an object, and that objects send each other messages.
+   #+end_quote
+
+3. What's the big deal with OOP?
+   #+begin_quote
+   It makes code easier to read, easier to maintain, and it makes code
+   safer because you can now protect data from illegal access. In one
+   word, it helps us to *scale* code in a real-world production setting.
+   #+end_quote
+
+4. How would a ~Car~ object, for example my car, a ~kia~ be created?
+   #+begin_quote
+   This is a two-step process:
+   1) Declare a ~class~ for any ~Car~ (outside of ~main~).
+   2) Declare an object ~kia~ that belongs to the ~Car~ class.
+   3) ~kia~ now inherits all properties of the ~Car~ class.
+   #+end_quote
+
+   #+begin_example C++
+   class Car { // all cars
+    // features
+    string color;
+    float speed;
+    float fuel_level;
+    // abilities
+    void accelerate(float amount) { // increase speed
+       speed += amount;
+       }
+    void brake() { // stop the car
+       speed = 0;
+       }
+    void refuel(float amount) { //
+       fuel_level += amount;
+       }
+    };
+
+    Car kia; // my Kia is a Car called `kia`
+   #+end_example
+
+5. What's wrong with this C++ object declaration?
+   #+begin_src C++
+     class Player John;
+   #+end_src
+
+   #+begin_quote
+   You should not use the ~class~ keyword when creating an object —
+   write =Player John;= instead.
+   #+end_quote
+
+6. Why does this code fail to compile if =Player::health= is ~private~?
+   How to fix it?
+   #+begin_src C++
+     Player Jane; // this Player has `health`
+     Jane.health = -1000;
+   #+end_src
+
+   #+begin_quote
+   =health= is ~private~ and cannot be accessed directly from outside the
+   class without providing a ~public~ method that lets you access it.
+
+   Either provide a ~public~ method like =getHealth()=, or make =health=
+   itself ~public~.
+   #+end_quote
+
+7. Why does this attempt to print the health value not work? How to
+   fix it?
+   #+begin_src C++
+     Player John; // Player has a `getHealth()` method
+     cout << getHealth() << endl;
+   #+end_src
+
+   #+begin_quote
+   Because the computer does not know what or where =getHealth()= is. It
+   needs to be told which ~class~ to use. The proper call is:
+   =cout << John.getHealth() << endl;=
+   #+end_quote
+
+8. What's the problem with this =takeDamage= method?
+   #+begin_src C++
+     void takeDamage(int amount) {
+       health -= amount;
+     }
+   #+end_src
+
+   #+begin_quote
+   It doesn’t check for negative values, which could increase =health=.
+   #+end_quote
+
+9. What's missing if we want the player to recover =health= after battle?
+   #+begin_src C++
+     Player John;
+     John.takeDamage(50);
+     // Now what?
+   #+end_src
+
+   #+begin_quote
+   Add a =heal(int amount)= method to increase the player's health:
+   =John.heal(80)=.
+   #+end_quote
+
+10. What if we wanted to cap the =health= of a =Player= at a certain value?
+    #+begin_quote
+    We'd have to add a condition using an ~if~ statement in our code.
+    #+end_quote
+
+** Final exam (optional): Monday 12 May 1pm-3pm in Lyon 104 (here)
+#+attr_html: :width 300px :float nil:
+[[../img/final_exam4.png]]
+
+- You cannot make your grade worse with the test, only *better*.
+- *50* randomly drawn questions drawn from the pool of *known questions*.
+- You have *120 minutes* to complete the test - open book (our PCs).
+  
+** [Last] Code Along Review: C++ Constructors and Destructors 
+
+Open [[https://onecompiler.com/cpp/43h75x8mz][OneCompiler.com/cpp]] to code along. 
+
+1) *Will this code work? What does it do?*
+
+   #+begin_src C++ :main yes :includes <iostream> :namespaces std
+     // class definition
+     class Car {
+     };
+     // main pg
+     Car volkswagen;
+   #+end_src
+
+   #+begin_quote
+   Yes, it works. A default =Car= named =volkswagen= is created.
+   #+end_quote
+
+2) *How could we add features, e.g. the =year= of the model, say 2022,
+   and the =mileage=, say 25000 miles, to the default =Car=?*
+
+   #+begin_src C++ :main yes :includes <iostream> :namespaces std
+     class Car {
+       const int year = 2022; // model year cannot change
+       int mileage = 25000; // mileage will change
+     };
+     // main pgm
+     Car volkswagen; // create a volkswagen Car
+   #+end_src
+
+   #+RESULTS:
+
+3) *How can we print the =year= and the =mileage= of the =volkswagen= =Car=?*
+
+   #+begin_src C++ :main yes :includes <iostream> :namespaces std :results output
+     class Car {
+       int year = 2022;
+       int mileage = 25000;
+     public:
+       void printCar() {
+         cout << "Car built in: " << year << endl
+              << "Mileage: "      << mileage << " miles";
+       }
+     };
+
+     // main pgm
+     Car volkswagen;
+     volkswagen.printCar();
+   #+end_src
+
+   #+RESULTS:
+   : Car built in: 2022
+   : Mileage: 25000 miles
+
+4) *How can we construct a =Car= with a different =year= and =mileage=, for
+   example a =mercedes= built in =2019= with a =mileage= of =45000=?*
+
+   #+begin_src C++ :main yes :includes <iostream> :namespaces std :results output
+     class Car {
+       const int year; // does not change
+       int mileage;
+     public:
+       // Constructor
+       Car(int y, int m) : year(y), mileage(m) {
+         cout << "Car built in: " << year << endl
+              << "Mileage: "      << mileage << " miles";
+       }
+     };
+
+     // main pgm
+     Car mercedes(2019,45000);
+   #+end_src
+
+   *You can also re-use the variable names with the ~this~ pointer:*
+
+   #+begin_src C++ :main yes :includes <iostream> :namespaces std :results output
+     class Car {
+       const int year; // does not change
+       int mileage;
+     public:
+       // Constructor
+       Car(int year, int mileage) : year(year), mileage(mileage) {
+         cout << "Car built in: " << this->year << endl
+              << "Mileage: "      << this->mileage << " miles";
+       }
+     };
+
+     // main pgm
+     Car mercedes(2019,45000);
+   #+end_src
+
+   #+RESULTS:
+   : Car built in: 2019
+   : Mileage: 45000 miles
+
+5) *How can we destroy the =Car= that we created?*
+   #+begin_src C++ :main yes :includes <iostream> :namespaces std :results output
+     class Car {
+       const int year; // does not change
+       int mileage;
+     public:
+       // Constructor
+       Car(int year, int mileage) : year(year), mileage(mileage) {
+         cout << "Car built in: " << this->year << endl
+              << "Mileage: "      << this->mileage << " miles" << endl;
+       }
+       // Destructor
+       ~Car() { cout << "Car destroyed." << endl; }
+     };
+
+     // main pgm
+     Car mercedes(2019,45000);
+   #+end_src
+
+   #+RESULTS:
+   : Car built in: 2019
+   : Mileage: 45000 miles
+   : Car destroyed.
+
+6) *Now create a second car, a =jaguar= from =1985= with =220,000= miles.*
+   #+begin_src C++ :main yes :includes <iostream> :namespaces std :results output
+     class Car {
+       const int year; // does not change
+       int mileage;
+     public:
+       // Constructor
+       Car(int year, int mileage) : year(year), mileage(mileage) {
+         cout << "Car built in: " << this->year << endl
+              << "Mileage: "      << this->mileage << " miles" << endl;
+       }
+       // Destructor
+       ~Car() { cout << "Car destroyed." << endl; }
+     };
+
+     // main pgm
+     Car mercedes(2019,45000);
+     Car jaguar(1985,220000);
+   #+end_src
+
+   #+RESULTS:
+   : Car built in: 2019
+   : Mileage: 45000 miles
+   : Car built in: 1985
+   : Mileage: 220000 miles
+   : Car destroyed.
+   : Car destroyed.
+
+   #+begin_quote
+   Final code: https://onecompiler.com/cpp/43h4bvg3d
+   #+end_quote
+
+** Summary and Outlook
+#+attr_html: :width 600px :float nil: 
+[[../img/final_grades.png]]
+
+- 33 Programming assignments
+- 300+ Test questions
+- 331 pages of scripts written and distributed
+- 92 codes in (my) OneCompiler.com alone
+- 1000 lines of code written by you (at least)- 
+
+You're now ready for more, bigger and better things!
+
+1) *Free book:* [[https://beej.us/guide/bgc/html/split/index.html][Beej's Guide to C Programming]] (free) - v0.9.24 April 6,
+   2025, online at beej.us/guide/bgc - gateway to system programming.
+
+2) *Free book:* [[https://rooksguide.org/wp-content/uploads/2013/12/rooks-guide-isbn-version.pdf][Rook's Guide to C++]] (free) - see rooksguide.org. Quick
+   100-page read, and I have worked through all exercises ([[https://github.com/birkenkrahe/alg1/blob/main/org/alg1_entry_rook.org][GitHub]]).
+
+3) *Non-free book*: Stroustrup - Programming (3rd edition, 2024), check
+   out [[https://stroustrup.com/programming.html][stroustrup.com/programming.html]] or "[[https://stroustrup.com/tour3.html][A Tour of C++]]" for full
+   immersion.
+
+4) *[[https://catalog.lyon.edu/computer-science/csc-240][Data Structures (with C++*)]]: The next course in the series, for
+   computer and data science minors and majors, CSC 240, TTH 930-1045
+   am. We'll start with a thorough review and a C/C++ entry test.
+
+5) *[[https://catalog.lyon.edu/data-science/dsc-105][Introduction to Data Science (with R)*:]] DSC 105 is the first course
+   of the Data Science program. Hands-on, beginner-friendly if you're
+   interested in data, visualization, machine learning, stats, and AI.
+
+6) *[[https://catalog.lyon.edu/computer-science/csc-450][Competitive programming]]*: Join us for a 1 hr per week seminar
+   solving programming problems in any language you like (C++, Python,
+   Java...) - CSC 450, Thursday 4 pm, Derby 209.
+
+7) *[[https://catalog.lyon.edu/computer-science/csc-115][Introduction to Programming with Java*:]] Yet another important
+   language that dominates in industry applications, CSC 115 MWF
+   1000-1050 am, taught by the incomparable Dr. Dall'Olio!
+
+8) *[[: In all my upper-level classes, you'll work][Literate Programming:]]* In all my upper-level classes, you'll work
+   with the Emacs + Org-mode IDE (instead of OneCompiler). There's a
+   steep learning curve. I'll give you something to do before term
+   starts.
+
+9) *Quantum Computing* or *App development with AI*: I am on the fence
+   which of these topics to teach as a DSC 482 (Special topics) course
+   next spring ('26). Successful completion of CSC 100 means you can
+   take it!
+
+10) I hope you enjoyed your *introduction to the way machines work*. It
+    should make you more proud of the way humans think & learn. Feel
+    free to keep in touch & use me while you can!
+
+** What (if anything) are you taking away from this course? 
+#+attr_html: :width 400px :float nil: 
+[[../img/finale4.png]]
+
+*Check out with one word only!* Something related to the course if you
+don't mind (though anything else is better than nothing)!
+
+** Final Grades
+
+#+begin_src R :file ../img/final_grades.png :session *R* :results graphics output file :exports both
+    midterm_grades <- c(26.92, 43.1, 45.75, 57.78, 59.77, 60.71, 69.8, 74.05, 76.22, 82.32,
+                        84.16, 84.33, 84.55, 85.27, 86.05, 86.87, 88.36, 90.25, 90.44, 90.65,
+                        91.3, 91.8, 92.25, 92.78, 93.73, 94.42, 96.46, 97.33, 97.88)
+
+    final_grades <- c(72.75,77.27,77.97,85.17,88.96,88.98,90.05,95.97,96.18,97.68,
+                      98.12,99.31,101.39,101.74,101.74,102.02,103.09,104.09,104.13,
+                      106.28,106.33,106.36,104.4,108.12,108.63,110.16,119.41,124.63)
+    dens_mid <- density(midterm_grades)
+    dens_final <- density(final_grades)
+    xlim_all <- range(c(dens_mid$x, dens_final$x))
+    ylim_all <- range(c(dens_mid$y, dens_final$y))
+    plot(dens_mid, col = "red", lwd = 2, xlim = xlim_all, ylim = ylim_all,
+         main = "", xlab = "Grade [%]")
+    abline(v = mean(midterm_grades), col = "red", lwd = 2, lty = 2)
+    par(new = TRUE)
+    plot(dens_final, col = "blue", lwd = 2, xlim = xlim_all, ylim = ylim_all,
+         xlab = "", ylab = "", axes = FALSE,
+         main="Midterm and Final Grades CSC 100 Spring 2025")
+    abline(v = mean(final_grades), col = "blue", lwd = 2, lty = 2)
+    legend("topleft", 
+           legend = c(paste("Midterm Mean =", round(mean(midterm_grades), 2)),
+                      paste("Final Mean =", round(mean(final_grades), 2))),
+           col = c("red", "blue"),
+           lty = c(2, 2),
+           lwd = 2)
+#+end_src
+
+#+RESULTS:
+[[file:../img/final_grades.png]]
+
+* Footnotes
+
+[fn:1]No it won't - instead it will print 0 forever until aborted
+because =i= is never changed and the condition =i<10= is always =TRUE=. You
+need to increment =i= with =i++=.

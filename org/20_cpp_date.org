@@ -1,0 +1,777 @@
+#+TITLE:C to C++ Transition
+#+AUTHOR:Marcus Birkenkrahe (pledged)
+#+SUBTITLE:CSC 100 Intro to Programming in C++ (Spring 2025)
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:C :main yes :includes <stdio.h> :results output :exports both :noweb yes
+#+PROPERTY: header-args:C++ :std:main yes :includes <iostream> :results output :exports both :noweb yes
+* Objectives
+
+*Object-Oriented Programming (OOP) with C++:*
+
+1. [ ] Transform C ~struct~ into C++ ~class~
+2. [ ] Understand that data can be ~private~ or ~public~
+3. [ ] Access ~private~ data
+4. [ ] Create ~class~ member data (attributes) and methods
+5. [ ] Create a =Date= class for =today=
+6. [ ] Create a =Player= class with =takeDamage= and =heal=
+7. [ ] Define ~class~ constructors and destructors
+8. [ ] Apply the ~this~ pointer inside ~class~ methods
+9. [ ] Create ~static~ members to track state across instances
+10. [ ] Understand the object lifecycle
+
+* Codealong with C++ in OneCompiler
+
+- OneCompiler is an IDE for multiple languages, and C/C++ are
+  distinguished.
+
+- Open ~onecompiler.com/cpp~ - this will bring up the template program
+  for C++ rather than C - let's go through it line by line:
+
+  #+begin_src C++ :main no :includes :results output
+    #include <iostream> // Input/output control
+    using namespace std; // Using stuff from the C++ standard library
+
+    int main(void) // the usual main program
+    {
+      cout << "Hello, world!"; // direct the output to stdout
+      return 0; // the usual END of main - 0 if successful
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Hello, world!
+
+- It's just as (deceptively) simple to enter user input in
+  C++. Replace the ~cout~ line with this and enter some input in the
+  ~STDIN~ field.
+  #+attr_html: :width 600px :float nil:
+  [[../img/cpp_ide.png]]
+
+- Notice that the program is called =Main.cpp= - .cpp is the default
+  ending for C++ programs (compared to .c for C programs):
+
+- You could download =Main.cpp=, compile and run it on the command-line
+  (e.g. on the Google Cloud shell, =ide.cloud.google.com=):
+  #+attr_html: :width 400px :float nil:
+  [[../img/greeting.png]]
+- The Code:
+  #+begin_src C++ :cmdline < input :includes <iostream> :namespaces std :results output
+    string name; // declare string variable
+    cout << "What's your name? "; // ask for user input
+    cin >> name; // get user input from stdin
+    cout << name << endl << endl; // print user input
+    cout << "Hello, " + name << "!"; // print greeting
+  #+end_src
+
+  #+RESULTS:
+  : What's your name? Marcus
+  :
+  : Hello, Marcus!
+
+- *Explanations* (for lonely winter evenings):
+  + ~iostream~ is the C++ header file for input and output
+  + ~std~ is a ~namespace~, a protected area that contains ~cout~ for
+    output, ~cin~ for input, ~string~ and ~vector~ for string and vector
+    identifiers, ~endl~ for new line, etc.
+  + This is because there is a limited number of words and terms
+    available, and different softwares can now use the same name but
+    with a different ~namespace~ prefix.
+  + The full version of ~cout~ is therefore ~std::cout~ etc.
+
+- Input:
+  #+begin_src bash :results output :exports both
+    echo "Marcus" > input
+    cat input
+  #+end_src
+
+  #+RESULTS:
+  : Marcus
+
+* From ~struct~ in C to ~class~ in C++ - =Player=
+
+- Our goal is to understand how to translate a C ~struct~ into a C++
+  ~class~ and why you'd want to do that.
+
+- Here is a typical C-style ~struct~:
+  #+name: Declare Player struct
+  #+begin_src C
+    struct Player {
+      int x; // player's x position
+      int y; // player's y position
+      int health; // player's health points (> 0)
+    };
+  #+end_src
+
+- There's a problem here: In C, all members of =Player= are ~public~ by
+  default: There's no way to restrict access if someone wants to mess
+  with your =Player=.
+
+- Example: Negative =Player.health= points are meaningless but the
+  compiler allows it - and the position =Player.x= can also be
+  corrupted:
+
+  #+begin_src C
+    <<Declare Player struct>>
+
+    struct Player John; // John is a Player now
+    John.health = -1000; // Invalid health!
+    John.x = 9999; // Out in the cold!
+
+    printf("Player's health (%d) and position (%d) are worrying.\n",
+           John.health, John.x);
+  #+end_src
+
+  #+RESULTS:
+  : Player's health (-1000) and position (9999) are worrying.
+
+* Practice: From ~struct~ in C to ~class~ in C++ - =Date=
+
+1) Turn the following C ~struct~ =Date= into a C++ ~class~. Do this by
+   changing the keyword ~struct~ to ~class~, and putting ~public:~ in the
+   first line of the ~class~.
+   #+begin_src C :results none
+     struct Date {
+       int day;
+       int month;
+       int year;
+     };
+   #+end_src
+
+2) In the ~main~ program, create a =Date= called =today= and assign it
+   today's date as ={[day],[month],[year]}=, then print =today=.
+
+3) Sample output:
+   #+begin_example
+     Today's date: 2/5/2025
+   #+end_example
+
+4) Starter code: [[https://onecompiler.com/cpp/43gma9be6][onecompiler.com/cpp/43gma9be6]]
+   #+begin_src C++
+     // include input/output stuff
+
+     // create Date class with day, month, year (int)
+     // BEGIN class
+     // day
+     // month
+     // year
+     // END class
+
+     // main program
+
+     // BEGIN main
+     // declare and initialize today as a Date
+
+     // PRINT today's date
+
+     // END main
+   #+end_src
+
+5) You will find that the program does not compile even though you
+   haven't done anything wrong as such. Why?
+   #+begin_quote
+   The data in a ~class~ are by default declared ~private~ and cannot be
+   accessed from the outside without providing a method to do that.
+   #+end_quote
+
+6) What can we do now?
+   #+begin_quote
+   The easiest thing to do is to disable the ~private~ setting by
+   declaring the data ~public~. Let's look at an example first.
+   #+end_quote
+
+** Solution:
+
+- Code:
+  #+name: Date class with public members
+  #+begin_src C++
+    // include input/output stuff
+    #include <iostream>
+    // create Date class with day, month, year (int)
+    class Date {
+    public:
+      int day;
+      int month;
+      int year;
+    };
+    // main program
+    int main(void)
+    {
+      // declare and initialize today as a Date
+      Date today = {2,5,2025};
+      // PRINT today's date
+      printf("Today's date: %d/%d/%d\n",
+         today.day, today.month, today.year);
+      return 0;
+    }
+  #+end_src
+
+- Explanation for ~public~:
+  #+begin_quote
+  Members of a C++ ~class~ are automatically ~private~ and cannot be
+  accessed from outside the class unless they are made ~public~.
+  #+end_quote
+
+* Data hiding (aka encapsulation) in C++ - =Player.health=
+
+- In C++, ~Player~ data can be hidden and controlled:
+
+  #+name: Declare Player class
+  #+begin_src C++ :results none
+    class Player {
+
+    private:      // private data
+      int x, y, health;
+    };
+  #+end_src
+
+- Let's try to mess with a player now:
+  #+begin_src C++ :noweb yes :results none
+    <<Declare Player class>>
+
+    class Player Jane;
+    Jane.health = -1000;
+    Jane.x = 9999;
+  #+end_src
+
+- In C++, if you don't specify data as ~public~, they're ~private~.
+
+* How to access ~private~ data - =getHealth()=
+
+- Data that are ~private~ are accessed only indirectly through *methods*.
+
+- You've already met one one those methods: =move_point= for the =Point=
+  structure:
+  #+begin_example C
+    struct Point p;  // create a Point p
+    move_point(&p,dx,dy); // move p by dx in x-, and by dy in y-direction
+  #+end_example
+
+- Methods are functions that belong to classes and act on their
+  data. In C++, a method (or member function)
+  1) is declared inside a ~class~
+  2) can access the class's ~private~ data
+  3) is called using an object of the ~class~
+
+- Here's =Player= again but with a method that allows us to check the
+  =Player='s =health=:
+  #+name: Create Player with a public getHealth function
+  #+begin_src C++
+    class Player {
+    private:
+      int health = 100;  // Player's private health
+    public:
+      int getHealth() {
+        return health;  // make Player's health public
+      }
+    };
+  #+end_src
+
+  #+RESULTS: Create Player with a public getHealth function
+
+- Let's test it:
+  #+begin_src C++ :noweb yes :namespaces std :includes <iostream>
+    <<Create Player with a public getHealth function>>
+     // Create a Player named Jane
+    class Player Jane;
+    // Get Jane's [private] health data
+    cout << "Player health = " << Jane.getHealth() << endl;
+  #+end_src
+
+  #+RESULTS:
+  : Player health = 100
+
+- C++ enforces data type and access control much more strongly than C.
+
+* Practice: Get the =Date= for =today= with =getDate()=
+
+- Add a method =printDate= to the =Date= ~class~ so that you can print
+  today's date. Starter code: [[https://onecompiler.com/cpp/43gmaqx76][onecompiler.com/cpp/43gmaqx76]]
+
+- Solution:
+  #+begin_src C++
+    // include input/output stuff
+    #include <iostream>
+    // create Date class with day, month, year (int)
+    class Date {
+    public:
+      int day;
+      int month;
+      int year;
+      void printDate() {
+        printf("Today's date: %d/%d/%d\n",day, month, year);
+      }
+    };
+    // main program
+    int main(void)
+    {
+      // declare and initialize today as a Date
+      Date today = {2,5,2025};
+      today.printDate();
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Today's date: 2/5/2025
+
+* How to alter ~private~ data - =takeDamage=
+
+- Now we know how to get to the ~private~ data - to alter them, we need
+  a new method. In the example, we're adding the =takeDamage= method,
+  and we're retaining the =getHealth= method (we need it to check).
+
+- Example: Create a =Player= that can take damage
+  #+name: Create Player that can take damage
+  #+begin_src C++
+    class Player { // a Player class
+
+    private: // private data
+      int health = 100;  // Player's health is hidden
+
+    public:  // public member function
+
+      int getHealth() {
+        return health;  // make Player's health public
+      }
+
+      void takeDamage(int amount) {
+        health -= amount; // reduce Player's health by amount
+      }
+    };
+  #+end_src
+
+- In the ~main~ program, we're adding a =Player= who can take damage:
+  #+begin_src C++ :noweb yes :includes <iostream> :namespaces std :results output
+    <<Create Player that can take damage>>
+
+    class Player John; // John's a Player
+
+    // What's his health like?
+    cout << "Before the fight: Player's health = " << John.getHealth() << endl;
+
+    // In a fight, John takes damage
+    John.takeDamage(50);
+
+    // What's his health like?
+    cout << "After the fight: Player's health = " << John.getHealth() << endl;
+  #+end_src
+
+  #+RESULTS:
+  : Before the fight: Player's health = 100
+  : After the fight: Player's health = 50
+
+* Challenge: Heal the =Player= with =heal=
+
+- Use the code developed so far, and add a =heal= method that increases
+  a =Player='s =health=:
+  1) Create =Player= class with ~private~ member =health=, and ~public~
+     methods =getHealth=, =takeDamage=, and =heal=.
+  2) Create ~main~ program, create a =Player=, print his =health=, let him
+     =takeDamage= (50), print his =health=, =heal= him (80), print =health=.
+
+- Sample output:
+  #+begin_example
+    Player's health = 100
+    Player's health after battle = 50
+    Player's health after healing = 130
+  #+end_example
+
+- Here is the starter code:
+  #+begin_src C++ :main no :includes :results output
+    // include input / output
+    // use standard names
+
+    /* class definition */
+    // Create a Player class
+
+
+    // private data
+
+    // Player's health (initially 100)
+
+    // public data
+
+    // Return Player's health
+    // int getHealth(void)
+
+    // Reduce Player's health by amount
+    // void takeDamage(int)
+
+    // Heal Player by amount
+    // void heal(int)
+
+    // END CLASS
+
+    /* main program */
+
+    // BEGIN MAIN
+    // Create a Player [name]
+
+    // PRINT Player's health + new line
+
+    // Player takes damage (50)
+
+    // PRINT Player's health after battle + new line
+
+    // Player heals (80)
+
+    // PRINT Player's health after healing + new line
+
+    // END MAIN
+  #+end_src
+
+- Solution:
+  #+begin_src C++ :main no :includes :results output :tangle player.cpp
+    #include <iostream> // include input / output
+    using namespace std; // use standard names
+
+    // Create a Player class
+    class Player {
+
+    private: // private data
+      // Player's health (initially 100)
+      int health = 100;
+
+    public: // public data
+
+      // Return Player's health (int)
+      int getHealth() {
+        return health;
+      }
+
+      // Reduce Player's health by amount (int)
+      void takeDamage(int amount) {
+        health -= amount;
+      }
+      // Heal Player by amount (int)
+      void heal(int amount) {
+        health += amount;
+      }
+    };
+
+    /* main program */
+    int main(void)
+    {
+      // Create a Player
+      Player John;
+      // PRINT Player's health
+      cout << "Player's health = " << John.getHealth() << endl;
+      // Player takes damage (50)
+      John.takeDamage(50);
+      // PRINT Player's health after battle
+      cout << "Player's health after battle = " << John.getHealth() << endl;
+      // Player heals (80)
+      John.heal(80);
+      // PRINT Player's health after healing
+      cout << "Player's health after healing = " << John.getHealth();
+
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Player's health = 100
+  : Player's health after battle = 50
+  : Player's health after healing = 130
+
+* Bonus challenge: Cap =Player= =health= at 100
+
+- Modify the previous program to cap the =health= at 100. That is, ~if~
+  =health= is above 100, reset it to 100.
+
+- Using the same values as before (take 50 damage, heal 80), the
+  sample output is now:
+  #+begin_example
+    Player's health = 100
+    Player's health after battle = 50
+    Player's health after healing = 100
+  #+end_example
+
+- Solution:
+  #+begin_src C++ :main no :includes :results output :tangle player2.cpp
+    #include <iostream> // include input/output
+    using namespace std; // use standard names
+
+    // Create a Player class
+    class Player {
+    private: // private data
+      // Player's health (initially 100)
+      int health = 100;
+
+    public: // public data
+
+      // Return Player's health (int)
+      int getHealth() { return health; }
+      // Reduce Player's health by amount (int)
+      void takeDamage(int amount) { health -= amount; }
+      // Heal Player by amount (int)
+      void heal(int amount) {
+        health += amount;
+        if (health > 100) health = 100;
+      }
+    };
+
+    /* main program */
+    int main(void) {
+      // Create a Player
+      Player John;
+      // PRINT Player's health
+      cout << "Player's health = " << John.getHealth() << endl;
+      // Player takes damage (50)
+      John.takeDamage(50);
+      // PRINT Player's health after battle
+      cout << "Player's health after battle = " << John.getHealth() << endl;
+      // Player heals (80)
+      John.heal(80);
+      // PRINT Player's health after healing
+      cout << "Player's health after healing = " << John.getHealth();
+
+      return 0; }
+  #+end_src
+
+  #+RESULTS:
+  : Player's health = 100
+  : Player's health after battle = 50
+  : Player's health after healing = 100
+
+* Initializing before and cleaning up after ~class~
+
+- A C ~struct~ requires manual setup and teardown.
+
+- A C++ ~class~ automates initialization and cleanup with special
+  methods called *constructor* and *destructor*.
+
+- Doing this makes code safer, more readable, and more reusable (these
+  are the three big reasons for OOP to scale[fn:1] code development).
+
+- Example: A *constructor* =Player(int)= in the =Player= ~class~ will set
+  =health= when the player is created, or "goes into scope".
+
+- Example: A *destructor* =Player()= in the =Player= ~class~ will delete all
+  memory allocated to a =Player= when finishes, or "goes out of scope".
+
+* Constructor: Set =Player= =health= when a player is created
+
+- This is the =Player= class so far (without the =health= cap):
+  #+begin_src C++ :main yes :results none
+    class Player {
+    private:
+      int health = 100;
+    public:
+      int getHealth() { return health; };
+      void takeDamage(int amount) { health -= amount; }
+      void heal(int amount) { health += amount; }
+    };
+  #+end_src
+
+- Modify this class:
+  1) Add a constructor to allow =health= to be set when the =Player= is
+     created.
+  2) Test the constructor in a ~main~ program by creating a =Player= named
+     =John= with initial =health= of 150.
+  3) Display =John='s =health=.
+
+- Starter code: [[https://onecompiler.com/cpp/43gpntxa2][onecompiler.com/cpp/43gpntxa2]]
+  #+begin_src C++ :main yes :includes :results output
+    // Include Input/Output functions
+    // Use standard namespace
+
+    // Create Player class
+
+    // BEGIN class
+    // private data:
+    // Player's health
+    // public data
+    // Initialize Player with health h
+    // Return Player's health
+    // END class
+
+    // main program
+    // BEGIN main
+    // Create a Player named John with a health of 150
+
+    // Display John's health
+
+    // END main
+  #+end_src
+
+- Solution:
+  #+begin_src C++ :main yes :includes :results output
+    #include <iostream>
+    using namespace std;
+
+    class Player {
+    private:
+      int health; // Player's health is private
+    public:
+      Player(int h) { // constructor
+        health = h;
+      }
+      int getHealth() { return health; }
+    };
+
+    int main(void)
+    {
+      // create a Player named John with a health of 150
+      Player John(150);
+      // display John's health
+      cout << "John's health is " << John.getHealth();
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : John's health is 150
+
+* Initializer Lists Syntax
+
+- A better style for initializing member variables in constructors
+  is using a list like this:
+
+  #+begin_src C++ :main no :results output :includes <iostream> :namespaces std
+    class Player {
+    private:
+      int health;
+    public:
+      Player(int h) : health(h) { } // initializer list
+      int getHealth() { return health; }
+    };
+
+    int main() {
+      Player John(100);
+      cout << "Player John's health is " << John.getHealth() << ".";
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Player John's health is 100.
+
+- Why is this better?
+  1) Member variables are initialized directly at construction time
+     (rather than default-constructed first and then assigned a value)
+  2) You must use initializer lists for ~const~ members or references
+     because they cannot be assigned to after construction:
+     #+begin_src C++ :results none
+       class Person {
+         const int ssn; // Person's SSN does not change
+       public:
+         Person(int i) : ssn(i) { } // must use initializer list
+       };
+     #+end_src
+
+* Practice: A default constructor for =DateTime=
+
+- How would you change the =Date= class so that the default =Date= is the
+  start of the Unix epoch, 00:00:00 UTC, January 1st, 1970[fn:2]?
+
+- Since a =Date= has a lot of members, add a ~public~ ~void~ method
+  =printDate= that prints the =epoch=.
+
+- Sample output:
+  #+begin_example
+    Unix epoch start:  1970-01-01 00:00:00
+  #+end_example
+
+- Solution:
+  #+begin_src C++ :main no :results output
+    #include <iostream> // include input/output functions
+
+    class Date { // declare Date class
+    private: // private Date data
+      int day, month, year, hour, minute, second;
+    public: // public data
+      Date() : // default constructor for Unix epoch start - list init
+        day(1), month(1), year(1970), hour(0), minute(0), second(0) { }
+      void printDate() { // print Date as "YYYY-MM-DD hh:mm:ss"
+        printf("Unix epoch start:  %04d-%02d-%02d %02d:%02d:%02d\n",
+           year, month, day, hour, minute, second);
+      }
+    };
+    // Test it with a main program
+    int main() {
+      Date epoch; // Declare an epoch Date
+      epoch.printDate(); // print epoch Date
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Unix epoch start:  1970-01-01 00:00:00
+
+* Add a method =Date::now= to get the current epoch time in seconds
+
+- The following C program returns the time that has passed since the
+  Unix epoch, the system date:
+  #+begin_src C :includes <time.h> <stdio.h>
+    time_t now = time(NULL);
+    printf("The time is: %ld seconds.\n", now);
+  #+end_src
+
+  #+RESULTS:
+  : The time is: 1746321609 seconds.
+
+- The task: turn it into a method =now= of the =Date= class to get the
+  current system date.
+  #+begin_src C++ :main no :results output
+    #include <iostream>
+    #include <ctime>
+    using namespace std;
+
+    class Date {
+    private:
+      int day, month, year, hour, minute, second;
+    public:
+      Date() :
+        day(1), month(1), year(1970), hour(0), minute(0), second(0) { }
+      static void now() {
+        cout << "The time is: " << time(NULL) << " seconds.";
+      }
+    };
+    // Test it with a main program
+    int main() {
+      Date system; // Declare a `system` Date
+      system.now(); // print `system` time now
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : The time is: 1746321599 seconds.
+
+- You can convert this on the shell with the ~date~ command:
+  #+begin_src bash :results output :exports both
+    date -d @1746321599 # convert Unix time on the shell
+  #+end_src
+
+#+RESULTS:
+: Sat May  3 08:19:59 PM CDT 2025
+
+* Destructor: Clean up =Player= at the end of the game
+
+- The destructor method runs when the =Player= object goes "out of
+  scope", i.e. when the program is finished and the =Player= is no
+  longer needed.
+
+- This is useful for keeping a log, or for memory cleanup.
+
+- Here is the =Player= class with a default destructor method
+  =~Player=. The destructor is called automatically - we only print a
+  message when it happens.
+
+* Summary: The Object Lifecycle
+
+
+
+* Footnotes
+
+[fn:1] "Scale" is what distinguishes learning from production: When
+you're learning you craft small pieces of code hoping it will run at
+all for you alone, on your single computer. When you're creating
+production code, you write (or monitor, or maintain, more likely),
+large collections of code that runs on millions, or billions of
+computers, and that must run safely and smoothly. That is "scale".
+
+[fn:2] The Unix epoch is 00:00:00 UTC on January 1, 1970. Computer
+(system) time is measured as the number of seconds that have elapsed
+since this moment (Unix timestamp or epoch time).
