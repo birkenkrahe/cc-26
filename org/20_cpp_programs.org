@@ -1,0 +1,223 @@
+#+TITLE: C to C++: Object-Oriented Programming Lab
+#+AUTHOR: Marcus Birkenkrahe
+#+DATE: 2025-04-30
+#+OPTIONS: toc:nil num:nil
+
+* Overview
+This 3-day lab helps students trained in C transition to
+object-oriented programming (OOP) in C++ by rewriting familiar C
+programs as class-based C++ programs.
+
+Each session:
+1. Review a known C program
+2. Introduce relevant C++ concepts
+3. Do a code-along example
+4. Complete a challenge using previous work
+
+* 🗓️ Day 1: Hello OOP – Classes and Methods
+
+**C Program Review: Hello World + Calculator**
+
+C version:
+#+begin_src c
+#include <stdio.h>
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+#+end_src
+
+**C++ Concepts Introduced**
+- `#include <iostream>`, `cout`, `cin`
+- `class`, `public` methods, no member state
+
+**Code-Along**
+#+begin_src cpp
+#include <iostream>
+using namespace std;
+
+class Calculator {
+public:
+    float calculate(float a, float b, char op) {
+        switch (op) {
+            case '+': return a + b;
+            case '-': return a - b;
+            case '*': return a * b;
+            case '/': return b != 0 ? a / b : 0;
+            default: return 0;
+        }
+    }
+};
+
+int main() {
+    Calculator c;
+    float x, y;
+    char op;
+    cin >> x >> op >> y;
+    cout << "Result: " << c.calculate(x, y, op) << endl;
+    return 0;
+}
+#+end_src
+
+**Challenge**
+Convert your Fahrenheit-to-Celsius C program into a `Converter` class with:
+- a method `float toCelsius(float fahrenheit)`
+- user input with `cin`, output with `cout`
+
+**Solution**
+#+begin_src cpp
+#include <iostream>
+using namespace std;
+
+class Converter {
+public:
+    float toCelsius(float f) {
+        return (f - 32) * 5 / 9;
+    }
+};
+
+int main() {
+    Converter c;
+    float tempF;
+    cout << "Enter temperature in Fahrenheit: ";
+    cin >> tempF;
+    cout << "Celsius: " << c.toCelsius(tempF) << endl;
+    return 0;
+}
+#+end_src
+
+* 🗓️ Day 2: State and Objects – Arrays and Inventory
+
+**C Program Review: Equip Weapon or Shield**
+
+C version:
+#+begin_src c
+#include <stdio.h>
+
+int main() {
+    char choice;
+    printf("Equip (w) weapon or (s) shield? ");
+    scanf(" %c", &choice);
+    if (choice == 'w') printf("Equipped a sword!\n");
+    else if (choice == 's') printf("Equipped a shield!\n");
+    return 0;
+}
+#+end_src
+
+**C++ Concepts Introduced**
+- `class` with internal array
+- `constructor`, `string`, `cin` input
+
+**Code-Along**
+#+begin_src cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Player {
+    string inventory[2];
+public:
+    Player() {
+        inventory[0] = "sword";
+        inventory[1] = "shield";
+    }
+
+    void equip(int slot) {
+        cout << "Equipped: " << inventory[slot] << endl;
+    }
+
+    void listInventory() {
+        for (int i = 0; i < 2; ++i)
+            cout << i << ": " << inventory[i] << endl;
+    }
+};
+
+int main() {
+    Player p;
+    p.listInventory();
+    int choice;
+    cout << "Choose item (0 or 1): ";
+    cin >> choice;
+    p.equip(choice);
+    return 0;
+}
+#+end_src
+
+**Challenge**
+- Convert your C program to a `Player` class
+- Include a `listInventory()` and `equip()` method
+- Bonus: prevent invalid index
+
+**Solution included above**
+
+* 🗓️ Day 3: Recursive Objects – Fibonacci with Class Design
+
+**C Program Review: Fibonacci series**
+
+C version:
+#+begin_src c
+int fib(int n) {
+    if (n <= 1) return n;
+    return fib(n-1) + fib(n-2);
+}
+#+end_src
+
+**C++ Concepts Introduced**
+- Recursive class method
+- Optional: counter field to track calls
+
+**Code-Along**
+#+begin_src cpp
+#include <iostream>
+using namespace std;
+
+class Fibonacci {
+public:
+    int compute(int n) {
+        if (n <= 1) return n;
+        return compute(n - 1) + compute(n - 2);
+    }
+
+    void printSeries(int n) {
+        for (int i = 0; i < n; ++i) {
+            cout << compute(i) << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Fibonacci f;
+    int terms;
+    cout << "Enter number of terms: ";
+    cin >> terms;
+    f.printSeries(terms);
+    return 0;
+}
+#+end_src
+
+**Challenge**
+- Encapsulate your Fibonacci C code in a `Fibonacci` class
+- Add a `printSeries(int n)` method
+- Bonus: track and print number of recursive calls
+
+**Bonus solution (tracking calls)**
+#+begin_src cpp
+class Fibonacci {
+    int callCount = 0;
+public:
+    int compute(int n) {
+        callCount++;
+        if (n <= 1) return n;
+        return compute(n - 1) + compute(n - 2);
+    }
+
+    void printSeries(int n) {
+        callCount = 0;
+        for (int i = 0; i < n; ++i)
+            cout << compute(i) << " ";
+        cout << "\nCalls: " << callCount << endl;
+    }
+};
+#+end_src
+

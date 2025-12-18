@@ -1,0 +1,936 @@
+#+TITLE:Pointers
+#+AUTHOR:Marcus Birkenkrahe
+#+SUBTITLE:CSC100 / Introduction to programming in C/C++
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil ^:nil num:nil
+#+PROPERTY: header-args:C :main yes :includes <stdio.h> <stdlib.h> :exports both :results output
+* README
+#+attr_html: :width 400px :float nil:
+[[../img/pointers.png]]
+
+- This script introduces C pointers in theory and practice.
+
+- This section, including some sample code, is based on: chapter 11
+  in King (2008), and chapter 7 in Davenport/Vine.
+
+* Overview
+
+- Remember the fundamental architectural problem of the "von Neumann"
+  architecture of digital computers.
+  #+caption: Computer architecture (simplified)
+  #+attr_latex: :width 400px
+  [[../img/computer_architecture2.png]]
+
+  #+begin_quote
+  - Imagine: CPU \equiv brain, Memory \equiv house, Harddisk \equiv moon
+
+    1. CPU and the Brain: The CPU (Central Processing Unit) is like the
+       brain because it is responsible for processing all instructions
+       and making decisions. It performs the core computations and
+       controls other parts of the computer based on the input it
+       receives, similar to how the brain processes sensory information
+       and dictates responses.
+    2. RAM and a House: RAM (Random Access Memory) is akin to a house
+       because it serves as the active, working area where tasks are
+       carried out and information is temporarily held. Just as a house
+       contains rooms where daily activities occur (e.g., sleeping,
+       eating, working), RAM holds active applications and data for
+       quick access by the CPU. The size of the RAM affects how much
+       activity (or how many applications) can be handled at once, much
+       like the size of a house determines how many activities can
+       comfortably occur simultaneously.
+    3. Hard Disk and the Moon: A hard disk is comparable to the Moon in
+       that it serves as a distant but integral storage location. Just
+       as the Moon orbits Earth and is a more remote body holding
+       impacts of meteorites and historical footprints, a hard disk
+       stores data that is not immediately needed for current processing
+       tasks but is crucial for long-term storage. Its contents are not
+       as quickly accessible as those in RAM, reflecting the Moon’s
+       greater distance compared to our immediate environment.
+  #+end_quote
+
+- Computer memory ("RAM") is like a list of /locations/:
+  #+caption: Sample data stored in an imaginary memory stack
+  #+attr_latex: :width 400px
+  [[../img/memory.png]]
+
+- Each chunk of memory has an /address/ to a location.
+
+- *Pointers* point to these addresses:
+  #+attr_latex: :width 300px
+  #+caption: A pointer p points to address of i
+  [[../img/16_pointer.png]]
+
+- The /address/ is not the house, it's a /reference/ to the house:
+  #+attr_html: :width 300px
+  #+caption: envelope = pointer to an address
+  [[../img/16_letter.png]]
+
+* Pointers in other languages
+
+Most languages besides C/C++, like C#, Java, Python...do not offer
+pointers (easily) - most of the direct memory management is
+"abstracted" away (i.e. the memory is hidden and a simpler user
+interface is offered).
+
+#+begin_quote
+1. *C#:* C# does support pointers, but their use is limited to unsafe
+   code blocks. You must explicitly mark these areas with the =unsafe=
+   keyword. This feature allows you to perform operations that
+   involve direct memory access, similar to C or C++. However, using
+   pointers is generally discouraged in favor of safer constructs
+   provided by the language, such as objects and reference types.
+
+2. *Java:* Java does not support pointers, at least not in the
+   traditional sense as seen in C or C++. Instead, Java handles
+   memory through references to objects, and these references are
+   abstracted away from direct memory address manipulation. This
+   abstraction is part of Java's design to ensure security and
+   simplicity in memory management, reducing the likelihood of
+   errors such as memory leaks or pointer arithmetic.
+
+3. *Python*: Python also does not use pointers. It handles everything
+   by object references. The language is designed to abstract away
+   most direct memory management tasks from the developer,
+   automatically handling object creation and destruction through a
+   built-in garbage collector. Python’s approach simplifies the
+   development process but at the cost of direct control over memory
+   and performance optimizations that pointers can offer.
+
+4. *R:* R does not support pointers in the traditional sense used in
+   lower-level languages like C. Instead, R uses a system of
+   pass-by-value semantics with copy-on-modify behavior, meaning that
+   objects are generally copied when modified, though under the hood
+   this is optimized using references to avoid unnecessary duplication.
+   Memory management in R is handled automatically through garbage
+   collection, and direct manipulation of memory addresses is not
+   exposed to the user. While advanced users can interface with C
+   code via the =.C= or =.Call= interfaces for performance or memory
+   control, everyday R programming is intentionally abstracted from
+   low-level memory details to promote safety and ease of use.
+#+end_quote
+
+* What's the big deal?
+
+- C and C++ offer pointer variables and operators naturally.
+
+- This gives you a lot more control over the computer (because every
+  operation, every process involves memory management).
+
+- Examples:
+
+  + *String manipulation*: Strings are arrays (working with text -
+    e.g. when creating fast-performing chat bots or AI agents).
+
+    #+begin_src C
+      char *name = "Marcus";  // pointer to 'M'
+
+      printf("Hello, %s\n", name); // the whole string = array
+    #+end_src
+
+    #+RESULTS:
+    : Hello, Marcus
+
+  + *Dynamic memory allocation* - the process of assigning memory
+    during the execution time (when a program typically competes
+    with thousands of other processes).
+
+    #+begin_src C
+      int *p = malloc(sizeof(int)); // allocate memory for 1 integer
+
+      (*p) = 42; // de-referencing the pointer to assign a value to it
+
+      printf("%d\n", *p); // print the value with the indirected pointer
+
+      free(p);  // give the memory back = de-allocation
+
+    #+end_src
+
+    #+RESULTS:
+    : 42
+
+- About the =sizeof= operator: It returns the size of a memory cell.
+  #+begin_src C
+    int a[100]; // declare an array
+
+    int size_a0 = sizeof(a[0]); // extract the size of an element
+    int size_a  = sizeof(a)/size_a0; // size of the array
+
+    printf("Size of an array element = %d\n", size_a0); // print bytes
+    printf("Size of an array         = %d\n", size_a); // print bytes
+  #+end_src
+
+  #+RESULTS:
+  : Size of an array element = 4
+  : Size of an array         = 100
+
+- This is *mind control*: You can essentially decide what the computer
+  should think with which part of its "brain" (great potential to mess
+  up, too), e.g. when you mis-allocate resources.
+
+* Indirection (concept)
+
+- Imagine you have a /variable/ ~iResult~ that contains the /value/ ~75~.
+
+- The variable is /located/ at a memory address, e.g. ~0061FEC8~. To find
+  this out, you need to print its address, =&iResult=, with ~%p~.
+
+  #+begin_src C
+    int iResult = 75; // the variable is in memory
+    printf("%d is located at %p\n", iResult, &iResult);
+  #+end_src
+
+  #+RESULTS:
+  : 75 is located at 0x7ffd31706174
+
+- Repeated executions of this code creates different addresses. A
+  pointer is a variable that holds an address.
+
+- Imagine you have a /pointer variable/ ~myPointer~ that contains the
+  address of the variable ~iResult~:
+  #+begin_src C
+    int iResult = 75;
+    printf("%d <- %p\n", iResult, &iResult);
+
+    int *myPointer = &iResult;
+    printf("%p -> %d\n", myPointer, iResult);
+
+  #+end_src
+
+  #+RESULTS:
+  : 75 <- 0x7fff4b2e33dc
+  : 0x7fff4b2e33dc -> 75
+
+- This means that ~myPointer~ /indirectly/ points to the value ~75~.
+
+- You already worked with addresses: An /array name/ ~a~ is a pointer to
+  the start of the array, the address of ~a[0]~:
+
+  #+begin_src C
+    int a[3] = {100, 200, 300}; // define an array
+
+    printf("a = %d", *a); // pointer arithmetic
+    printf("\na = %d", a[0]); // pointer arithmetic
+
+  #+end_src
+
+  #+RESULTS:
+  : a = 100
+  : a = 100
+
+- The conversion specifier ~%p~ lets us access the addresses that
+  correspond to elements of the array ~a~, and even the address for the
+  whole array.
+
+- We declare an array ~a[2]~ and then we print its addresses:
+  #+name: ptrprint
+  #+begin_src C
+    int a[2] = {100,200};
+
+    printf("Address of a[0] = %p\nAddress of a[1] = %p\n", &a[0], &a[1]);
+  #+end_src
+
+  #+RESULTS: ptrprint
+  : Address of a[0] = 0x7ffdf006d750
+  : Address of a[1] = 0x7ffdf006d754
+
+- You can see that the address for ~a~ points to ~a[0].~
+
+- You already worked with pointers: arguments in the call of ~scanf~
+  are /pointers/: without the ~&~, the function would be supplied with
+  the /value/ of ~i~, not the /address/. But ~scanf~'s job is to assign a
+  memory location (an address) to the input variable.
+  #+begin_example C
+  int i; // reserve memory for an integer called `i`
+  scanf("%d", &i); // put the keyboard input into that memory
+  #+end_example
+
+- The relationship between variable value and memory address is called
+  *indirection*: A /pointer/ provides /indirect/ access to the value via the
+  address where the value is stored.
+
+* Indirection (code)
+
+- There are two /unary/ pointer operators:
+  - the /address/ (or referencing) operator ~&~
+  - the /indirection/ (or dereferencing) operator ~*~
+
+- The unary /address/ operator ~&~ returns a computer memory address,
+  e.g. ~&i = 0x7ffc7600b79c~ - it /references/ the memory location.
+
+- What if ~i~ has not been initialized yet? Will the address change?
+  Print the reference to ~i~ before initializing it, and after.
+  #+begin_src C
+    int i;  // integer memory without value
+    printf("%p\n", &i);
+
+    i = 100;
+    printf("%p\n", &i);
+  #+end_src
+
+  #+RESULTS:
+  : 0x7ffc68a49bf4
+  : 0x7ffc68a49bf4
+
+- The unary /indirection/ operator ~*~ returns a value, e.g. ~*p = 75~ if ~p~
+  points at a variable that contains the value ~75~.
+
+- Let's do it all in one code block (*Open your C editor now*):
+  1) declare an integer variable ~i~
+  2) assign the value ~1~ to ~i~
+  3) declare an integer pointer ~*p~
+  4) assign the address of ~i~ to ~p~
+  5) print ~i~ and ~&i~ (~"is located at address"~)
+  6) print ~p~ and ~*p~ (~"points to value"~)
+
+  #+begin_src C
+    /* variables */
+    int i; // declare integer variable
+    i = 1; // assign value to variable
+
+    /* pointers */
+    int *p; // declare integer pointer
+    p = &i; // assign address to pointer
+
+    // print variable value
+    // PRINT "i is located at address &i"
+    printf("%d is located at address %p\n", i, &i);
+    // print pointer memory address
+    // PRINT "p points to the value i"
+    printf("%p points to the value %d\n", p, i);
+  #+end_src
+
+  #+RESULTS:
+  : 1 is located at address 0x7ffd107af40c
+  : 0x7ffd107af40c points to the value 1
+
+- What if you assign a number ~1~ to ~p~ instead of an address?
+  #+begin_src C
+    int *p; // declare an integer pointer
+    p = 1;
+
+    // print pointer value
+    printf("%p\n", p);  // `0x1` is reserved
+  #+end_src
+
+  #+RESULTS:
+  : 0x1
+
+- Compiler message (~-Wint-conversion~ is a compiler flag):
+  #+begin_example
+   warning: assignment to ‘int *’ from ‘int’ makes pointer from integer
+            without a cast [-Wint-conversion]
+   15 | p = 1; // warning: missing 'cast'
+      |   ^
+  #+end_example
+
+- Here is more documentation on compiler warnings. You can add them to
+  your code block with the header argument ~:flags~, e.g. ~:flags -Wall~
+
+- The figure illustrates these concepts. Can you describe what
+  goes on from line to line?
+  #+attr_html: :width 500px
+  #+caption: Graphical illustration of the indirection operator (Source: King)
+  [[../img/16_indirection.png]]
+
+  #+begin_quote Answer
+  1) The pointer ~p~ points to the address ~&i~ of the variable ~i~.
+  2) ~i~ is initialized with the value ~1~. ~p~ still points at it.
+  3) To change the value of ~i~ indirectly using the pointer ~p~, we
+     assign ~*p = 2~. The indirection operator ~*~ designates a pointer.
+  4) To check that ~i~ indeed has been changed, we print it.
+  5) ~*p~ also prints the value of ~i~.
+  #+end_quote
+
+  #+begin_src C  :main no :includes
+
+    #include <stdio.h>
+
+    int main(void)
+    {
+      int i; // declare integer variable
+      int *p; // declare pointer variable
+
+      p = &i; // assign i's address to pointer p
+      i = 1;  // assign a value to i
+
+      printf("%d\n", i);    // print value directly
+      printf("%d\n", *p);   // print dereferenced pointer
+
+      (*p) = 2;  // assign value to i (via deref'd pointer)
+
+      printf("%d\n", i);    // print value directly
+      printf("%d\n", *p);   // print dereferenced pointer
+
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : 1
+  : 1
+  : 2
+  : 2
+
+* Practice: Reassigning Pointers and Changing Values
+
+- The following program starts with two variables a, b pointed at by
+  two pointers p and q. We then manipulate the variable values using
+  the pointers.
+
+- Starter Pseudocode: [[https://onecompiler.com/c/43fhagatk][onecompiler.com/c/43fhagatk]]
+  #+begin_src C
+    /* pointers.c: Manipulate variables using pointers */
+    /* Author: Marcus Birkenkrahe (pledged) GPLv3 */
+    /* Date: 04/20/2025 */
+
+    // declare two integer variables a and b
+    int a, b;
+    // declare two integer pointers p and q
+    int *p, *q;
+    // assign values: 5 to a and 10 to b
+    a = 5, b = 10;
+    // point p to a, point q to b
+    p = &a, q = &b;
+    // print values pointed to by p and q
+    printf("p points to %d, q point to %d\n", *p, *q);
+    // assign value pointed to by p to value pointed to by q
+    (*q) = (*p);
+    // print the values of a and b directly
+    printf("Values a = %d, b = %d\n", a, b);
+    // reassign p to point to b
+    p = &b; 
+    // change value of b to 20 using the pointer p
+    (*p) = 20;
+    // print a and b directly
+    printf("Values a = %d, b = %d\n", a, b);    
+    // print values pointed to by p and q
+    printf("Values a = %d, b = %d\n", *p, *q);    
+  #+end_src
+
+  #+RESULTS:
+  : p points to 5, q point to 10
+  : Values a = 5, b = 5
+  : Values a = 5, b = 20
+  : Values a = 20, b = 20
+
+- Sample output:
+  #+begin_example
+  Values a = 5, b = 10
+  Values a = 5, b = 5
+  Values a = 5, b = 20
+  Values a = 20, b = 20
+  #+end_example
+
+* Analysis
+
+| CODE           | EXPLANATION                         |
+|----------------+-------------------------------------|
+| =a = =5, b = =10=  | Assign values to a, b directly      |
+| =p = &a, q = =&b= | Pointers point a address-of a, b    |
+| =*p, *q=         | Dereferenced pointers p,q print a,b |
+| =*q == *p=        | Move value *p = a into *q = b:      |
+|                | Now a, b have the same values       |
+|                | but p still points at a, q at b     |
+| =p == &b=         | Redirect p to address-of b          |
+|                | Now both q and p point at b         |
+| =*p == 20=        | Change value of b to 20             |
+|                | Both dereference pointers print b   |
+|                | The value of a is not changed.      |
+
+* ~*~ and ~&~ are inverse to one another
+
+- Address and indirection operator are /inverse/ to one another
+  (i.e. they reverse each other's operation - applying both amounts
+  to doing nothing).
+
+- Applying indirection ~*~ to an address /dereferences/ it.
+
+- Applying referencing ~&~ to a pointer extracts its address.
+
+  #+name: inverseOps
+  #+begin_src C
+    // declaring and initializing
+    int val = 75, *ptr = &val;
+    // print variable and dereferenced pointer
+    printf("value = %d => *&(value) = %d\n",
+                   val,              *&val); 
+    // print pointer and address of pointer
+    printf("pointer = %p => &*(pointer) = %p\n",
+                      ptr,              &*ptr); 
+  #+end_src
+
+  #+RESULTS: inverseOps
+  : value = 75 => *&(value) = 75
+  : pointer = 0x7ffc1767cabc => &*(pointer) = 0x7ffc1767cabc
+
+- Applying ~*~ to the pointer takes us back to the original variable
+  (dereferences the pointer)
+  #+begin_example C
+  j = *&i; // same as j = i
+  p = &*q  // same as p = q
+  #+end_example
+
+* Practice: Referencing and De-referencing
+
+- Practice how ~*~ (indirection) and ~&~ (address-of) are inverse
+  operations in C.
+
+- Write a short C program that:
+  1. Declares an integer variable and assigns it a value.
+  2. Declares a pointer to that variable using ~&~.
+  3. Uses ~*~ to get the original value from the pointer.
+  4. Prints all of the following:
+     + The value of the variable.
+     + The value of ~*&variable~.
+     + The value of ~*pointer~.
+     + The value of ~&*pointer~.
+
+- Starter code: [[https://onecompiler.com/c/43fhb4ft3][onecompiler.com/c/43fhb4ft3]] - code along with me.
+  #+begin_src C
+    // BEGIN
+    // DECLARE integer variable x
+    // SET x to some value
+
+    // DECLARE pointer p to integer
+    // SET p to address of x
+
+    // PRINT value of x
+    // PRINT value of *&x
+    // PRINT value of *p
+    // PRINT value of &*p
+    // END
+  #+end_src
+
+- Sample output:
+  #+begin_example
+   x = 123
+   *&x = 123
+   *p = 123
+   &*p = 0x7fffc147e19c
+  #+end_example
+
+- Solution:
+  #+begin_src C
+    #include <stdio.h>
+    int main (void)
+    { // BEGIN
+      // DECLARE integer variable x
+      int x;
+      // SET x to some value
+      x = 123;
+      int *p; // DECLARE pointer p to integer
+      // SET p to address of x
+      p = &x;
+      printf("x = %d\n", x);// PRINT value of x
+      printf("*&x = %d\n", *&x); // PRINT value of *&x
+      printf("*p = %d\n", *p); // PRINT value of *p
+      printf("&*p = %p\n", &*p); // PRINT value of &*p
+      return 0;
+    } // END
+  #+end_src
+
+  #+RESULTS:
+  : x = 123
+  : *&x = 123
+  : *p = 123
+  : &*p = 0x7ffd3863277c
+
+* Pointers must be initialized
+
+- Non-initialized pointers lead to invalid data or expressions.
+
+- Pointer variables should always be initialized with:
+  + another variable's memory address (e.g. ~&i~), OR
+  + with 0, OR
+  + with the keyword ~NULL~.
+
+- Here are some /valid/ pointer initializations - ~printf~ uses the
+  conversion specifier ~%p~ for pointers.
+
+- Open your editor and type along with me.
+  #+name: ptrInit
+  #+begin_src C :tangle ./src/ptrinit.c 
+    // pointer declarations
+    double *ptr1;
+    int *ptr2;
+    int *ptr3;
+    double x = 3.14; // initialize variable
+
+    ptr1 = &x; // initialize with address
+    ptr2 = 0; // initialize with 0
+    ptr3 = NULL; // initialize with NULL
+
+    // print pointers
+    printf("%p %p %p\n", ptr1, ptr2, ptr3);
+    // print values
+    printf("%g %d %d\n", *ptr1, *ptr2, *ptr3);
+  #+end_src
+
+  #+RESULTS: ptrInit
+
+- Let's print the values: how do you have to change the ~printf~
+  statement?
+
+- Here are a few non-valid initializations: we want to change the
+  value of a variable using the pointer to its memory address.
+  + can you tell why?
+  + can you right the wrong?
+  + print ~iPtr~, ~&i~ and ~i~
+  #+begin_src C :results output
+    int i = 5;// declare integer i
+    int *iPtr; // declare pointer iPtr
+
+    iPtr = &i; // initialize pointer
+    (*iPtr) = 7; // change value of variable
+  #+end_src
+
+  #+RESULTS:
+
+* Practice: Initializing pointers
+
+- A few things went wrong in the code block below.
+
+- Fix the problems, and then print the value that ~ptr~ points to, the
+  address that ~ptr~ references, and the value of ~var.~
+
+- Open this in the editor on: [[https://onecompiler.com/c/43fhtmp7k][onecompiler.com/c/43fhtmp7k]]
+  #+begin_src C
+    // declare double precision variable
+    double var = 3.14159;
+    // declare pointer to double precision variable
+    int ptr;
+
+    // initialize pointer
+    ptr = var;     // ptr is assigned the address of x
+    ptr = 2.71828; // value of x is indirectly changed to e
+
+    // print dereferenced pointer, address and value of var
+    printf("Deref'd ptr %d\nAddress-of var = %d\nValue of var = %p\n",
+           ptr, &ptr, &var);
+  #+end_src
+
+- Result vs. expected:
+  #+begin_example
+  : Deref'd ptr 2  [expected: 2.71828]
+  : Address-of var = -1367120212 [expected: hexadecimal address]
+  : Value of var = 0x7ffdae8366b0 [expected: 2.71828]
+  #+end_example
+
+- Solution:
+  #+begin_src C
+    // declare double precision variable
+    double var = 3.14159;
+    // declare pointer to double precision variable
+    double *ptr;
+
+    // initialize pointer
+    ptr = &var;     // ptr is assigned the address of x
+    (*ptr) = 2.71828; // value of x is indirectly changed to e
+
+    // print dereferenced pointer, address and value of var
+    printf("Deref'd ptr %g\nAddress-of var = %p\nValue of var = %g\n",
+           *ptr, ptr, var);
+  #+end_src
+
+  #+RESULTS:
+  : Deref'd ptr 2.71828
+  : Address-of var = 0x7ffcb1d172c8
+  : Value of var = 2.71828
+
+** Solution
+
+- Here is the buggy code - to be fixed:
+  #+begin_src C
+    // declare double precision variable
+    double var = 3.14159;
+    // declare pointer to double precision variable
+    int ptr;
+
+    // initialize pointer
+    ptr = var;     // ptr is assigned the address of x
+    ptr = 2.71828; // value of x is indirectly changed to e
+
+    // print dereferenced pointer, address and value of var
+    printf("Deref'd ptr %d\nAddress-of var = %d\nValue of var = %p\n",
+           ptr, &ptr, &var);
+#+end_src
+
+* Pass by value and pass by reference
+
+- Since we've established the difference between a value and a
+  reference (or address), we can use it in functions.
+
+- What happens here?
+  #+begin_src C :main no :includes
+    #include <stdio.h> // input/output
+    // swap two integer arguments a->b, b->a
+    void swap(int, int);
+
+    /* main function */
+    int main(void)
+    { //BEGIN
+      // declare and initialize two integer variables
+      int x = 5, y = 10;
+      // PRINT "Before swap: (x,y)"
+      printf("Before swap (in 'main'): (%d,%d)\n", x,y);
+      // swap x and y
+      swap(x,y);
+      // PRINT "After swap (in `main`): (x,y)"
+      printf("After swap (in 'main'): (%d,%d)\n", x,y);
+
+      return 0;
+    } // END
+
+      /* function definition */
+    void swap(int a, int b)
+    { // BEGIN
+      int temp; // SET temp to value of a
+      temp = a; // SET temp to the value of a (to store it)
+      a = b; // SET a to the value of b
+      b = temp; // SET b to the value of temp (formerly a)
+      // PRINT "After swap (swap): (a,b)"
+      printf("After swap (in 'swap'): (%d,%d)\n", a,b);
+    } // END
+  #+end_src
+
+  #+RESULTS:
+  : Before swap (in 'main'): (5,10)
+  : After swap (in 'swap'): (10,5)
+  : After swap (in 'main'): (5,10)
+
+- Explanation:
+  #+begin_quote
+  We're thwarted by the main advantage of functions: That their values
+  are encapsulated and that their memory is returned when the function
+  is done. The arguments x,y are said to be *passed by value*.
+  #+end_quote
+
+- How can we swap the numbers so that they remain swapped?
+  #+begin_quote
+  Instead of passing the values, we can pass the addresses of the
+  memory cells where x and y reside - then the swap will be
+  permanent. This is called *pass by reference*.
+  #+end_quote
+
+- Code along: Open the editor on the URL [[https://onecompiler.com/c/43fhpg9cu][onecompiler.com/c/43fhpg9cu]]
+  #+begin_src C
+    #include <stdio.h> // input/output
+
+    /* function declaration */
+    // swap two integer arguments a->b, b->a as pointers
+    void swap(int *, int *);
+
+    /* main function */
+    int main(void) 
+    { // BEGIN
+      // declare and initialize two integer variables
+      int x = 5, y = 10;
+      // PRINT "Before swap: (x,y)"
+      printf("Before swap (in 'main'): (%d,%d)\n", x, y);
+      // swap x and y by reference (via their addresses)
+      swap(&x,&y); // in function: p=&x, q=&y
+      // PRINT "After swap (in `main`): (x,y)"
+      printf("After swap (in 'main'): (%d,%d)\n", x, y);
+      return 0;
+    }// END
+
+    /* function definition */
+    // swap two integer arguments a->b, b->a as pointers
+    void swap(int *p, int *q) // this function expects pointers
+    { // BEGIN
+      int temp; // temporary variable to store a value
+      temp = *p; // SET temp to value p points at
+      (*p) = *q; // SET p to the value that q points at
+      (*q) = temp; // SET q to the value stored in temp
+      // PRINT "After swap (swap): (a,b)"
+      printf("After swap (in 'swap'): (%d,%d)\n", *p, *q);
+    } // END
+  #+end_src
+
+  #+RESULTS:
+  : Before swap (in 'main'): (5,10)
+  : After swap (in 'swap'): (10,5)
+  : After swap (in 'main'): (10,5)
+
+* Challenge: Incrementing an integer by value/reference
+
+- The difference between modfiying a variable inside a function by:
+  1) Pass by value (no lasting effect)
+  2) Pass by reference (permanent effect using pointers)
+
+- Write two functions:
+  1. =void increment_val(int)= to increment an ~int~ passed by value
+  2. =void increment_ref(int*)= to increment an ~int~ passed by reference
+
+- Starter code: Open the editor on [[https://onecompiler.com/c/43fhqxrkc][onecompiler.com/c/43fhqxrkc]]
+  #+begin_src C :main no :includes
+    #include <stdio.h> // input / output
+
+    /* function declarations */
+    // increment an integer passed by value
+    void increment_val(int);
+    // increment an integer passed by reference
+    void increment_ref(int *);
+
+    /* main program */
+    int main(void)
+    { // BEGIN
+      int x = 1; // declare and initialize n as 1
+      // PRINT "Before increment: x"
+      printf("Before increment: x = %d\n", x);
+      // function call: increment x by value
+      increment_val(x);  // call on variable x
+      // PRINT "After increment_val " + increment x by value
+      printf("After increment (val): x = %d\n", x);
+      // function call: increment x by reference
+      increment_ref(&x); // call on address-of variable x
+      printf("After increment (ref): x = %d\n", x);
+      // PRINT "After increment_ref " + increment x by reference
+      return 0;
+    } // END
+
+    /* function definitions */
+    // increment an integer passed by value
+    void increment_val(int a) // this declares n as integer
+    { // BEGIN
+      a = a + 1; // increment argument a - this is now 2
+    } // END
+
+    // increment an integer passed by reference
+    void increment_ref(int *p)
+    { // BEGIN
+      (*p) = *p + 1; // increment pointer argument 
+    } // END
+  #+end_src
+
+  #+RESULTS:
+  : Before increment: x = 1
+  : After increment (val): x = 1
+  : After increment (ref): x = 2
+
+* NEXT Passing arrays and pointers to functions
+
+- When you pass an array to a function, it "decays" into a pointer to
+  its first element.
+
+- This means that you can either
+  1) pass an array (looks like an array =a[]=), or
+  2) pass a pointer (which is how C does it internally).
+
+
+- Example:
+  1) =addArr= adds the first two elements of an array using an array.
+  2) =addPtr= adds the first two elements of an array using a pointer.
+
+- Pseudocode: open it at [[https://onecompiler.com/c/43fzgsf3c][onecompiler.com/c/43fzgsf3c]] to code along
+  #+begin_src C
+    #include <stdio.h> // include I/O functions
+    /* function prototypes */
+    // `addArr` adds the first two elements of an array using indexing
+    // returns an integer (sum)
+    int addArr(int []);
+    
+    // `addPtr` adds the first two elements of an array using a pointer.
+    // returns an integer (sum)
+    int addPtr(int *);
+    
+    /* main program */
+    int main(void)
+    { // BEGIN
+       // initialize array `num` with 10, 20, 30
+       int num[] = {10, 20, 30};
+       // PRINT "Sum with array: " + addArr(num)
+       printf("Sum with array: %d\n", addArr(num));
+       // PRINT "Sum with pointer: " + addPtr(num)
+       printf("Sum with pointer: %d\n", addArr(num));
+    } // END
+
+    /* function definitions */
+    // `addArr` adds the first two elements of an array using an array
+    int addArr(int arr[])
+    { // BEGIN
+       return (arr[0] + arr[1]); // return sum of first two elements
+    } // END
+
+    // `addPtr` adds the first two elements of an array using a pointer.
+    int addPtr(int *ptr)
+    { // BEGIN
+       return (*ptr + *(ptr + 1));// return sum of first two elements
+    } // END
+  #+end_src
+
+  #+RESULTS:
+  : Sum with array: 30
+  : Sum with pointer: 30
+
+- Even though arrays decay to pointers in function calls, they are not
+  the same type in general:
+  | Feature            | Array                | Pointer                    |
+  |--------------------+----------------------+----------------------------|
+  | Memory allocation  | Fixed at declaration | Dynamic or points anywhere |
+  | ~sizeof~ operator    | Total size           | Size of pointer            |
+  | Pointer arithmetic | No                   | Yes                        |
+  | Can be reassigned? | No (name is fixed)   | Yes (can point elsewhere)  |
+
+* Challenge: Passing arrays and pointers to functions
+
+- Write a program that
+  1. Creates an array =arr= of 5 integers 100,200,300,400,500.
+  2. Calls a function =printArr= that takes =arr= as argument and prints
+     the array elements using array indexing: =arr[i]=.
+  3. Calls another function =printPtr= that takes =arr= as argument and
+     prints the elements using pointer arithmetic: =*(ptr + 1)=.
+
+- Sample output:
+  #+begin_example
+    100 200 300 400 500 
+    100 200 300 400 500 
+  #+end_example
+
+- Use this starter code: [[https://onecompiler.com/c/43fzk82nc][onecompiler.com/c/43fzk82nc]]
+#+begin_src C
+  #include <stdio.h> // include I/O functions
+
+  #define N 5// define array size N = 5
+
+  /* function prototypes */
+  // printArr: print array using array indexing
+  // pass array - return nothing
+  void printArr(int []);
+  // printPtr: print array using pointer arithmetic
+  // pass pointer - return nothing
+  void printPtr(int *);
+  /* main program */
+  int main(void)
+  { // BEGIN
+    // initialize array
+    int arr[N] = {100,200,300,400,500};
+    // print array using array indexing
+    printArr(arr);
+    // print a new line
+    puts("");
+    // print array using pointer arithmatic
+    printPtr(arr);
+    return 0;
+  } // END
+
+  /* function definitions */
+  // printArr: print array using array indexing
+  void printArr(int arr[])
+  { // BEGIN
+    // FOR i from 0 to N: PRINT array element with indexing
+    for (int i=0;i<N;i++) printf("%d ", arr[i]);
+  }// END
+  // printPtr: print array using array indexing
+  void printPtr(int *ptr)
+  { // BEGIN
+    // FOR i from 0 to N: PRINT array element with pointer
+    for (int i=0;i<N;i++) printf("%d ", *(ptr + i));
+  } // END
+#+end_src
+
+#+RESULTS:
+: 100 200 300 400 500 
+: 100 200 300 400 500 
+

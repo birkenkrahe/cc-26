@@ -1,0 +1,196 @@
+#+TITLE: C++ Classes Session 3: Object Lifecycle and Method Design
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: CSC 100 Intro to Programming in C++ (Spring 2025)
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:C++ :std:main yes :includes <iostream> :results output :exports both :noweb yes
+
+* Learning Objectives
+
+By the end of this 50-minute session, students will be able to:
+- Define constructors and destructors in a C++ class
+- Use initializer lists for member variable initialization
+- Apply the `this` pointer inside methods
+- Create static members to track shared state across instances
+- Understand the object lifecycle in terms of construction and destruction
+
+* Motivation: Why Constructors and Destructors?
+
+- C structures require manual setup and teardown
+- C++ classes automate initialization and cleanup with constructors and destructors
+- These improve safety, readability, and reusability
+
+* Review: Player Class So Far
+
+#+begin_src C++
+class Player {
+private:
+  int health = 100;
+public:
+  int getHealth() { return health; }
+  void takeDamage(int amount) { health -= amount; }
+  void heal(int amount) { health += amount; }
+};
+#+end_src
+
+* Constructors: Default and Parameterized
+
+- Let's add a constructor to allow health to be set when the player is
+  created
+
+#+begin_src C++
+class Player {
+private:
+  int health;
+public:
+  // Constructor
+  Player(int h) {
+    health = h;
+  }
+  int getHealth() { return health; }
+};
+#+end_src
+
+- Test it:
+#+begin_src C++
+Player John(150);
+std::cout << "John's health = " << John.getHealth() << std::endl;
+#+end_src
+
+* Initializer List Syntax
+
+- Better style for initializing member variables
+
+#+begin_src C++
+class Player {
+private:
+  int health;
+public:
+  Player(int h) : health(h) { } // initializer list
+  int getHealth() { return health; }
+};
+#+end_src
+
+* Destructor: Clean Up
+
+- Destructor runs when object goes out of scope
+- Useful for logging or memory cleanup
+
+#+begin_src C++
+class Player {
+private:
+  int health;
+public:
+  Player(int h) : health(h) {
+    std::cout << "Player created with health: " << health << std::endl;
+  }
+  ~Player() {
+    std::cout << "Player destroyed." << std::endl;
+  }
+};
+#+end_src
+
+* Practice: Create Two Players
+
+#+begin_src C++
+int main() {
+  Player Alice(100);
+  Player Bob(200);
+  std::cout << "Game in progress...\n";
+  return 0;
+}
+#+end_src
+
+* The `this` Pointer
+
+- Used to distinguish member variables from parameters with the same name
+
+#+begin_src C++
+class Player {
+private:
+  int health;
+public:
+  Player(int health) {
+    this->health = health; // disambiguate
+  }
+  int getHealth() { return this->health; }
+};
+#+end_src
+
+* Static Members: Shared Across All Instances
+
+- Count how many players have been created
+
+#+begin_src C++
+class Player {
+private:
+  int health;
+  static int count;
+public:
+  Player(int h) : health(h) { count++; }
+  ~Player() { count--; }
+  static int getCount() { return count; }
+};
+
+int Player::count = 0;
+#+end_src
+
+* Main Program: Track Players
+
+#+begin_src C++
+int main() {
+  std::cout << "Players created: " << Player::getCount() << std::endl;
+  Player Alice(100);
+  Player Bob(200);
+  std::cout << "Players created: " << Player::getCount() << std::endl;
+  return 0;
+}
+#+end_src
+
+* Challenge: Enemy Class
+
+- Create an `Enemy` class with:
+  - A constructor
+  - A destructor
+  - Private `strength` member
+  - `attack()` method returning damage (e.g. `strength / 2`)
+  - Static member tracking total enemies
+
+* Sample Output
+
+#+begin_example
+Enemy created with strength 80
+Enemy created with strength 100
+Enemies active: 2
+Attack damage: 40
+Enemy destroyed
+Enemy destroyed
+Enemies active: 0
+#+end_example
+
+* Recap Questions
+
+1. What does a constructor do in C++?
+   #+begin_quote
+   It automatically initializes a new object's state when it's created.
+   #+end_quote
+
+2. Why is it useful to define a destructor?
+   #+begin_quote
+   It ensures resources are cleaned up properly when the object is destroyed.
+   #+end_quote
+
+3. What is the `this` pointer?
+   #+begin_quote
+   A pointer to the current object instance, used to access its own members.
+   #+end_quote
+
+4. What are static members?
+   #+begin_quote
+   Members shared across all instances of a class, useful for counting or shared state.
+   #+end_quote
+
+5. Why use initializer lists in constructors?
+   #+begin_quote
+   They are efficient and preferred for initializing member variables directly.
+   #+end_quote

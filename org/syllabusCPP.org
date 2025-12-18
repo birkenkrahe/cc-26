@@ -1,0 +1,284 @@
+#+TITLE:Syllabus - Introduction to programming in C++
+#+AUTHOR:Marcus Birkenkrahe
+#+SUBTITLE:Syllabus - CSC 100 - Lyon College - Spring 2025
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes#+PROPERTY: header-args:python :session *Python* :results output :exports both :noweb yes#+PROPERTY: header-args:C :main yes :includes <stdio.h> :results output :exports both :noweb yes#+PROPERTY: header-args:C++ :main yes :includes <iostream> :results output :exports both :noweb yes
+* General Course Information
+
+- Meeting Times: Monday/Wednesday/Friday, 9:00-9:50 AM
+- Meeting place: Lyon Building Room 104 (computer lab)
+- Professor: Marcus Birkenkrahe (aka "Dr. B")
+- Office: Derby Science Building 210
+- Phone: (870) 307-7254 (office) / (501) 422-4725 (private)
+- Office hours: By appointment only- [[https://tinyurl.com/sp25-booking][tinyurl.com/sp25-booking]]
+- Textbooks:
+  1) *Think C* by (Free online PDF, 2019) - weeks 2-10;
+     [[https://tinyurl.com/think-C-book][tinyurl.com/think-C-book]]
+  2) *The Rook's Guide to C++* (Free online PDF, 2013) - weeks 13-15;
+     [[https://tinyurl.com/rooksguide-cpp][tinyurl.com/rooksguide-cpp]]
+
+* Standard and course policies
+
+*Standard Lyon College Policies* are incorporated into this syllabus
+and can be found at: [[http://www.lyon.edu/standard-course-policies][lyon.edu/standard-course-policies]].
+
+The *Assignments and Honor Code* and the *Attendance Policy* are
+incorporated into this syllabus also and can be found at:
+[[https://tinyurl.com/LyonPolicy][tinyurl.com/LyonPolicy]].
+
+In addition to these rules, please read and observe my guide to Using
+AI to code (2024): [[https://tinyurl.com/Using-AI-to-code][tinyurl.com/Using-AI-to-code]].
+
+* Objectives
+
+This course introduces you to programming using C. We cover C++ as an
+extension. C is a system programming language of pure power: it
+enables you to converse with the computer at a level unknown to users
+other high level languages many of which come from C. You also learn
+about: compilers, working on the command line, text editors Emacs,
+using C for Internet of Things (IoT) devices, cybersecurity, using
+pseudocode and process modeling. You get a foundation in critical
+thinking in concert with two of the three currently most popular
+languages (cp. TIOBE, 2023): the next three languages are Java, C# and
+JavaScript, which you can learn in a fortnight after this
+course). You’ll learn some great tools: we use the “hacker’s editor”
+Emacs, the world’s foremost software engineering platform, GitHub, and
+BPMN for process modeling and pseudo code generation. For those
+interested in computer and data science, this course is a bridge to
+CSC 240 Data structures in C++ and CSC 265 Algorithms (with Python).
+
+* Student Learning Outcomes
+
+Students who complete CSC 100.01 "Introduction to programming in C++",
+will be able to:
+
+- Master basic sequential programming skills (conditional
+  statements, loops, functions, input/output, use of data types)
+- Explain the basic components of a procedural programming language
+- Apply the basics of programming to solve a variety of quantitative
+  problems
+- Master computing infrastructure (compiler, editor, shell)
+- Research and present a project as a team
+- Know how to effectively present assignment results
+- Be ready for "Data stuctures with C++" (CSC 240)
+- Get ready for "Algorithms" (CSC 265)
+- Improve their data literacy skills
+
+* Course requirements / prerequisites
+
+- MTH 110 College algebra or permission from the instructor
+- No prior programming or computing knowledge required
+- Experience with computers is useful but not critical
+- Curiosity is essential, and willingness to try new things!
+- To get the most out of this course you must code, code, code!
+
+* Grading system
+
+You should be able to see your current grade at any time using the
+Canvas gradebook for the course.
+
+| WHEN       | DESCRIPTION             | IMPACT |
+|------------+-------------------------+--------|
+| Weekly     | Programming assignments |    40% |
+| Weekly     | Multiple choice tests   |    25% |
+| Week 14-16 | Final project           |    15% |
+| TBD        | Final exam (optional)   |    20% |
+
+Notes:
+- *To pass:* 60% of all available points.
+- *Tests:* weekly online quizzes based on the assigned reading and on
+  classroom practice.
+- *Final exam:* random selection of the known test questions. *Note:* You
+  only have to write the final exam if you want to improve your grade
+  at the end of the course. If the final exam result is below your
+  final grade average up to this point, it will be ignored.
+- There will be numerous (optional) *bonus assignments* to improve your
+  midterm and final grades.
+
+* Grading table
+
+This table is used to convert completion rates into letter grades. for
+the midterm results, letter grades still carry signs, while for the
+term results, only straight letters are given (by rounding up). This
+table is also used in Canvas to compute your grades. Transitions
+between letter grades are rounded (e.g. 89.5% to 90%).
+
+|------------------+------------------|
+| Percentage       | LETTER GRADE*    |
+|------------------+------------------|
+| 100% to 89.5%    | A (very good)    |
+|------------------+------------------|
+| < 89.5% to 79.5% | B (good)         |
+|------------------+------------------|
+| < 79.5% to 69.5% | C (satisfactory) |
+|------------------+------------------|
+| < 69.5% to 59.5% | D (passed)       |
+|------------------+------------------|
+| < 59.5% to 0%    | F (FAILED)       |
+|------------------+------------------|
+
+* Schedule and Workload
+
+For *important dates*, see the 2024-2025 Academic Calendar at:
+[[https://catalog.lyon.edu/202425-academic-calendar][catalog.lyon.edu/202425-academic-calendar]].
+
+*Workload* (estimated):
+- Time in class: 48 hrs.
+- Time outside of class: 57 hrs.
+- Time for tests [1/2 hr/test]: 7 hrs.
+- Time for coding assignments [1 hr/pgm]: 14 hrs.
+- Time for reading assignments [2 hrs/chapter]: 28 hrs.
+- Time for project: 8 hrs.
+- Total number of hrs in term: 105.
+- Weekly workload (outside of class): 6.5625 (3.5625)
+
+* Course outline
+:PROPERTIES:
+:Title: Introduction to C++ Programming
+:Semester: 16 Weeks
+:Class Schedule: 3x50 minutes per week
+:Assessment Breakdown:
+  - Programming Assignments: 40%
+  - Tests: 25%
+  - Final Exam: 25%
+  - Final Project: 10%
+:Textbook: [Insert Book Title Here]
+:END:
+
+** Week 1: Introduction and Basics
+- Topics:
+  - 1.1 What is a programming language?
+  - 1.2 What is a program?
+  - 1.3 What is debugging? (Compile-time, Run-time, Logic Errors)
+  - 1.4 Formal and natural languages
+- Activities:
+  - Write and execute a simple "Hello, World!" program.
+- Reading: Chapter 1 (1.1–1.5, pp. 1-8)
+
+** Week 2: Variables and Types
+- Topics:
+  - 2.1 More output
+  - 2.2 Values, variables, and assignment
+  - 2.7 Operators and order of operations
+- Activities:
+  - Practice variable declarations, assignments, and simple calculations.
+- Reading: Chapter 2 (2.1–2.10)
+
+** Week 3: Functions
+- Topics:
+  - 3.1 Floating-point numbers and conversions
+  - 3.5 Adding new functions
+  - 3.8 Parameters and arguments
+- Activities:
+  - Write a program with user-defined functions.
+- Reading: Chapter 3 (3.1–3.12)
+
+** Week 4: Conditionals
+- Topics:
+  - 4.1 The modulus operator
+  - 4.2 Conditional execution and alternative execution
+  - 4.5 Nested conditionals
+- Activities:
+  - Implement a number-guessing game using conditionals.
+- Reading: Chapter 4 (4.1–4.10)
+
+** Week 5: Recursion and Iteration
+- Topics:
+  - 4.7 Recursion and stack diagrams
+  - 6.2 Iteration with while loops
+  - 6.5 Two-dimensional tables
+- Activities:
+  - Write a recursive factorial program.
+- Reading: Chapters 4 (4.7–4.9) and 6 (6.1–6.7)
+
+** Week 6: Strings
+- Topics:
+  - 7.2 String variables
+  - 7.5 Traversal
+  - 7.7 The find function
+- Activities:
+  - Implement a program to count characters and words in a string.
+- Reading: Chapter 7 (7.1–7.15)
+
+** Week 7: Structures
+- Topics:
+  - 8.1 Compound values
+  - 8.5 Structures as parameters
+  - 8.7 Call by reference
+- Activities:
+  - Write a program to represent points and rectangles.
+- Reading: Chapter 8 (8.1–8.12)
+
+** Week 8: Midterm Review and Test
+- Activities:
+  - Review topics from Weeks 1–7.
+  - Midterm test.
+
+** Week 9: Advanced Structures
+- Topics:
+  - 9.4 Pure functions
+  - 9.5 const parameters
+  - 9.8 Incremental development versus planning
+- Activities:
+  - Refactor programs for modular design.
+- Reading: Chapter 9 (9.1–9.12)
+
+** Week 10: Vectors
+- Topics:
+  - 10.1 Accessing elements
+  - 10.6 Random numbers
+  - 10.11 A histogram
+- Activities:
+  - Write a program to analyze random number distributions.
+- Reading: Chapter 10 (10.1–10.13)
+
+** Week 11: Member Functions
+- Topics:
+  - 11.1 Objects and functions
+  - 11.7 Constructors
+  - 11.10 Header files
+- Activities:
+  - Implement a class with member functions and constructors.
+- Reading: Chapter 11 (11.1–11.11)
+
+** Week 12: Vectors of Objects
+- Topics:
+  - 12.2 Card objects
+  - 12.8 Searching
+  - 12.10 Decks and subdecks
+- Activities:
+  - Write a card deck simulation program.
+- Reading: Chapter 12 (12.1–12.11)
+
+** Week 13: Objects of Vectors
+- Topics:
+  - 13.1 Enumerated types
+  - 13.6 Shuffling
+  - 13.10 Mergesort
+- Activities:
+  - Create a program to sort and shuffle objects.
+- Reading: Chapter 13 (13.1–13.11)
+
+** Week 14: Classes and Invariants
+- Topics:
+  - 14.2 What is a class?
+  - 14.8 Invariants
+  - 14.10 Private functions
+- Activities:
+  - Design a class for complex numbers with operations.
+- Reading: Chapter 14 (14.1–14.11)
+
+** Week 15: File I/O and Data Structures
+- Topics:
+  - 15.2 File input and output
+  - 15.6 The Set data structure
+  - 15.8 Distance matrix
+- Activities:
+  - Write a program to read and process data from files.
+- Reading: Chapter 15 (15.1–15.10)
+
+** Week 16: Final Project and Presentation
+- Activities:
+  - Students work on their final projects.
+  - Final project presentations during the last class sessions.
