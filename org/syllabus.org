@@ -3,7 +3,7 @@
 #+SUBTITLE:Syllabus - CSC 100 - Lyon College - Spring 2026
 #+SEQ_TODO: PRACTICE | DONE
 #+STARTUP: overview hideblocks indent entitiespretty
-#+OPTIONS: toc:nil num:nil ^:nil
+#+OPTIONS: toc:nil ^:nil
 #+PROPERTY: :header-args:C:      :main yes :includes <stdio.h> :results output :exports both
 #+PROPERTY: :header-args:python: :session *Python* :python python3 :results output :exports both
 #+PROPERTY: :header-args:R:      :session *R* :results graphics output file :exports both
@@ -15,15 +15,16 @@
 - Professor: Dr. Marcus Birkenkrahe 
 - Office: Derby Science Building 210
 - Phone: (870) 307-7254 (office) / (501) 422-4725 (private)
-- Office hours: By appointment via [[https://tinyurl.com/sp25-booking][tinyurl.com/sp25-booking]]
-- Textbooks (optional + free + online):
+- Office hours: MonWedFri 3-4 pm, TueThu 4-5 pm
+- Textbook (optional): R N King, C Programming, W W Norton & Co (2008)
+- Other books (optional + free + online):
   1) *Think C* by (2019): Starts easy then gets harder fast.
      [[https://tinyurl.com/think-C-book][tinyurl.com/think-C-book]] (also [[https://github.com/tscheffl/Think-Like-A-ComputerScientist_C/blob/master/PDF/ThinkC_german.pdf][available in German!]])
   2) *The Rook's Guide to C++* (2013): [[https://tinyurl.com/rooksguide-cpp][tinyurl.com/rooksguide-cpp]] - with
      my fixes to the exercises: [[https://tinyurl.com/rooksguide-cpp-notes][tinyurl.com/rooksguide-cpp-notes]]
   3) *Beej's Guide to C Programming (2024)*: [[https://beej.us/guide/bgc/][beej.us/guide/bgc/]] -
      assumes that you already know another programming language.
-
+     
 * Standard and course policies
 
 *Standard Lyon College Policies* are incorporated into this syllabus
@@ -77,18 +78,20 @@ will be able to:
 - No prior programming or computing knowledge os required.
 - Experience with computers is useful but not critical.
 - Curiosity is essential, and willingness to try new things!
-- To get the most out of this course you must code, code, code!
+- To get the most out of this course you must code, code, code! Also
+  useful: Work through one of the (free) introductory text books.
 
 * Grading system
 
 You should be able to see your current grade at any time using the
 Canvas gradebook for the course.
 
-| WHEN       | DESCRIPTION             | IMPACT |
-|------------+-------------------------+--------|
-| Weekly     | Programming assignments |    50% |
-| Weekly     | Multiple choice tests   |    25% |
-| TBD        | Final exam (optional)   |    25% |
+| WHEN   | DESCRIPTION              | IMPACT |
+|--------+--------------------------+--------|
+| Weekly | Programming assignments  |    25% |
+| Weekly | Participation & Practice |    25% |
+| Weekly | Multiple choice tests    |    25% |
+| TBD    | Final exam (optional)    |    25% |
 
 Notes:
 - *To pass:* 60% of all available points.
@@ -101,14 +104,25 @@ Notes:
 - There will be numerous (optional) *bonus assignments* to improve your
   midterm and final grades.
 
-* Rubric
+* Rubrics
 
-| Component                | Weight | Excellent          | Good             | Satisfactory        | Needs Improvement     | Unsatisfactory        |
-|--------------------------+--------+--------------------+------------------+---------------------+-----------------------+-----------------------|
-| Participation/Attendance |     0% | Consistent, active | Regular, engaged | Present, minimal    | Infrequent, passive   | Rare, absent          |
-| Programming assignments  |    50% | Complete, accurate | Mostly correct   | Some errors/delays  | Incomplete, flawed    | Missing, incorrect    |
-| Tests                    |    25% | Thorough mastery   | Minor errors     | Basic understanding | Limited understanding | Minimal understanding |
-| Final Exam (Optional)    |    25% | Comprehensive      | Strong           | Adequate            | Weak                  | Insufficient          |
+This course is listed in the core curriculum as oral communication
+(OC) and problem solving (PS).
+
+Two of the grading categories, participation and programming, will be
+evaluated using two different rubrics.
+
+The [[https://docs.google.com/document/d/1xEnXyFmTsek1IEaqLSU164Uo4VDOmGmR/edit][problem solving rubric]] requires that you are able to plan, execute
+and comment a programming problem solution and understand what the
+solution means in the context of the problem setting.
+
+The [[https://docs.google.com/document/d/1XU8yEeKjdBTkjq6jvANG3zz4SeJ54x1J/edit][oral communication rubric]] requires that you are able to
+communicate your approach and your results clearly and convincingly
+for example by talking about it when asked, or by delivering well
+commented code.
+
+I will give you examples for deliverables in both categories that
+"exceed expectations" as the rubric calls it when the time comes.
 
 * Grading table
 
@@ -153,7 +167,7 @@ pass. If you invest 2-3 hours per week, you can pass with an A easily.
 * Course Outline
 
 - Week 1: Orientation 
-- Week 2: The Way of the Program
+- Week 2: Programming
 - Week 3: Variables and Types
 - Week 4: Constants and Names
 - Week 5: Input and Output
@@ -166,6 +180,4 @@ pass. If you invest 2-3 hours per week, you can pass with an A easily.
 - Week 12: Structures
 - Week 13: Dynamic Memory Allocation
 - Week 14: Classes and Abstraction
-- Week 15: Separate Compilation
-- Week 16: Standard Template Library
-  
+- Week 15: Separate Compilation  
