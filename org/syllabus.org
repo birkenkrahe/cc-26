@@ -18,12 +18,14 @@
 - Office hours: MonWedFri 3-4 pm, TueThu 4-5 pm
 - Textbook (optional): R N King, C Programming, W W Norton & Co (2008)
 - Other books (optional + free + online):
-  1) *Think C* by (2019): Starts easy then gets harder fast.
-     [[https://tinyurl.com/think-C-book][tinyurl.com/think-C-book]] (also [[https://github.com/tscheffl/Think-Like-A-ComputerScientist_C/blob/master/PDF/ThinkC_german.pdf][available in German!]])
+  1) *Think C* by Scheffler/Downey (2019): Starts easy then gets harder
+     fast.  [[https://tinyurl.com/think-C-book][tinyurl.com/think-C-book]] (also [[https://github.com/tscheffl/Think-Like-A-ComputerScientist_C/blob/master/PDF/ThinkC_german.pdf][available in German!]])
   2) *The Rook's Guide to C++* (2013): [[https://tinyurl.com/rooksguide-cpp][tinyurl.com/rooksguide-cpp]] - with
      my fixes to the exercises: [[https://tinyurl.com/rooksguide-cpp-notes][tinyurl.com/rooksguide-cpp-notes]]
   3) *Beej's Guide to C Programming (2024)*: [[https://beej.us/guide/bgc/][beej.us/guide/bgc/]] -
      assumes that you already know another programming language.
+  4) Zed Shaw's *Learn C the Hard Way* is tough but very applied,
+     no-nonsense, exercises only: [[https://archive.org/details/learn-c-the-hard-way-x-7][archive.org]].
      
 * Standard and course policies
 
@@ -106,23 +108,19 @@ Notes:
 
 * Rubrics
 
-This course is listed in the core curriculum as oral communication
-(OC) and problem solving (PS).
+This course is listed in the core curriculum as problem solving (PS).
 
-Two of the grading categories, participation and programming, will be
-evaluated using two different rubrics.
+One of the grading categories and programming, will be evaluated using
+a rubric.
 
 The [[https://docs.google.com/document/d/1xEnXyFmTsek1IEaqLSU164Uo4VDOmGmR/edit][problem solving rubric]] requires that you are able to plan, execute
 and comment a programming problem solution and understand what the
 solution means in the context of the problem setting.
 
-The [[https://docs.google.com/document/d/1XU8yEeKjdBTkjq6jvANG3zz4SeJ54x1J/edit][oral communication rubric]] requires that you are able to
-communicate your approach and your results clearly and convincingly
-for example by talking about it when asked, or by delivering well
-commented code.
+I will give you examples for deliverables that "exceed expectations"
+as the rubric calls it when the time comes.
 
-I will give you examples for deliverables in both categories that
-"exceed expectations" as the rubric calls it when the time comes.
+Link to the rubric: [[https://tinyurl.com/problem-solving-rubric][tinyurl.com/problem-solving-rubric]]
 
 * Grading table
 
