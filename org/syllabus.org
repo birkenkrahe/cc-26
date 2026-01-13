@@ -1,6 +1,6 @@
 #+TITLE:Syllabus - Introduction to programming in C++
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:Syllabus - CSC 100 - Lyon College - Spring 2026
+#+SUBTITLE:Syllabus - CSC 100.01 - Lyon College - Spring 2026
 #+SEQ_TODO: PRACTICE | DONE
 #+STARTUP: overview hideblocks indent entitiespretty
 #+OPTIONS: toc:nil ^:nil
@@ -10,6 +10,7 @@
 #+PROPERTY: :header-args:C++:    :main yes :includes <iostream> :results output :exports both
 * General Course Information
 
+- Course prefix/number/section: CSC 100.01
 - Meeting Times: Monday/Wednesday/Friday, 9:00-9:50 AM
 - Meeting place: Lyon Building Room 104 (computer lab)
 - Professor: Dr. Marcus Birkenkrahe 
@@ -38,9 +39,9 @@ incorporated into this syllabus also and can be found at:
 
 In addition to these rules, please read and observe my guide to Using
 AI to code (written in the Fall 2024, updated Fall 2025):
-[[https://tinyurl.com/Using-AI-to-code][tinyurl.com/Using-AI-to-code]].
+[[https://tinyurl.com/Using-AI-to-code][tinyurl.com/Using-AI-to-code]] including the [[https://assets.speakcdn.com/assets/2433/generative_ai_guidelines_(combined_files).pdf][Lyon College AI Guidelines]].
 
-* Objectives
+* Course description
 
 This course introduces you to programming using C. We cover C++ as an
 extension. C is a system programming language of pure power: it
