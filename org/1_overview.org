@@ -1,0 +1,344 @@
+#+TITLE:COURSE OVERVIEW
+#+AUTHOR: Marcus Birkenkrahe, Lyon College
+#+SUBTITLE: CSC 100 - Introduction to programming in C++ - Spring 2026
+#+SEQ_TODO: TODO NEXT IN_PROGRESS | DONE CANCELLED
+#+startup: overview hideblocks indent entitiespretty
+#+options: toc:nil num:nil ^:nil:
+#+PROPERTY: :header-args:C:      :main yes :includes <stdio.h> :results output :exports both
+#+PROPERTY: :header-args:python: :session *Python* :python python3 :results output :exports both
+#+PROPERTY: :header-args:R:      :session *R* :results graphics output file :exports both
+#+PROPERTY: :header-args:C++:    :main yes :includes <iostream> :results output :exports both
+#+attr_html: float:nil
+* Who is your lecturer?
+#+attr_html: :width 600px
+#+caption: Durer, Artist drawing the portrait of a man, 1519 .
+[[../img/durer_artist.jpg]]
+
+- Not cats OR dogs, but [[../img/cats_and_dogs.jpg][cats AND dogs]]
+- Physicist by training ([[../img/particle_accelerator.jpg][making sense of this]])
+- Teacher by profession ([[../img/apple_lisa.jpg][making sense of this]])
+- Data scientist by desire ([[../img/murmuration.png][making sense of this]])
+- Lyon College by choice (2021 [[../img/berlin.png][from Berlin, Germany]])
+
+* Why am I teaching this class?
+#+attr_html: :width 600px:
+#+caption: Durer, Rhinocerus, 1515 .
+[[../img/durer_rhinoceros_1515.jpg]]
+
+- How many programming languages are there?
+
+- My first programming languages:
+  + [[https://upload.wikimedia.org/wikipedia/commons/7/7b/AtariBASIC.png][BASIC]] - Beginner's All-purpose Symbolic Instruction Code (1979)
+    #+attr_html: :width 400px :float nil:
+    [[../img/AtariBASIC.png]]
+  + FORTRAN - FORMula TRANslator (1985)
+  + C++ - "C with classes" (1993)
+
+- My last programming languages:
+  + R - statistical programming language (2019)
+  + Python - all-purpose programming language (2022)
+  + Lisp - the first AI programming language (2024)
+
+- Some languages that I picked up in between:
+  + HTML/CSS - web layout (1991)
+  + Shell - operating system control (1992)
+  + SQL/SQLite - relational databases (2005)
+  + Snap! - visual block-based coding (2020)
+
+* The importance of infrastructure
+
+We will take a "holistic", or complete view of computing:
+
+#+begin_example
++-------------------------------------------------------------------+
+|                         World                                     |
+| +-------------------------------------------------------------+   |
+| |                   Internet (HTTP, TCP/IP)                   |   |
+| | +-------------------------------------------------------+   |   |
+| | |               PC (Personal Computer)                  |   |   |
+| | | +-----------------------------------------------+     |   |   |
+| | | |           Editor (nano, Emacs, OneCompiler)   |     |   |   |
+| | | | +---------------------------------------+     |     |   |   |
+| | | | |        Shell (bash, zsh)              |     |     |   |   |
+| | | | | +-------------------------------+     |     |     |   |   |
+| | | | | |     Files (hello.c)           |     |     |     |   |   |
+| | | | | | +-----------------------+     |     |     |     |   |   |
+| | | | | | | Operating System (OS) |     |     |     |     |   |   |
+| | | | | | |  Windows/Linux/MacOS  |     |     |     |     |   |   |
+| | | | | | +-----------------------+     |     |     |     |   |   |
+| | | | | | +-----------------------+     |     |     |     |   |   |
+| | | | | | | Kernel (init, systemd)|     |     |     |     |   |   |
+| | | | | | +-----------------------+     |     |     |     |   |   |
+| | | | | +-------------------------------+     |     |     |   |   |
+| | | | +---------------------------------------+     |     |   |   |
+| | | +-----------------------------------------------+     |   |   |
+| | +-------------------------------------------------------+   |   |
+| +-------------------------------------------------------------+   |
++-------------------------------------------------------------------+
+#+end_example
+
+The image shows eight layers that your computing infrastructure has to
+manage (there are more in fact) - most of the software enabling you to
+do this (without you noticing) is written in C.
+
+* Which careers do our graduates have?
+#+attr_html: :width 600px:
+#+caption: Durer, Perspective drawing (1525)
+[[../img/durer_perspective.png]]
+
+*Where our CS and DS graduates work (2021-2024):*
+
++ Full stack developer @OneBrief (military planning software)
++ Computer Aided Design at Bad Boy Mowers (comp sci/math/engineering)
++ Software Engineer at Bad Boy Mowers (data science/math/comp sci)
++ Data analyst at Future Fuel Chemical (data science/comp sci)
++ Database specialist at the Department of Homeland Security
++ Software engineer at Riot Games (League of Legends/game company)
++ Cybersecurity engineer at Sierra Nevada (aircraft engineering)
++ Head of data analysis at Enterprise Inc. (rental cars)
++ Director of data engineering at Clayco Inc. (construction)
++ Computer network manager at Outlaw Snax Chips (snack foods)
++ Manager Enterprise Applications at Lyon College (IT Services)
+
+*None of this is for you? Just learn C/C++ for the fun of it!*
+
+* What will you do in this course?
+#+attr_html: :width 300px:
+#+caption: Durer, Angel playing lute (1497).
+[[../img/durer_angel_playing_lute.jpg]]
+
+You will learn to:
+1) Reason - using pseudocode and the C/C++ programming language/s
+2) Render - using an online editor set up for C programming
+3) Run - using an online command-line tool
+
+* Reason & run using pseudocode (BPMN)
+
+Reason using pseudocode:
+#+begin_quote
+1. Open the BPMN online editor ([[https://bpmn.io][bpmn.io]])
+2. Create a BPMN diagram
+3. Pick a participant/process pool
+4. Model a process using the BPMN language
+5. Save model diagram as =.bpmn= or =.svg= file
+#+end_quote
+
+#+attr_html: float:nil
+#+attr_html: :width 600px:
+#+caption: BPMN modeling diagram for a "Hello world" program
+[[../img/pseudocode.png]]
+
+- Another nice way to produce flowcharts is with *Mermaid* (check out:
+  mermaid.live):
+  #+begin_src mermaid :file graph.png :cmdline "-b transparent -t dark"
+    flowchart LR
+       U["User<br>(standard input)"]
+       O["Screen<br>(standard output)"]
+
+       subgraph C["Computer"]
+           direction LR
+           S((Start))
+           A["Include standard<br>input/output header file"]
+           B["Define main program<br>without arguments"]
+           D["Print string and<br>new line"]
+           E["Return zero when<br>successful"]
+           F((End))
+
+           S --> A --> B --> D --> E --> F
+    end
+
+    U -.-> B
+    D -.-> O
+  #+end_src
+
+  #+RESULTS:
+  [[file:graph.png]]
+
+* Render & run using OneCompiler
+
+- Render and run code using OneCompiler
+  #+begin_quote
+  1. Open the OneCompiler dashboard ([[https://onecompiler.com/c][onecompiler.com/c]])
+  2. Write source code in the editor panel (=Main.c=)
+  3. Optionally, add input in the =STDIN= panel
+  4. Compile & =RUN= code to see =Output= or an error report.
+  #+end_quote
+
+- Screenshot:
+#+attr_html: float:nil
+#+attr_html: :width 600px:
+#+caption: OneCompiler online C compiler with error message
+[[../img/onecompiler.png]]
+
+* How will you be evaluated?
+#+attr_html: :width 600px:
+#+caption: Durer, St Anthony reading (1519)
+[[../img/durer_st_anthony_reading_1519.jpg]]
+
+#+attr_html: :float nil
+| WHEN   | DESCRIPTION              | IMPACT |
+|--------+--------------------------+--------|
+| Weekly | Programming assignments  |    25% |
+| Weekly | Participation & Practice |    25% |
+| Weekly | Multiple choice tests    |    25% |
+| TBD    | Final exam (optional)    |    25% |
+
+*Rules:*
+- If you have to miss a deadline, come talk to me first.
+- Unexcused late submissions will be penalized (max. 50%).
+- Optional oral final exam (sourced by term test questions).
+- Programming assignments are (usually) home assignments.
+- If you miss a class you can submit in-class assignments late.
+- Tests are online, open book, multiple choice quizzes for home.
+- Most test questions are reviewed in class before the test.
+
+* Which platforms are we going to use?
+#+attr_html: :width 600px:
+#+caption: Durer, The Saints of Austria (1515)
+[[../img/durer_six_saints_of_austria.jpg]]
+
+All platforms are available online in the [Internet] cloud:
+
+- *Canvas* (learning management system):
+  1) Wiki-page with important links
+  2) Mobile app for your phone
+  3) Calendar for all assignments
+  4) Zoom recordings of all classroom meetings
+  5) Gradebook (up to date)
+  6) Tests
+  7) Announcements
+
+- *GitHub* repo: [[https://github.com/birkenkrahe/cc-26][github.com/birkenkrahe/cc-26]]
+  1) Lectures, assignments, solutions (Org-mode)
+  2) PDFs for lectures, assignments, solutions
+  3) Images
+
+- *Google Drive* (automatically tied to your Lyon email):
+  1) Whiteboard screenshots
+  2) Large files for sharing (videos, papers)
+  3) Automatically saved Google Colab notebooks - [[https://drive.google.com/drive/folders/1Pe1jRAvMpCPkYo0pwBbrfepOWU08kkEI?usp=sharing][Example]]
+
+- *Google Chat Space* (you should be a member already):
+  1) Motivational stuff
+  2) Videos, books, articles
+  3) Discussion with threads (use them!) - [[https://chat.google.com/room/AAAAIk8SqZE/uvO9-6ZgQdQ/uvO9-6ZgQdQ?cls=10][Example]]
+
+- *OneCompiler* (register with Lyon email to keep your stuff)
+  1) Assignments (download from there, upload to Canvas)
+  2) Code along (during lectures and practice sessions)
+  3) Code on your own (for example during open-book tests)
+
+- *Google Cloud Shell*: at ~ide.cloud.google.com~. Open the ~terminal~. Here
+  you can open and edit files with the simple ~nano~ editor, compile and
+  run them with the ~gcc~ compiler. We'll practice that soon.
+
+- *Go native Linux:* An alternative to Windows on Windows is to activate
+  *WSL* (Windows Subshell for Linux), or install *Cygwin*, or use an IDE
+  like *Code::Blocks*. On MacOS, you've (almost) got Unix already but
+  you need to install stuff (~homebrew~ package manager).
+
+* Bonus: Linux + Emacs + Org-mode (for extra credit)
+
+- If you're interested in learning and using Linux and Emacs with
+  Org-mode: Bring your laptop to my office hours to install Linux
+  and/or Emacs (the editor that I'm using): [[https://tinyurl.com/sp26-booking][tinyurl.com/sp26-booking]]:
+
+  1) Get WSL (Windows Subsystem Linux) on Windows 10 or Windows 11.
+  2) Get the Emacs editor with my =.emacs= configuration.
+  3) Write and run C programs inside the Emacs editor.
+
+- Why would you do this?
+
+  1) Linux is an environment that works for, and not against, the
+     programmer. It's the most successful operating system (OS) on
+     Earth. It's the OS for professionals everywhere.
+  2) Using Emacs you can code along in the sessions a lot more
+     effortlessly, and because Emacs is the hacker's editor par
+     excellence & teaches you a lot more than raw editing.
+
+- If you book a 30 min session with me to install Linux, and/or
+  another session to install/learn Emacs, you get extra credit.
+
+- If you already installed Linux, I can also help you become
+  productive with it - a 30 minute session will achieve that.
+
+* What did you just learn?
+#+attr_html: :width 300px:
+#+caption: Durer, Madonna mit dem Kind
+[[../img/durer_madonna_mit_dem_kind.jpg]]
+
+Review for yourself what you remember, then let's check:
+
+#+begin_quote
+1. That there are many (easy to learn) programming languages.
+2. That Lyon CS and DS graduates get cool jobs fast.
+3. That you'll have to read, code and run C programs.
+4. How you'll be graded for your coursework.
+5. Which online platforms we're going to use.
+#+end_quote
+
+The following quote illustrates my own teaching style, too:
+#+begin_quote
+"I try to say everything at least three times: first, to introduce it;
+second, to show it in context; and third, to show it in a different
+context, or to review it." (Robert Chassell)
+#+end_quote
+
+You find up to date stuff on GitHub in the =agenda.org= file: Check it
+out at: [[https://github.com/birkenkrahe/cc-26/][github.com/birkenkrahe/cc-26]]
+1) Weekly updates (housekeeping, assignments, tests)
+2) Preview/review of reading assignments and tests
+3) Links to practice labs and code along files
+
+* First assignment ... and assignment stress.
+
+- The first assignment is to read the first chapter, "The Way of the
+  Program" in the free online textbook Think C (copy:
+  tinyurl.com/think-c-book) - 8 pages of text + glossary +
+  exercises. You don't have to do the exercises! *BY MONDAY 19-JAN*.
+
+- This is not a graded assignment but the first test of 30 (!)
+  multiple choice questions will mostly be based on this chapter. We
+  might do the test in class next week.
+
+- There will be 10 of these 30-50 multiple-choice home tests in the
+  term, and number of surprise pop-quizzes to solve in class.
+
+- Don't stress yourself over any particular assignment: there are over
+  50 assignments and tests in this course, and each assignment weighs
+  5-50 points (altogether almost 1,000 points). That's your XP!
+
+* Glossary
+
+Computer Science is riddled with terminology. This is just from today,
+and we'll probably add 20-30 new terms every week. Don't be put off by
+that: Most of these can (and should) be looked up when needed. I'll
+let you know in no uncertain terms when you need to memorize anything.
+
+#+attr_html: :float nil
+| Term         | Explanation                                              |
+|--------------+----------------------------------------------------------|
+| BASIC        | Beginner's All-purpose Symbolic Instruction Code         |
+| FORTRAN      | FORMula TRANslator                                       |
+| C++          | "C with classes"                                         |
+| R            | Statistical programming language                         |
+| Python       | A versatile all-purpose programming language             |
+| Lisp         | The first AI-focused programming language                |
+| HTML/CSS     | Markup and styling languages for web page design         |
+| OS           | Operating system - your interface to the CPU             |
+| Shell        | A command-line interface for interacting with the OS     |
+| SQL/SQLite   | Languages for managing/querying databases                |
+| Snap!        | A block-based visual programming language                |
+| nano         | A simple, easy-to-use text editor                        |
+| GCC          | GNU Compiler Collection                                  |
+| bash         | A Unix shell and command-line interpreter                |
+| BPMN         | Business Process Model and Notation (process modeling)   |
+| Canvas       | A learning management system (LMS)                       |
+| GitHub       | A platform for hosting and sharing code                  |
+| Google Colab | A cloud-based environment to code, compile, run programs |
+| Google Drive | A cloud storage service for sharing stuff                |
+| Google Chat  | A communication platform for sharing and chatting        |
+| Google Cloud | A Linux Virtual Machine (VM) with a command-line (shell) |
+| Linux        | An open-source operating system                          |
+| Cygwin       | A suite of Unix utilities for Windows                    |
+| OneCompiler  | Online editor and command-line application               |
