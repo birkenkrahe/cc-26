@@ -75,7 +75,7 @@
 |  49 | Windows           | OS whose kernel uses C              |
 |  50 | Dennis Ritchie    | Creator of the C language           |
 
-* How to work with AI - two examples
+* How to work with AI - three examples
 
 - To compile this glossary, I copied the transcript of the video into
   a ChatGPT conversation and asked for the glossary using this prompt:
@@ -97,7 +97,15 @@
   #+end_example
 
 - To produce this poster and the slides that you can find in GitHub, I
-  used the Syllabus and my first overview lecture only:
+  used the Syllabus and my first overview lecture with NotebookLM:
   #+attr_html: :width 400px :float nil:
   [[../img/1_overview_poster.png]]
  
+- I also used NotebookLM to produce a set of flashcards from the
+  lecture. This would be a good way to study difficult material - less
+  computer science (little to memorize) but history for example.
+  #+attr_html: :width 300px :float nil:
+  [[../img/flashcardFront.png]]  [[../img/flashcardBack.png]]
+
+- We will explore this more as soon as we get into coding.  
+
