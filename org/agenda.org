@@ -12,15 +12,14 @@
 #+caption: Patriotic poster for 2026
 [[../img/cover.png]]
 
-- [ ] [[https://docs.google.com/forms/d/1PQ3gLUjisIdIImMny23hvrRmI7UU2GfuFD8DQFykvtU/edit][Entry survey + video + test]] - Questions?
-- [ ] Glossary of terms used (exemplary use of AI)
-- [ ] New: AI Video/Poster Syllabus Overview
+- [X] [[https://docs.google.com/forms/d/1PQ3gLUjisIdIImMny23hvrRmI7UU2GfuFD8DQFykvtU/edit][Entry survey + video + test]] - Questions?
+- [X] Glossary of terms used (exemplary use of AI)
+- [X] New: AI Video/Poster Syllabus Overview
 - [ ] Lecture/practice: Overview of the course CSC 100
 - [ ] Reading assignment: Think C Chapter 1
 - [ ] Introduction to the course topic - C/C++
-- [ ] The practice and purpose of reviewing
 
-* Glossary - keywords you saw in the video briefly explained
+** DONE Glossary - keywords you saw in the video briefly explained
 
 | No. | Term              | Explanation                         |
 |-----+-------------------+-------------------------------------|
@@ -75,7 +74,7 @@
 |  49 | Windows           | OS whose kernel uses C              |
 |  50 | Dennis Ritchie    | Creator of the C language           |
 
-* How to work with AI - three examples
+** DONE How to work with AI - three examples
 
 - To compile this glossary, I copied the transcript of the video into
   a ChatGPT conversation and asked for the glossary using this prompt:
@@ -114,7 +113,7 @@
   #+attr_html: :width 400px :float nil:
   [[../img/notebooklm.png]]
 
-* What to do before/after class
+** DONE What to do before/after class
 #+attr_html: :width 400px :float nil:
 [[../img/1_mastery.png]]
 
@@ -144,7 +143,39 @@
   whatever tiny way) both not too long after the last, and not too
   close to the next session.
 
-  
+** TODO Review
 
-  
- 
+1. Are all problems computational problems?
+   #+begin_quote
+   No. Only problems that can be precisely described and solved by a
+   step-by-step procedure are computational.
+   #+end_quote
+
+2. Is Computer Science actually a science? What's a science?
+   #+begin_quote
+   Yes and no. A science is a systematic study that builds and tests
+   explanations; computer science studies computation, algorithms, and
+   information systematically.
+
+   At the same time, it's very young (< 100 years compared to math or
+   physics > 2,500 years) and in practice resembles a craft or an art
+   more than a science.
+   #+end_quote
+
+3. What's GitHub?
+   #+begin_quote
+   GitHub is an online platform for storing, sharing, and
+   collaborating on code using version control.
+   #+end_quote
+
+4. How many (reserved) words does C have compared to English?
+   #+begin_quote
+   C has only a few dozen reserved words (roughly 30), while English
+   has hundreds of thousands of words.
+   #+end_quote
+
+5. What is "NotebookLM"? What can you use it for?
+   #+begin_quote
+   NotebookLM is an AI tool that works with your own documents to
+   generate summaries, flashcards, questions, and explanations.
+   #+end_quote
