@@ -1,0 +1,103 @@
+#+title: Agenda Notebook
+#+author: Marcus Birkenkrahe
+#+subtitle: CSC 100 [Spring 2026]
+#+SEQ_TODO: TODO NEXT IN-PROGRESS | DONE CANCELLED
+#+startup: overview hideblocks indent entitiespretty
+#+property: header-args:C      :main yes :includes <stdio.h> :results output :exports both
+#+property: header-args:python :session *Python* :python python3 :results output :exports both
+#+property: header-args:R      :session *R* :results graphics output file :exports both
+#+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
+* Week 1: Entry survey + test / Overview
+#+attr_html: :width 300px:
+#+caption: Pufferfish woodcut
+[[../img/pufferfish.png]]
+
+- [ ] [[https://docs.google.com/forms/d/1PQ3gLUjisIdIImMny23hvrRmI7UU2GfuFD8DQFykvtU/edit][Entry survey + video + test]] - Questions?
+- [ ] Glossary of terms used (exemplary use of AI)
+- [ ] New: AI Video/Poster Syllabus Overview
+- [ ] Lecture/practice: Overview of the course CSC 100
+- [ ] Reading assignment: Think C Chapter 1
+- [ ] Introduction to the course topic - C/C++
+- [ ] The practice and purpose of reviewing
+
+* Glossary - keywords you saw in the video briefly explained
+
+| No. | Term              | Explanation                         |
+|-----+-------------------+-------------------------------------|
+|   1 | C                 | Programming language discussed      |
+|   2 | statically typed  | Types checked at compile time       |
+|   3 | procedural        | Step-by-step style using functions  |
+|   4 | Bell Labs         | Place where C was created           |
+|   5 | Unix              | OS developed using C                |
+|   6 | C++               | Language influenced by C            |
+|   7 | C#                | Language influenced by C            |
+|   8 | Java              | Language influenced by C            |
+|   9 | JavaScript        | C-like syntax language              |
+|  10 | Perl              | Language mentioned as influenced    |
+|  11 | PHP               | Language mentioned as influenced    |
+|  12 | compiler          | Translates source code              |
+|  13 | GCC               | Popular C compiler                  |
+|  14 | file              | Source code stored on disk          |
+|  15 | .c                | C source file extension             |
+|  16 | library           | Reusable code collection            |
+|  17 | include           | Adds libraries to a program         |
+|  18 | main function     | Program entry point                 |
+|  19 | function          | Named block of code                 |
+|  20 | integer           | Whole-number type                   |
+|  21 | return value      | Value sent back by a function       |
+|  22 | types             | Basic data categories               |
+|  23 | variable          | Named storage for a value           |
+|  24 | printf            | Prints to standard output           |
+|  25 | standard output   | Default output stream               |
+|  26 | & (ampersand)     | Refers to an address                |
+|  27 | address           | Location in memory                  |
+|  28 | memory            | Storage used by programs            |
+|  29 | pointer           | Variable holding an address         |
+|  30 | * (star)          | Used in pointer declarations        |
+|  31 | allocate          | Reserve memory                      |
+|  32 | bytes             | Unit of memory size                 |
+|  33 | index             | Position in an array                |
+|  34 | char              | Single-character type               |
+|  35 | string            | Array of chars ending in null       |
+|  36 | array             | Sequence of elements                |
+|  37 | null character    | Marks end of a string               |
+|  38 | garbage collector | Automatic cleanup (not in C)        |
+|  39 | memory leak       | Memory not released                 |
+|  40 | free              | Releases allocated memory           |
+|  41 | RAM               | Main computer memory                |
+|  42 | machine code      | CPU instructions                    |
+|  43 | Operating system  | Software managing hardware          |
+|  44 | CPU               | Processor executing instructions    |
+|  45 | hardware          | Physical computer components        |
+|  46 | object-oriented   | Paradigm C does not support         |
+|  47 | data types        | User-defined structures (mentioned) |
+|  48 | Linux             | OS kernel written largely in C      |
+|  49 | Windows           | OS whose kernel uses C              |
+|  50 | Dennis Ritchie    | Creator of the C language           |
+
+* How to work with AI - two examples
+
+- To compile this glossary, I copied the transcript of the video into
+  a ChatGPT conversation and asked for the glossary using this prompt:
+
+  #+begin_example
+  You are given the transcript of a short introductory video about the
+  C programming language.
+
+  Task:
+  1. Extract glossary terms that are explicitly mentioned in the transcript.
+  2. Create a glossary table with three columns: a running number, the term,
+     and a short explanation.
+  3. Explanations should be concise (one short sentence), suitable for beginners.
+  4. Do not introduce concepts that are not directly stated in the transcript.
+  5. Use Org-mode table formatting.
+  6. Keep wording simple and faithful to the video.
+
+  Output only the glossary table in a code verbatim window, nothing else.
+  #+end_example
+
+- To produce this poster and the slides that you can find in GitHub, I
+  used the Syllabus and my first overview lecture only:
+  #+attr_html: :width 400px :float nil:
+  [[../img/1_overview_poster.png]]
+ 
