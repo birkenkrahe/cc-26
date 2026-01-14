@@ -9,8 +9,8 @@
 #+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
 * Week 1: Entry survey + test / Overview
 #+attr_html: :width 300px:
-#+caption: Pufferfish woodcut
-[[../img/pufferfish.png]]
+#+caption: Patriotic poster for 2026
+[[../img/cover.png]]
 
 - [ ] [[https://docs.google.com/forms/d/1PQ3gLUjisIdIImMny23hvrRmI7UU2GfuFD8DQFykvtU/edit][Entry survey + video + test]] - Questions?
 - [ ] Glossary of terms used (exemplary use of AI)
@@ -107,5 +107,44 @@
   #+attr_html: :width 300px :float nil:
   [[../img/flashcardFront.png]]  [[../img/flashcardBack.png]]
 
-- We will explore this more as soon as we get into coding.  
+- We will explore this more as soon as we get into coding.
 
+- You should start your own NotebookLM, fill it with sources from the
+  course and use the different available tools.
+  #+attr_html: :width 400px :float nil:
+  [[../img/notebooklm.png]]
+
+* What to do before/after class
+#+attr_html: :width 400px :float nil:
+[[../img/1_mastery.png]]
+
+- This is what I do after class (as soon as I'm home):
+
+  1) I extract 5-10 review questions from the lecture, the whiteboard
+     screenshots, the practice, and from my memory.
+
+  2) I write the review questions down and try to find answers. This
+     is how we will start the next session.
+
+  3) I let AI draft a multiple choice quiz from all the material
+     discussed or looked at (for the next online test).
+
+- This is what I do (right) before the next class (still at home):
+
+  1) I try to answer the review questions myself without looking at
+     the answers.
+
+  2) I look at the whiteboard screenshots to remember what we
+     did. Sometimes I have to look at the session recording.
+
+  3) I check the Google chat to see if I missed any interesting post.
+
+- Since you're not teaching this class you don't have to do exactly
+  this, but you need to make sure to check your understanding (in
+  whatever tiny way) both not too long after the last, and not too
+  close to the next session.
+
+  
+
+  
+ 
