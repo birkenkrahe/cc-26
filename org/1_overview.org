@@ -296,7 +296,7 @@ out at: [[https://github.com/birkenkrahe/cc-26/][github.com/birkenkrahe/cc-26]]
 
 - This is not a graded assignment but the first test of 30 (!)
   multiple choice questions will mostly be based on this chapter. We
-  might do the test in class next week.
+  might do the test in class next week as a popquiz.
 
 - There will be ca. 10 of these 30-50 multiple-choice home tests in
   the term, and number of surprise pop-quizzes to solve in class.
