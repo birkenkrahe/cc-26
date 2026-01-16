@@ -108,9 +108,9 @@ do this (without you noticing) is written in C.
 [[../img/durer_angel_playing_lute.jpg]]
 
 You will learn to:
-1) Reason - using pseudocode and the C/C++ programming language/s
-2) Render - using an online editor set up for C programming
-3) Run - using an online command-line tool
+1) Reason - using *pseudocode* and the C/C++ programming language/s
+2) Render - using an online *editor* set up for C programming
+3) Run - using an online *command-line tool*
 
 * Reason & run using pseudocode (BPMN)
 
@@ -150,9 +150,6 @@ Reason using pseudocode:
     U -.-> B
     D -.-> O
   #+end_src
-
-  #+RESULTS:
-  [[file:graph.png]]
 
 * Render & run using OneCompiler
 
@@ -290,19 +287,19 @@ out at: [[https://github.com/birkenkrahe/cc-26/][github.com/birkenkrahe/cc-26]]
 2) Preview/review of reading assignments and tests
 3) Links to practice labs and code along files
 
-* First assignment ... and assignment stress.
+* First assignment... and assignment stress.
 
 - The first assignment is to read the first chapter, "The Way of the
   Program" in the free online textbook Think C (copy:
-  tinyurl.com/think-c-book) - 8 pages of text + glossary +
-  exercises. You don't have to do the exercises! *BY MONDAY 19-JAN*.
+  [[https://tinyurl.com/think-c-book][tinyurl.com/think-c-book]]) - 8 pages of text + glossary +
+  exercises. You don't have to do the exercises! *BY THE NEXT CLASS*!
 
 - This is not a graded assignment but the first test of 30 (!)
   multiple choice questions will mostly be based on this chapter. We
   might do the test in class next week.
 
-- There will be 10 of these 30-50 multiple-choice home tests in the
-  term, and number of surprise pop-quizzes to solve in class.
+- There will be ca. 10 of these 30-50 multiple-choice home tests in
+  the term, and number of surprise pop-quizzes to solve in class.
 
 - Don't stress yourself over any particular assignment: there are over
   50 assignments and tests in this course, and each assignment weighs
