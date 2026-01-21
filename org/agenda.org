@@ -287,7 +287,8 @@ links).
       incorrect results due to incorrect meaning - for example, using
       a variable incorrectly.
 
-   *Exercise: write little programs that produce each of these errors.*
+   *Exercise:* write little programs that produce each of these
+    errors. - this is exercise 1.3 in Think C on page 10.
    #+end_quote
 
 5. Explain the structure of a typical *C program*.
@@ -333,10 +334,11 @@ links).
    the code to print intermediate results.
    #+end_quote
 
-10. Which program translates human-readable source code into
-    machine-executable object code?
+10. What does ~EXIT_SUCCESS~ mean (in the example program in the book)? 
     #+begin_quote
-    =gcc= - the GNU C Compiler.
+    ~EXIT_SUCCESS~ is a standard C macro (from ~<stdlib.h>~) that
+    indicates a program terminated successfully, typically with exit
+    status 0.
     #+end_quote
 
 ** Assignments of the week

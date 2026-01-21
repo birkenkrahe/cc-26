@@ -51,8 +51,6 @@
 #+caption: "The Allegory of the Cave" by Jan Saenredam (1604, inspired by Plato)
 [[../img/plato_cave.jpg]]
 
-- What is your motivation to learn a programming language?
-
 - What's shown in the painting and what does it mean?
 
 - What does it take to learn programming?
