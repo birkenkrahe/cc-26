@@ -204,7 +204,7 @@
     ./a.out # execute executable
   #+end_src
 
-- Check out this nice demo video (1983, shared via Chat)
+- Check out this nice demo video (1983, [[https://chat.google.com/room/AAAAIk8SqZE/RRaBeQiix8U/RRaBeQiix8U?cls=10][shared via Chat]])
   #+attr_html: :width 300px:
   #+caption: https://youtu.be/_C5AHaS1mOA?si=RL3l0Zftsldt0bPV
   [[../img/interpreter_vs_compiler.png]]
@@ -365,7 +365,7 @@ Traditionally (since [[https://www.amazon.com/exec/obidos/ASIN/0131103628/lynnal
 
 I will demonstrate the whole process using a cloud editor + shell now,
 and you will later do it in an integrated development environment
-(IDE).
+(IDE). *If you're swift, you can code along with me.*
 
 1) Problem: Print the message =Hello, world!= to the screen.
 
