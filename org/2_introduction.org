@@ -40,7 +40,7 @@
 
   1. Write "Hello, world!" program =hello2.c= with detailed comments.
 
-  2. Install Google Cloud Shell as an app on your PC.
+  2. Install Google Cloud Shell as an app on your PC.g
 
   3. (Bonus) Be like Linus [Torvalds].
 
