@@ -367,38 +367,38 @@ and you will later do it in an integrated development environment
 
 1) Problem: Print the message =Hello, world!= to the screen.
 
-2) Cognitive solution requires ability/decision to:
-   1. Generate a text message
-   2. Format it as a string that the machine can identify (quotation)
-   3. Know how the machine prints strings (function)
-   4. Know how to get the printing function (include header file)
-   5. Know how to wrap the solution in a program (header/main)
+2) Open [[https://ide.cloud.google.com][Google Cloud Shell]], & enter =nano= at the prompt.
 
-3) Open Open Google Cloud Shell, & enter =nano= at the prompt.
+3) Write the code line by line using your keyboard.
 
-4) Write the code line by line using your keyboard.
+4) Save to a file =hello.c= with =CTRL + X=.
 
-5) Save to a file =hello.c= with =CTRL + X=.
+5) Leave =nano=.
 
-6) Leave =nano=.
+6) Compile the source code file with the GCC compiler =gcc=:
+   #+begin_example sh
+   gcc hello.c
+   #+end_example
 
-7) Compile the source code file with the GCC compiler =gcc=.
+7) Run the executable output file at the prompt as =./a.out=.
 
-8) Run the executable output file at the prompt as =./a.out=.
+8) Check the resulting printout. Fix program if there are errors.
 
-9) Check the resulting printout.
+9) Make a screenshot of your terminal and submit it to Canvas
+   ([[https://lyon.instructure.com/courses/4410/assignments/58081]["In-class practice 3: Hello World in Google Cloud Shell"]])
 
-10) Post-mortem (FAQ) & reflection:
-    1. Which of these steps transfer every time you code?
-    2. How does =printf= work? How can you find out more about it?
-    3. Are double and single quotes equally valid for strings?
-    4. How easy is it to use =nano=? Did you try something else?
-    5. In =nano=, did you try any of the other commands?
-    6. Is GCC the only compiler for the C programming language?
-    7. How can you find out more about the =gcc= command?
-    8. What is the command-line where you compile & run code?
-    9. Why is the output file called =a.out=?
-    10. Why do you run the file using =./a.out=?
+
+*Post-mortem (FAQ) & reflection:*
+1. Which of these steps transfer every time you code?
+2. How does =printf= work? How can you find out more about it?
+3. Are double and single quotes equally valid for strings?
+4. How easy is it to use =nano=? Did you try something else?
+5. In =nano=, did you try any of the other commands?
+6. Is GCC the only compiler for the C programming language?
+7. How can you find out more about the =gcc= command?
+8. What is the command-line where you compile & run code?
+9. Why is the output file called =a.out=?
+10. Why do you run the file using =./a.out=?
 
 * Online programming platforms
 #+attr_html: :width 600px:
@@ -470,7 +470,7 @@ and you will later do it in an integrated development environment
 - As you get better, you'll want to design your own coding
   environment that supports your ideal workflow.
 
-* PRACTICE C Programming with OneCompiler
+* DONE C Programming with OneCompiler
 ** Objective
 
 The goal of this tutorial is to introduce students to
@@ -560,7 +560,7 @@ Your task:
    /*****************************************/
    /* helloworld.c: Print greeting string   */
    /* Input: none                           */
-   /* Output: Hello, world!                 */                     
+   /* Output: Hello, world!                 */
    /* Author: Marcus Birkenkrahe (pledged)  */
    /* Date: 1/4/2025                        */
    /*****************************************/
@@ -576,7 +576,7 @@ Your task:
 4) Upload the link (URL) to the online file. You find it in the status
    bar of your browser. Mine is: https://onecompiler.com/c/43546aswu
 
-#+attr_html: :width 600px: 
+#+attr_html: :width 600px:
 #+caption: Final result in OneCompiler.com
 [[../img/2_practice.png]]
 
