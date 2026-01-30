@@ -417,7 +417,7 @@ transcript - with a little bit of back and forth to sharpen them.]
 * Week 3 ("Winter week"): Extra practice / Variables and Types
 #+attr_html: :width 400px :float nil:
 #+caption: Bryan Lake, January 28, 2026
-[[../img/lake.jpg]]
+[[../img/summary_practice_1_2.png]]
 
   - [ ] Winter week *highlights* from Google Chat.
   - [ ] Snow practice *programs* "Story script" and "Invisible variables".
@@ -427,6 +427,9 @@ transcript - with a little bit of back and forth to sharpen them.]
   - [ ] *Practice*: Write and run "Hello World" in Google Cloud Shell.
 
 ** Snow week highlights (on Google chat)
+#+attr_html: :width 400px :float nil:
+#+caption: Bryan Lake, January 28, 2026
+[[../img/lake.jpg]]
 
 1. [[https://chat.google.com/room/AAAAIk8SqZE/nmTSwriVZis/nmTSwriVZis?cls=10][Follow the home programming assignments to the letter:]]
    #+begin_quote
@@ -455,6 +458,8 @@ transcript - with a little bit of back and forth to sharpen them.]
    #+end_quote
 
 ** How to learn faster/better & example problem / Extra practice programs
+#+attr_html: :width 400px :float nil:
+[[../img/summary_1_overview.png]]
 
 I posted this to the Google Chat, prompted by @JacieLynn, who asked
 about winning strategies to learn how to program.
