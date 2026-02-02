@@ -419,7 +419,7 @@ transcript - with a little bit of back and forth to sharpen them.]
 #+caption: Bryan Lake, January 28, 2026
 [[../img/summary_practice_1_2.png]]
 
-  - [ ] Winter week *highlights* from Google Chat.
+  - [X] Winter week *highlights* from Google Chat.
   - [ ] Snow practice *programs* "Story script" and "Invisible variables".
   - [ ] Handcrafted *popquiz:* Think C! Chapter 2 - Variables and Types.
   - [ ] *Quiz 2* is live: Use the editor when in doubt about code!
@@ -618,7 +618,7 @@ Focus:
 : A floating-point value has been stored.
 : A character value has been stored.
 
-** Popquiz: Variables and Types (15 min)
+** Popquiz: Variables and Types (10 min)
 
 10 minutes to answer the questions & then grade yourself and hand the
 sheet in if you want your points to be counted as bonus (@ midterms).
@@ -626,8 +626,11 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 1. Which placeholder is used in the ~printf~ function to print an
    integer value?
    #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-     printf("This is an integer: %i.", 100);
+     printf("This is an integer: %i.", 100); // or use %d
    #+end_src
+
+   #+RESULTS:
+   : This is an integer: 100.
 
 2. What is a variable? How would you define it?
    #+begin_quote
@@ -637,14 +640,17 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 
 3. What type of variable would be used to store the value ~'A'~?
    #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-     char letter = 'A';
+     char letter = 'A'; // `char` for character
      printf("You stored the character '%c'.", letter);
    #+end_src
+
+   #+RESULTS:
+   : You stored the character 'A'.
 
 4. In the following *statement*, what's the *variable* name, what's the
    *value*, what's the variable *type*, and what's the *operator*?
    #+begin_example C++
-   int age_of_bob = 22;
+   int age_of_bob = 22; // `;` is just the statement delimiter
    #+end_example
 
    #+begin_quote
@@ -662,8 +668,11 @@ sheet in if you want your points to be counted as bonus (@ midterms).
    #+end_quote
 
    #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-     printf("%i", 5 + 3 * 4 / 2); // 3 * 4 -> 12 | 12 / 2 = 6 | 5 + 6 = 11.
+     printf("%.0f", 5. + 3. * 4. / 2.); // 3 * 4 -> 12 | 12 / 2 = 6 | 5 + 6 = 11.
    #+end_src
+
+   #+RESULTS:
+   : 11
 
 6. What will the code =printf("%c", 'a' + 1);= print as output?
    #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
@@ -683,15 +692,19 @@ sheet in if you want your points to be counted as bonus (@ midterms).
             100., speed * time, 10.);
    #+end_src
 
+   #+RESULTS:
+   : A car travelling 100 mph travels 1000 miles in 10 minutes.
+   : A car travelling 100 mph travels 1000 miles in 10 minutes.
+
    #+begin_quote
    There is no difference in the output at all. The first ~printf~
    statement prints the =distance= computed before, the second computes
-   the distance using a composition statement (uses simpler
+   the distance using a *composition* statement (uses simpler
    expressions).
    #+end_quote
 
 8. For the last assignment, assign the values to the variables in the
-   state diagram:
+   *state* diagram:
    #+begin_example
      speed      time     distance
    +-------+  +-------+  +-------+
@@ -712,8 +725,15 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 
 9. What is ~\n~ and what does it do?
    #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     // printing a string with the escape character `\n'
      printf("Newline:\nAnd two more newlines\n\nOver.");
    #+end_src
+
+   #+RESULTS:
+   : Newline:
+   : And two more newlines
+   : 
+   : Over.
 
 10. Write the source code of a minimal C program that will compile
     and, when run, print "Hello, world!" on the screen.
@@ -723,11 +743,40 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 
       int main()
       {
-        printf("Hello, world!");
+        printf("Hello, world!"); // puts("Hello, world!");
         return 0;
       }
     #+end_src
 
+    #+RESULTS:
+    : Hello, world!
+
 ** Quiz - Instructions
 #+attr_html: :width 400px :float nil:
 [[../img/quiz.png]]
+* Week 4
+
+- [ ] *Review*: Popquiz
+- [ ] *Lecture* (cont'd): Introduction to C/C++
+- [ ] *Practice*: editing, compiling, running C in Linux.
+
+** Popquiz review
+
+This is the solution for the "hello world" program - most of you
+forgot important details (syntax errors): the semi-colon at the end,
+or to ~#include <stdio.h>~, or the curly brackets. *Details matter!*
+
+The solution for the minimal C program that will print "Hello, World!"
+on the screen:
+#+begin_src C++ :results output
+  #include <stdio.h>
+
+  int main()
+  {
+    printf("Hello, world!");
+  }
+#+end_src
+
+#+RESULTS:
+: Hello, world!
+
