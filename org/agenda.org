@@ -758,6 +758,7 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 
 - [ ] *Review*: Popquiz
 - [ ] *Lecture* (cont'd): Introduction to C/C++
+- [ ] *Quiz 2* goes live today - 30 questions (deadline 6 Feb)
 - [ ] *Practice*: editing, compiling, running C in Linux.
 
 ** Popquiz review
