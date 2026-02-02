@@ -757,11 +757,11 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 * Week 4
 
 - [ ] *Review*: Popquiz
+- [ ] *Review:* "Hello world" commenting assignment.
 - [ ] *Lecture* (cont'd): Introduction to C/C++
-- [ ] *Quiz 2* goes live today - 30 questions (deadline 6 Feb)
 - [ ] *Practice*: editing, compiling, running C in Linux.
 
-** Popquiz review
+** Review: Popquiz 
 
 This is the solution for the "hello world" program - most of you
 forgot important details (syntax errors): the semi-colon at the end,
@@ -780,6 +780,37 @@ on the screen:
 
 #+RESULTS:
 : Hello, world!
+
+** Review: Hello world commenting assignment
+#+attr_html: :width 400px :float nil:
+#+caption: Screenshot of Submission Grader Helper GPT
+[[../img/helloworld_grading.png]]
+
+*Example comments:*
+
+- *Program header name requirement:* The program header lists the name
+  as helloworld.c, but the assignment requires the file/program name
+  helloworld2.c.
+
+- *Program header completeness:* The required characterization of input
+  and output is present, but it does not match the actual program
+  output (the output is no longer “Hello, World!”).
+
+- *Function header requirement for ~main~:* The main function header does
+  not follow the required format (separate lines for Function,
+  Returns, and Parameters, with parameters explicitly listed as void).
+
+- *Line-by-line commenting requirement:* Not every line is correctly
+  explained; some explanations are inaccurate or misleading.
+
+- *Incorrect comment (technical accuracy):* The comment claiming the
+  message is “split by a ~\n~ function” is incorrect (~\n~ is an escape
+  sequence, not a function).
+
+- *Vague comments:* The comment for ~return(0);~ is vague and does not
+  clearly explain what value is returned and what it signifies.
+
+*You can resubmit this assignment with corrections within a week.*
 
 ** Compilation practice
 
