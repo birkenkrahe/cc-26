@@ -780,3 +780,8 @@ on the screen:
 #+RESULTS:
 : Hello, world!
 
+** Compilation practice
+
+- We already covered OneCompiler.com
+- Now we're moving to Google Cloud Shell
+- The detailed notes are here: [[https://tinyurl.com/compilation-practice][tinyurl.com/compilation-practice]]
