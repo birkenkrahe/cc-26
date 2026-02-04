@@ -754,14 +754,15 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 ** Quiz - Instructions
 #+attr_html: :width 400px :float nil:
 [[../img/quiz.png]]
-* Week 4
+* Week 4: Compiling in Linux / Printing with ~printf~
 
-- [ ] *Review*: Popquiz
-- [ ] *Review:* "Hello world" commenting assignment.
+- [X] *Review*: Popquiz
+- [X] *Review:* "Hello world" commenting assignment.
+- [X] *Practice*: editing, compiling, running C in Linux ([[https://youtu.be/H-UP_ogK95Y][video]])
 - [ ] *Lecture* (cont'd): Introduction to C/C++
-- [ ] *Practice*: editing, compiling, running C in Linux.
+- [ ] 
 
-** Review: Popquiz 
+** DONE Review: Popquiz 
 
 This is the solution for the "hello world" program - most of you
 forgot important details (syntax errors): the semi-colon at the end,
@@ -781,7 +782,7 @@ on the screen:
 #+RESULTS:
 : Hello, world!
 
-** Review: Hello world commenting assignment
+** DONE Review: Hello world commenting assignment
 #+attr_html: :width 400px :float nil:
 #+caption: Screenshot of Submission Grader Helper GPT
 [[../img/helloworld_grading.png]]
@@ -789,7 +790,7 @@ on the screen:
 *Example comments:*
 
 - *Program header name requirement:* The program header lists the name
-  as helloworld.c, but the assignment requires the file/program name
+  as =helloworld.c=, but the assignment requires the file/program name
   helloworld2.c.
 
 - *Program header completeness:* The required characterization of input
@@ -812,8 +813,118 @@ on the screen:
 
 *You can resubmit this assignment with corrections within a week.*
 
-** Compilation practice
+** DONE Compilation practice
 
 - We already covered OneCompiler.com
 - Now we're moving to Google Cloud Shell
 - The detailed notes are here: [[https://tinyurl.com/compilation-practice][tinyurl.com/compilation-practice]]
+- There is a video where I show all the steps:
+  [[https://tinyurl.com/compilation-practice-video][tinyurl.com/compilation-practice-video]]
+
+** Review: Introduction to C/C++ and Shell Practice  
+
+1. What are the three components of a programming language?
+   #+begin_quote
+   Syntax (rules), semantics (meaning), and metadata (context).
+   #+end_quote
+
+2. What is the main difference between compiled and interpreted
+   languages?
+   #+begin_quote
+   *Compiled* languages translate source code into machine code before
+   execution, while *interpreted* languages execute source code
+   directly.
+   #+end_quote
+
+3. What is the purpose of the ~#include~ directive?
+   #+begin_quote
+   It tells the compiler to include declarations from a *header file*,
+   such as input/output functions (~<stdio.h>~).
+   #+end_quote
+
+4. What role does the ~main~ function play in a C program?
+   #+begin_quote
+   It is the entry point where program execution begins.
+   #+end_quote
+
+5. What is the difference between a *code* and a *file* in OneCompiler?
+   #+begin_quote
+   A code is the online project container, while a file is the actual
+   source file stored inside that project.
+   #+end_quote
+
+6. What file is produced by default when ~g++~ successfully compiles a
+   program?
+   #+begin_quote
+   An executable file named ~a.out~.
+   #+end_quote
+
+7. Why does running ~a.out~ without ~./~ result in an error?
+   #+begin_quote
+   The current directory is not in the shell’s ~PATH~, so it must be
+   specified explicitly.
+   #+end_quote
+
+8. What type of error is a missing semicolon detected by the compiler?
+   #+begin_quote
+   A syntax error.
+   #+end_quote
+
+9. How does the computer represent a source code file internally?
+   #+begin_quote
+   As a sequence of bytes, each with a numeric value representing
+   characters.
+   #+end_quote
+
+10. When you type =main= in the editor, what does the machine see?
+    #+begin_example
+    The machine sees a sequence of ASCII characters that correspond to
+    a binary stream (bits):
+
+    m: ASCII code = 109, binary = 01101101
+    a: ASCII code = 97, binary = 01100001
+    i: ASCII code = 105, binary = 01101001
+    n: ASCII code = 110, binary = 01101110
+    #+end_example
+
+    #+begin_src C :results table
+      printf("%c %c %c %c\n",'m','a','i','n');
+      printf("%i %i %i %i\n",'m','a','i','n');
+      printf("%b %b %b %b\n",'m','a','i','n');
+    #+end_src
+
+11. What are the three main elements of computer architecture?
+    #+attr_html: :width 500px:
+    #+Caption: Central Processing Unit, Random Access Memory, Non Volatile Memory
+    [[../img/computer_architecture.png]]
+
+12. What's the main problem of computer architecture?
+    #+Caption: The CPU is super-fast, the RAM is fast, and the NVM is very slow
+    #+attr_html: :width 500px:
+    [[../img/computer_architecture2.png]]
+
+13. What does "tokenizing" mean?
+    #+begin_quote
+    "Tokenizing" means breaking down a sequence of text into smaller
+    units called "tokens". In programming, these are the smallest
+    elements of the source code that have meaning, such as keywords
+    (e.g. =main=, =printf=), operators (=+=, ===), and punctuation =(;, {)=.
+    #+end_quote
+
+14. What's an IDE?
+    #+begin_quote
+    IDE = Integrated Development Environment - an application that
+    integrates the editor, the compiler, and the shell so that you can
+    write, compile and execute programs without leaving the app.
+
+    Example: Emacs + Org-mode, or Onecompiler.com.
+    #+end_quote
+
+15. What is pseudocode?
+    #+begin_quote
+    Code in prose that encodes only the program logic and the program
+    flow, but that does not comply with the syntax rules of any
+    programming languages. A flowchart is pseudocode with graphics.
+    #+end_quote
+
+** Lecture + Codealong: Printing values
