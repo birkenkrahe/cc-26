@@ -760,9 +760,13 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 - [X] *Review:* "Hello world" commenting assignment.
 - [X] *Practice*: editing, compiling, running C in Linux ([[https://youtu.be/H-UP_ogK95Y][video]])
 - [ ] *Lecture* (cont'd): Introduction to C/C++
-- [ ] 
+- [ ] *Lecture* + *Codealong* + *Practice*: printing values.
 
-** DONE Review: Popquiz 
+- [ ] *Quiz 3*: Format and memory (deadline Feb 13).
+- [ ] *Practice 4*: upload your URL from the last class.
+- [ ] *Lecture* + *Codealong* + *Practice*: variables and types.
+
+** DONE Review: Popquiz
 
 This is the solution for the "hello world" program - most of you
 forgot important details (syntax errors): the semi-colon at the end,
@@ -821,7 +825,7 @@ on the screen:
 - There is a video where I show all the steps:
   [[https://tinyurl.com/compilation-practice-video][tinyurl.com/compilation-practice-video]]
 
-** Review: Introduction to C/C++ and Shell Practice  
+** DONE Review: Introduction to C/C++ and Shell Practice
 
 1. What are the three components of a programming language?
    #+begin_quote
@@ -839,7 +843,7 @@ on the screen:
 3. What is the purpose of the ~#include~ directive?
    #+begin_quote
    It tells the compiler to include declarations from a *header file*,
-   such as input/output functions (~<stdio.h>~).
+   such as input/output functions (~<stdio.h>~) - preprocessing.
    #+end_quote
 
 4. What role does the ~main~ function play in a C program?
@@ -853,16 +857,16 @@ on the screen:
    source file stored inside that project.
    #+end_quote
 
-6. What file is produced by default when ~g++~ successfully compiles a
-   program?
+6. What file is produced by default when ~g++~ (compiler) successfully
+   compiles a program?
    #+begin_quote
-   An executable file named ~a.out~.
+   An executable file named ~a.out~. This means it can be run by the PC.xs
    #+end_quote
 
 7. Why does running ~a.out~ without ~./~ result in an error?
    #+begin_quote
    The current directory is not in the shell’s ~PATH~, so it must be
-   specified explicitly.
+   specified explicitly (the shorthand is ~.~)
    #+end_quote
 
 8. What type of error is a missing semicolon detected by the compiler?
@@ -892,6 +896,11 @@ on the screen:
       printf("%i %i %i %i\n",'m','a','i','n');
       printf("%b %b %b %b\n",'m','a','i','n');
     #+end_src
+
+    #+RESULTS:
+    |       m |       a |       i |       n |
+    |     109 |      97 |     105 |     110 |
+    | 1101101 | 1100001 | 1101001 | 1101110 |
 
 11. What are the three main elements of computer architecture?
     #+attr_html: :width 500px:
@@ -927,4 +936,81 @@ on the screen:
     programming languages. A flowchart is pseudocode with graphics.
     #+end_quote
 
-** Lecture + Codealong: Printing values
+** Lecture + Codealong + Practice: Printing values
+** Review - printing with =%s=
+#+attr_html: :width 400px :float nil:
+[[../img/printf.png]]
+
+1. What is ="%s %s"= ?
+   #+begin_quote
+   Two format specifiers waiting for two string values, for example
+   ="Hello"= and ="World"=.
+   #+end_quote
+
+2. What's the difference between =%s%s\n= and =%s %s \n= ?
+   #+begin_quote
+   =%s%s\n= prints two strings without a space followed by a new line.
+
+   =%s %s \n= prints two strings with a space between them followed by a
+   space followed by a new line.
+   #+end_quote
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+
+   #+end_src
+
+3. How many ways are there to print two words on two lines?
+
+   #+begin_quote
+   Many. You saw at least three.
+   #+end_quote
+
+   #+begin_src C :results output :includes <stdio.h>
+     // print with `puts` (newline included)
+     puts("Hello,");
+     puts("world!\n");
+     // Print two strings, one call, newline in the format part
+     printf("%s\n%s", "Hello,", "world!");
+     // Print one string per call
+     printf("\n\n%s", "Hello");
+     printf("\n%s", "world");
+     // Print one string, newline in the value part
+     printf("\n\n%s", "Hello\nworld!");
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   Hello,
+   world!
+
+   Hello,
+   world!
+
+   Hello
+   world
+
+   Hello
+   world!
+   #+end_example
+
+4. You want to print five numbers. How many format specifiers do you
+   need?
+   #+begin_quote
+   Five - one for each number.
+   #+end_quote
+   #+begin_src C
+     // Print five integer values
+     printf("%i %i %i %i %i\n", 0, 1, 2, 3, 4);
+   #+end_src
+
+   #+RESULTS:
+   : 0 1 2 3 4
+
+5. How many arguments does =printf= accept?
+   #+begin_quote
+   As many as it takes & as much memory as there is available.
+   The general form is:
+   printf( [format string], [arguments] );
+   #+end_quote
+
+** Lecture + Codealong + Practice: Variables and types
