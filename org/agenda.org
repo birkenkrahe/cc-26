@@ -762,8 +762,8 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 - [ ] *Lecture* (cont'd): Introduction to C/C++
 - [ ] *Lecture* + *Codealong* + *Practice*: printing values.
 
-- [ ] *Quiz 3*: Format and memory (deadline Feb 13).
-- [ ] *Practice 4*: upload your URL from the last class.
+- [X] *Quiz 3*: Format and memory (deadline Feb 13).
+- [X] *Practice 4*: upload your URL from the last class.
 - [ ] *Lecture* + *Codealong* + *Practice*: variables and types.
 
 ** DONE Review: Popquiz
@@ -936,8 +936,7 @@ on the screen:
     programming languages. A flowchart is pseudocode with graphics.
     #+end_quote
 
-** Lecture + Codealong + Practice: Printing values
-** Review - printing with =%s=
+** DONE Review - printing with =%s=
 #+attr_html: :width 400px :float nil:
 [[../img/printf.png]]
 
@@ -956,8 +955,14 @@ on the screen:
    #+end_quote
 
    #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-
+     printf("%s%s\n","hello","riders of Rohan");
+     printf("%s %s \n hey","hello","riders of Rohan");     
    #+end_src
+
+   #+RESULTS:
+   : helloriders of Rohan
+   : hello riders of Rohan 
+   :  hey
 
 3. How many ways are there to print two words on two lines?
 
@@ -968,12 +973,12 @@ on the screen:
    #+begin_src C :results output :includes <stdio.h>
      // print with `puts` (newline included)
      puts("Hello,");
-     puts("world!\n");
+     puts("world!\n");  // this leads to two new lines
      // Print two strings, one call, newline in the format part
      printf("%s\n%s", "Hello,", "world!");
      // Print one string per call
      printf("\n\n%s", "Hello");
-     printf("\n%s", "world");
+     printf("\n%s", "world!");
      // Print one string, newline in the value part
      printf("\n\n%s", "Hello\nworld!");
    #+end_src
@@ -987,7 +992,7 @@ on the screen:
    world!
 
    Hello
-   world
+   world!
 
    Hello
    world!
@@ -1004,7 +1009,7 @@ on the screen:
    #+end_src
 
    #+RESULTS:
-   : 0 1 2 3 4
+   : 0 1 2 3
 
 5. How many arguments does =printf= accept?
    #+begin_quote
@@ -1013,4 +1018,6 @@ on the screen:
    printf( [format string], [arguments] );
    #+end_quote
 
+
+** IN-PROGRESS Lecture + Codealong + Practice: Printing values
 ** Lecture + Codealong + Practice: Variables and types
