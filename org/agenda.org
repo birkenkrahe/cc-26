@@ -1,5 +1,5 @@
 #+title: Agenda Notebook
-#+author: Marcus Birkenkrahe
+xs#+author: Marcus Birkenkrahe
 #+subtitle: CSC 100 [Spring 2026]
 #+SEQ_TODO: TODO NEXT IN-PROGRESS PRACTICE | DONE CANCELLED
 #+startup: overview hideblocks indent entitiespretty
@@ -759,14 +759,13 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 - [X] *Review*: Popquiz
 - [X] *Review:* "Hello world" commenting assignment.
 - [X] *Practice*: editing, compiling, running C in Linux ([[https://youtu.be/H-UP_ogK95Y][video]])
-- [ ] *Lecture* (cont'd): Introduction to C/C++
-- [ ] *Lecture* + *Codealong* + *Practice*: printing values.
+- [X] *Lecture* (cont'd): Introduction to C/C++
+- [X] *Lecture* + *Codealong* + *Practice*: printing values.
 
 - [X] *Quiz 3*: Format and memory (deadline Feb 13).
 - [X] *Practice 4*: upload your URL from the last class.
-- [ ] *Assignments*: Two programming assignments - print and convert.
-- [ ] *Review*: Last session
-- [ ] *Lecture* + *Codealong* + *Practice*: variables and types.
+- [X] *Assignments*: Two programming assignments - print and convert.
+- [X] *Review*: Last session & C++ printing preview
 
 ** DONE Review: Popquiz
 
@@ -826,6 +825,151 @@ on the screen:
 - The detailed notes are here: [[https://tinyurl.com/compilation-practice][tinyurl.com/compilation-practice]]
 - There is a video where I show all the steps:
   [[https://tinyurl.com/compilation-practice-video][tinyurl.com/compilation-practice-video]]
+
+** DONE Review - printing with =%s=
+#+attr_html: :width 400px :float nil:
+[[../img/printf.png]]
+
+1. What is ="%s %s"= ?
+   #+begin_quote
+   Two format specifiers waiting for two string values, for example
+   ="Hello"= and ="World"=.
+   #+end_quote
+
+2. What's the difference between =%s%s\n= and =%s %s \n= ?
+   #+begin_quote
+   =%s%s\n= prints two strings without a space followed by a new line.
+
+   =%s %s \n= prints two strings with a space between them followed by a
+   space followed by a new line.
+   #+end_quote
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     printf("%s%s\n","hello","riders of Rohan");
+     printf("%s %s \n hey","hello","riders of Rohan");
+   #+end_src
+
+   #+RESULTS:
+   : helloriders of Rohan
+   : hello riders of Rohan
+   :  hey
+
+3. How many ways are there to print two words on two lines?
+
+   #+begin_quote
+   Many. You saw at least three.
+   #+end_quote
+
+   #+begin_src C :results output :includes <stdio.h>
+     // print with `puts` (newline included)
+     puts("Hello,");
+     puts("world!\n");  // this leads to two new lines
+     // Print two strings, one call, newline in the format part
+     printf("%s\n%s", "Hello,", "world!");
+     // Print one string per call
+     printf("\n\n%s", "Hello");
+     printf("\n%s", "world!");
+     // Print one string, newline in the value part
+     printf("\n\n%s", "Hello\nworld!");
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   Hello,
+   world!
+
+   Hello,
+   world!
+
+   Hello
+   world!
+
+   Hello
+   world!
+   #+end_example
+
+4. You want to print five numbers. How many format specifiers do you
+   need?
+   #+begin_quote
+   Five - one for each number.
+   #+end_quote
+   #+begin_src C
+     // Print five integer values
+     printf("%i %i %i %i %i\n", 0, 1, 2, 3, 4);
+   #+end_src
+
+   #+RESULTS:
+   : 0 1 2 3
+
+5. How many arguments does =printf= accept?
+   #+begin_quote
+   As many as it takes & as much memory as there is available.
+   The general form is:
+   printf( [format string], [arguments] );
+   #+end_quote
+
+** DONE Lecture + Codealong + Practice: Printing values
+
+Review of the last session:
+
+1) Why does the following code not print =3.1459=?
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     printf(" %f ", 3.1459);
+     printf(" %.4f ", 3.1459); // you need to set the correct precision
+   #+end_src
+
+   #+RESULTS:
+   : 3.1459 
+
+   How can you fix it?
+
+2) What does the following code print?
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     // printf(" %i ", 'Birkenkrahe');
+     printf(" %s ", "Birkenkrahe"); // need string format and argument
+   #+end_src
+
+   #+RESULTS:
+   : Birkenkrahe 
+
+   How can you fix it?
+
+3) How can I get this code to print ="A"= instead of =A=?
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     printf(" \"%c\" ", 'A');
+   #+end_src
+
+   #+RESULTS:
+   : "A" 
+
+4) Preview: why we don't start with C++ (see =onecompiler.com/cpp=)
+
+   #+begin_src C++ :main no :includes :results output :exports both :noweb yes
+     #include <iostream> // instead of <stdio.h>
+
+     int main()
+     {
+       printf("%f\n", 3.1459); // C-style printing
+       
+       std::cout << 3.1459 << std::endl;
+         
+       return 0;
+     }
+   #+end_src
+
+   #+RESULTS:
+   :  3.145900
+   : 3.1459
+
+
+* Week 5: Variable manipulation
+
+- [ ] *New bonus assignment:* Algebra with C 
+- [X] *Lecture* + *Codealong* + *Practice*: variables and types.
+- [ ] *Review*: Variables and types
 
 ** DONE Review: Introduction to C/C++ and Shell Practice
 
@@ -938,119 +1082,63 @@ on the screen:
     programming languages. A flowchart is pseudocode with graphics.
     #+end_quote
 
-** DONE Review - printing with =%s=
-#+attr_html: :width 400px :float nil:
-[[../img/printf.png]]
+** DONE Lecture + Codealong + Practice: Variables and types
+** TODO Review of the last lecture - Integer types
 
-1. What is ="%s %s"= ?
-   #+begin_quote
-   Two format specifiers waiting for two string values, for example
-   ="Hello"= and ="World"=.
-   #+end_quote
-
-2. What's the difference between =%s%s\n= and =%s %s \n= ?
-   #+begin_quote
-   =%s%s\n= prints two strings without a space followed by a new line.
-
-   =%s %s \n= prints two strings with a space between them followed by a
-   space followed by a new line.
-   #+end_quote
-
-   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-     printf("%s%s\n","hello","riders of Rohan");
-     printf("%s %s \n hey","hello","riders of Rohan");
-   #+end_src
-
-   #+RESULTS:
-   : helloriders of Rohan
-   : hello riders of Rohan
-   :  hey
-
-3. How many ways are there to print two words on two lines?
-
-   #+begin_quote
-   Many. You saw at least three.
-   #+end_quote
-
-   #+begin_src C :results output :includes <stdio.h>
-     // print with `puts` (newline included)
-     puts("Hello,");
-     puts("world!\n");  // this leads to two new lines
-     // Print two strings, one call, newline in the format part
-     printf("%s\n%s", "Hello,", "world!");
-     // Print one string per call
-     printf("\n\n%s", "Hello");
-     printf("\n%s", "world!");
-     // Print one string, newline in the value part
-     printf("\n\n%s", "Hello\nworld!");
-   #+end_src
-
-   #+RESULTS:
-   #+begin_example
-   Hello,
-   world!
-
-   Hello,
-   world!
-
-   Hello
-   world!
-
-   Hello
-   world!
-   #+end_example
-
-4. You want to print five numbers. How many format specifiers do you
-   need?
-   #+begin_quote
-   Five - one for each number.
-   #+end_quote
+1. What's wrong with this code?
    #+begin_src C
-     // Print five integer values
-     printf("%i %i %i %i %i\n", 0, 1, 2, 3, 4);
+     height = 10;
+     int height;
+   #+end_src
+   #+begin_quote
+   The variable =height= is used before it is declared.
+   #+end_quote
+
+2. What's wrong with this code?
+   #+begin_src C
+     int main(void) {
+       int height;
+       printf("The height is %d\n", height);
+       return 0;
+     }
    #+end_src
 
    #+RESULTS:
-   : 0 1 2 3
+   : The height is 0
 
-5. How many arguments does =printf= accept?
    #+begin_quote
-   As many as it takes & as much memory as there is available.
-   The general form is:
-   printf( [format string], [arguments] );
+   The variable =height= is uninitialized, so its value is undefined.
    #+end_quote
 
-
-** IN-PROGRESS Lecture + Codealong + Practice: Printing values
-
-Review of the last session:
-
-1) Why does the following code not print =3.1459=?
-
-   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-     printf(" %f ", 3.1459);
+3. What's wrong with this code?
+   #+begin_src C
+     8 = height;
    #+end_src
+   #+begin_quote
+   Literals like =8= cannot be assigned values because they are
+   constants.
+   #+end_quote
 
-   How can you fix it?
-
-2) What does the following code print?
-
-   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-     printf(" %i ", 'Birkenkrahe');
+4. What's wrong with this multi-variable declaration/definition?
+   #+begin_src C
+     int height = 3, width = 2, volume
    #+end_src
+   #+begin_quote
+   The statement is missing a semicolon (=;=).
+   #+end_quote
 
-   How can you fix it?
-
-3) How can I get this code to print ="A"= instead of =A=?
-
-   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
-     printf("%c", 'A');
+5. What's wrong with this variable reassignment?
+   #+begin_src C
+     int main(void) {
+       int foo;
+       foo = 8;
+       int foo = 18;
+       return 0;
+     }
    #+end_src
+   #+begin_quote
+   A variable cannot be redeclared within the same scope.
+   #+end_quote
 
-Preview: why we don't start with C++ (see =onecompiler.com/cpp=)
+** NEXT Constants
 
-#+begin_src C++ :main :includes :results output :exports both :noweb yes
-
-#+end_src
-
-** NEXT Lecture + Codealong + Practice: Variables and types
