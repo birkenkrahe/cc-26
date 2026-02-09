@@ -419,12 +419,12 @@ transcript - with a little bit of back and forth to sharpen them.]
 #+caption: Bryan Lake, January 28, 2026
 [[../img/summary_practice_1_2.png]]
 
-  - [X] Winter week *highlights* from Google Chat.
-  - [ ] Snow practice *programs* "Story script" and "Invisible variables".
-  - [ ] Handcrafted *popquiz:* Think C! Chapter 2 - Variables and Types.
-  - [ ] *Quiz 2* is live: Use the editor when in doubt about code!
-  - [ ] *Lecture*: Introduction to C.
-  - [ ] *Practice*: Write and run "Hello World" in Google Cloud Shell.
+- [X] Winter week *highlights* from Google Chat.
+- [ ] Snow practice *programs* "Story script" and "Invisible variables".
+- [ ] Handcrafted *popquiz:* Think C! Chapter 2 - Variables and Types.
+- [ ] *Quiz 2* is live: Use the editor when in doubt about code!
+- [ ] *Lecture*: Introduction to C.
+- [ ] *Practice*: Write and run "Hello World" in Google Cloud Shell.
 
 ** Snow week highlights (on Google chat)
 #+attr_html: :width 400px :float nil:
@@ -732,7 +732,7 @@ sheet in if you want your points to be counted as bonus (@ midterms).
    #+RESULTS:
    : Newline:
    : And two more newlines
-   : 
+   :
    : Over.
 
 10. Write the source code of a minimal C program that will compile
@@ -764,6 +764,8 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 
 - [X] *Quiz 3*: Format and memory (deadline Feb 13).
 - [X] *Practice 4*: upload your URL from the last class.
+- [ ] *Assignments*: Two programming assignments - print and convert.
+- [ ] *Review*: Last session
 - [ ] *Lecture* + *Codealong* + *Practice*: variables and types.
 
 ** DONE Review: Popquiz
@@ -956,12 +958,12 @@ on the screen:
 
    #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
      printf("%s%s\n","hello","riders of Rohan");
-     printf("%s %s \n hey","hello","riders of Rohan");     
+     printf("%s %s \n hey","hello","riders of Rohan");
    #+end_src
 
    #+RESULTS:
    : helloriders of Rohan
-   : hello riders of Rohan 
+   : hello riders of Rohan
    :  hey
 
 3. How many ways are there to print two words on two lines?
@@ -1020,4 +1022,35 @@ on the screen:
 
 
 ** IN-PROGRESS Lecture + Codealong + Practice: Printing values
-** Lecture + Codealong + Practice: Variables and types
+
+Review of the last session:
+
+1) Why does the following code not print =3.1459=?
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     printf(" %f ", 3.1459);
+   #+end_src
+
+   How can you fix it?
+
+2) What does the following code print?
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     printf(" %i ", 'Birkenkrahe');
+   #+end_src
+
+   How can you fix it?
+
+3) How can I get this code to print ="A"= instead of =A=?
+
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     printf("%c", 'A');
+   #+end_src
+
+Preview: why we don't start with C++ (see =onecompiler.com/cpp=)
+
+#+begin_src C++ :main :includes :results output :exports both :noweb yes
+
+#+end_src
+
+** NEXT Lecture + Codealong + Practice: Variables and types
