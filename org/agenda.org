@@ -964,12 +964,13 @@ Review of the last session:
    :  3.145900
    : 3.1459
 
+* Week 5: Variable manipulation / Constants
 
-* Week 5: Variable manipulation
-
+- [X] *Lecture* + *Codealong* + *Practice*: Variables and types.
 - [ ] *New bonus assignment:* Algebra with C 
-- [X] *Lecture* + *Codealong* + *Practice*: variables and types.
 - [ ] *Review*: Variables and types
+- [ ] *Lecture + Codealong + Practice*: Constants
+- [ ] *Review*: Constants
 
 ** DONE Review: Introduction to C/C++ and Shell Practice
 
@@ -1083,7 +1084,12 @@ Review of the last session:
     #+end_quote
 
 ** DONE Lecture + Codealong + Practice: Variables and types
-** TODO Review of the last lecture - Integer types
+
+This material is still covered by the "Think C" chapter that you read
+a couple of weeks ago. It might be worth reading it again now that you
+understand every little bit of it.
+
+** TODO Review of the last lecture - variables and types
 
 1. What's wrong with this code?
    #+begin_src C
@@ -1096,6 +1102,7 @@ Review of the last session:
 
 2. What's wrong with this code?
    #+begin_src C
+     #include <stdio.h>
      int main(void) {
        int height;
        printf("The height is %d\n", height);
@@ -1107,7 +1114,8 @@ Review of the last session:
    : The height is 0
 
    #+begin_quote
-   The variable =height= is uninitialized, so its value is undefined.
+   The variable =height= is uninitialized, so its value is undefined
+   (even though computer says it's =0=, *this is not guaranteed*).
    #+end_quote
 
 3. What's wrong with this code?
@@ -1115,19 +1123,20 @@ Review of the last session:
      8 = height;
    #+end_src
    #+begin_quote
-   Literals like =8= cannot be assigned values because they are
-   constants.
+   *Literals* like =8= cannot be assigned values because they are
+   literally constant, unchangeable, and must remain unchanged.
    #+end_quote
 
 4. What's wrong with this multi-variable declaration/definition?
    #+begin_src C
-     int height = 3, width = 2, volume
+     int height = 3, width = 2;
+     int volume
    #+end_src
    #+begin_quote
    The statement is missing a semicolon (=;=).
    #+end_quote
 
-5. What's wrong with this variable reassignment?
+5. What's wrong with this variable re-assignment?
    #+begin_src C
      int main(void) {
        int foo;
@@ -1137,8 +1146,12 @@ Review of the last session:
      }
    #+end_src
    #+begin_quote
-   A variable cannot be redeclared within the same scope.
+   A variable cannot be redeclared within the same *scope*. In this
+   case, the scope is the area between ={= and =}=. Variables are said to
+   be (or go) in or out of scope.
    #+end_quote
 
-** NEXT Constants
+** NEXT Constants - three ways of defining and using them
 
+Constants are hugely important: All scientific calculations depend on
+them (see \pi), and all accounting and tax calculations (see tax rate).

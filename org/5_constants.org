@@ -7,12 +7,15 @@
 #+PROPERTY: header-args:C :main yes :includes <stdio.h> :exports both :results output
 * README
 
-- [ ] Constants with macros or types (=#define=, =const=)
-- [ ] Library definitions (=#include=)
-- [ ] Reading input from the keyboard
+- [ ] Constants with macros or types (~#define~, ~const~)
+- [ ] Library definitions (~#include~)
+- [ ] Using C/C++ in Google Colab (=colab.research.google.com=)
+- [ ] Reading input from the keyboard with ~scanf~
 
 - This script summarizes and adds to the treatment by King (2008),
   chapter 2, C Fundamentals - see also [[https://docs.google.com/presentation/d/14qvh00aVb_R09_hrQY0EDEK_JLAkgZ0S/edit?usp=sharing&ouid=102963037093118135110&rtpof=true&sd=true][slides (GDrive)]].
+
+- Code along with me if you can, opening ~onecompiler.com/c~
 
 * Constants
 
@@ -26,7 +29,7 @@
   ~constant~. There are different ways of doing that.
 
 - The code below shows a declarative constant definition for the
-  pre-processor that blindly substitutes the value everywhere in the
+  pre-processor that *blindly* substitutes the value *everywhere* in the
   program. This is also called a *macro definition*.
   #+begin_src C
     #define PI 3.141593
@@ -95,8 +98,12 @@
     }
   #+end_src
 
-- Do you remember what happens if your precision ~p~ is greater than the
-  precision delivered by the computer?[fn:2]
+- What happens if your precision ~p~ is greater than the precision
+  delivered by the computer?[fn:2]
+
+  #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+    printf("%.25f", 3.1459);
+  #+end_src
 
 - You can redefine the value of any constant using ~#define~:
   #+begin_src C
@@ -114,14 +121,6 @@
   : PI is 3.141593
   : PI is 3.1415926535897931
 
-- Inside Emacs with Org-mode, you can include the math header file
-  ~math.h~ as a code block header argument (then you don't have to
-  include it explicitly in your code block):
-  #+begin_src C :includes <stdio.h> <math.h>
-    printf("PI is %f\n",M_PI);
-    printf("PI is %.16f\n",M_PI);
-  #+end_src
-
 - In Linux, ~math.h~ and the other header files sit in
   ~/usr/include/~. The screenshot shows the math constant section of
   ~math.h~.
@@ -129,8 +128,8 @@
   #+caption: Mathematical constants in /usr/include/math.h
   [[../img/5_math.png]]
 
-- Where is ~math.h~ in Windows[fn:3]? Where in MacOS? Find the
-  file, open and look at it in Emacs (the file is read-only).
+- Where is ~math.h~ in Windows[fn:3]? Where in MacOS? Can you find the
+  file and can you look at it? (You should be able to.)
 
 - In online IDEs like ~onecompiler.com~, you can typically not look at
   header files unless you have access to the command line or the file
@@ -138,11 +137,31 @@
   #+attr_html: :width 600px:
   [[../img/math_h.png]]
 
-- In the file, look for =M_PI=. You also find the definition of the
-  Euler number e there[fn:4].
+- Do this now: go to =colab.research.google.com= (a Jupyter notebook),
+  write and execute a hello world program:
+  #+begin_example 
+  %%writefile hello.c
+  #include <stdio.h>
+  int main()
+  {
+    puts("hello, world");
+    return 0;
+  }
+  #+end_example
+
+  This will give you a =hello.c= file. You can either compile and run it
+  in the terminal (see bottom of the screen to open), or you can run
+  it in a code cell with =!./a.out=.
+  #+attr_html: :width 400px :float nil:
+  [[../img/colab.png]]
+
+- You can find ~math.h~ in ~/usr/include/~. Open it using the sidebar. In
+  the file, look for =M_PI=. You also find the definition of the Euler
+  number =e= there[fn:4].
 
 - Use it in a ~#define~ statement to define ~e~ and print ~e~ with 16-digit
-  precision, with 15 decimal places:
+  precision, with 15 decimal places. Put it in a program =euler.c= and
+  run it!
   #+begin_src C
     #include <math.h>
     #define e M_E
@@ -191,7 +210,9 @@
     printf("Tax on revenue %.2f is %.2f", revenue, tax);
   #+end_src
 
-* PRACTICE Constants
+* PRACTICE Constants (UPLOAD TO CANVAS)
+
+You must upload the final program to Canvas (in-class practice).
 
 1) Create a =NEW= C program and call it =constants.c=.
 
@@ -229,7 +250,7 @@
   }
 #+end_example
 
-Upload your result to Canvas (=In-class practice 4: Constants=)!
+Upload your result to Canvas (=In-class practice 5: Constants=)!
 
 ** Solution
 
@@ -570,7 +591,8 @@ digits up (which is not good).
 it in the MinGW directory - there's an ~/include~ subdirectory that
 contains many header/library files ~.h~. If you have Cygwin, you'll find
 it in ~c:/Cygwin/usr/include/~. If you have MSYS2, look in
-~C:\msys64\usr\include~.
+~C:\msys64\usr\include~. If you don't have a compiler installed, you
+won't have it. On OneCompiler.com (a Linux VM), it must be included.
 
 [fn:4] Want to know more about this peculiar number ~e~ that occurs in
 beautiful formulas like "Euler's identity" ($e^{i\pi} + 1 = 0$? See
