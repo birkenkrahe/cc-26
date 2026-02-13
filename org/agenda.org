@@ -967,10 +967,13 @@ Review of the last session:
 * Week 5: Variable manipulation / Constants
 
 - [X] *Lecture* + *Codealong* + *Practice*: Variables and types.
+- [X] *Review*: Variables and types
 - [ ] *New bonus assignment:* Algebra with C 
-- [ ] *Review*: Variables and types
-- [ ] *Lecture + Codealong + Practice*: Constants
+- [ ] *Assignment*: One assignment due Friday!
 - [ ] *Review*: Constants
+- [ ] *Lecture + Codealong + Practice*: Constants
+- [ ] *Bonus assignment*: [[https://lyon.instructure.com/courses/4410/assignments/58495][Create your own coding notebook in Colab!]]
+- [ ] *Lab*: Preparing for the "your height in light-years" assignment
 
 ** DONE Review: Introduction to C/C++ and Shell Practice
 
@@ -1089,7 +1092,7 @@ This material is still covered by the "Think C" chapter that you read
 a couple of weeks ago. It might be worth reading it again now that you
 understand every little bit of it.
 
-** TODO Review of the last lecture - variables and types
+** DONE Review of the last lecture - variables and types
 
 1. What's wrong with this code?
    #+begin_src C
@@ -1113,7 +1116,7 @@ understand every little bit of it.
    #+RESULTS:
    : The height is 0
 
-   #+begin_quote
+      #+begin_quote
    The variable =height= is uninitialized, so its value is undefined
    (even though computer says it's =0=, *this is not guaranteed*).
    #+end_quote
@@ -1132,6 +1135,7 @@ understand every little bit of it.
      int height = 3, width = 2;
      int volume
    #+end_src
+
    #+begin_quote
    The statement is missing a semicolon (=;=).
    #+end_quote
@@ -1151,7 +1155,210 @@ understand every little bit of it.
    be (or go) in or out of scope.
    #+end_quote
 
-** NEXT Constants - three ways of defining and using them
+** IN-PROGRESS Constants - three ways of defining and using them
 
 Constants are hugely important: All scientific calculations depend on
 them (see \pi), and all accounting and tax calculations (see tax rate).
+
+** Review: Constants I
+
+1. What's wrong with this code? Will it compile? Will it run?
+   #+begin_src C
+     #define PI 3.141593;
+     printf("Pi is %f\n", PI);
+   #+end_src
+   #+begin_quote
+   - It won't compile.
+   - The semicolon (=;=) at the end of =#define PI 3.141593;= is incorrect.
+   - Macro definitions are not *statements*; they are simple *text
+     substitutions*. The semicolon will be included in every
+     replacement, causing a *syntax error* when used in expressions.
+   #+end_quote
+
+2. What's wrong with this code? Will it compile? Will it run?
+
+   #+begin_src C :results output
+     #define VALUE 1.0
+     printf("Constant value is %.1f\n", VALUE);
+     #define VALUE 2.0
+     printf("Constant value is %.1f\n", VALUE);
+   #+end_src
+
+   #+begin_quote
+   - The code compiles and runs.
+   - The constant =VALUE= is redefined using =#define= without an =#undef=
+     directive.
+   - While this is allowed in C, it generates a compiler warning.
+   - Redefining a macro without =#undef= can lead to unexpected
+     behavior. A proper approach is:
+   #+end_quote
+   #+begin_src C
+     #define VALUE
+     // ...
+     #undef VALUE
+     #define VALUE 2.0
+   #+end_src
+
+3. What's wrong with this code? Will it compile? Will it run?
+
+   #+begin_src C
+     #include <stdio.h>
+     printf("Pi is %f\n", M_PI); // M_PI is the mathematical constant \pi
+   #+end_src
+
+   #+begin_quote
+   - Program will not compile.
+   - The program is missing the =#include <math.h>= header, which
+     defines =M_PI=.
+   - Without this, the compiler does not recognize =M_PI=, leading to an
+     "undeclared identifier" error.
+   #+end_quote
+
+4. What's wrong with this code? Will it compile? Will it run?
+
+   #+begin_src C
+     #include <stdio.h>
+     #define apple_pie M_PI
+
+     int main(void) {
+       printf("Pi is %f\n", apple_pie);
+       return 0;
+     }
+   #+end_src
+
+   #+begin_quote
+   - It will not compile.
+   - The program is missing =#include <math.h>=, which defines
+     =M_PI=. Since =apple_pie= is defined as =M_PI=, but =M_PI= is not
+     recognized, the program will fail to compile.
+   #+end_quote
+
+5. What's wrong with this code? Will it compile? Will it run?
+   #+begin_src C :main no :includes
+     #include <stdio.h>
+     #include <math.h>
+     #define e M_E
+     printf("%.16f\n", e);
+     int main() {
+
+       return 0;
+     }
+   #+end_src
+
+   #+begin_quote
+   - It will not compile.
+   - The =printf= statement is outside a function. In C, all executable
+     statements must be inside a function, typically =main()=.
+   #+end_quote
+
+** Lab: Preparing for the "Your height in light-years" assignment
+
+Every once in a while we'll do an independent programming exercise in
+class. Today is that day. I'll give you some time to solve a problem
+on your own, and then I'll go through the solution with you.
+
+Today's lab prepares next week's problem, "Your height in
+light-years". The way we solve this is exactly what you need to do for
+the home assignment - you only have to transfer the approach.
+
+You have *five minutes* for each of the four sections of the starter
+code. After five minutes, I will reveal the partial solution.
+
+- *Preamble:* The numerical value of a quantity depends on the unit used
+  to measure it. For example: 1 kilometer = 1000 meters.
+
+  To convert meters to kilometers: d_km = d_m / 1000
+
+- *Problem*: Write a C program that computes three heights in
+  kilometers and prints the result in scientific notation.
+
+  | height [m] | name  |
+  |------------+-------|
+  |        1.8 | Alice |
+  |       1.98 | Bob   |
+  |       1.67 | Carol |
+
+- *Example*: Joe is 1 meter tall. Conversion factor: d_{km}/d_{m} = 1/1000. To
+  convert, multiply the height in meters with that factor. In
+  scientific notation, that is 1E-03 = 1 x 10^{-3} = 1/1000.
+
+- *Requirements:*
+  1. Define the number of meters per kilometer as a permanent
+     constant.
+  2. Define the three heights as floating point variables.
+  3. Compute the conversion factor from meters to kilometers and store
+     it in a variable.
+  4. Print the results using scientific notation (~%e~).
+  5. Reproduce the sample output exactly.
+  6. Include:
+     - Program header
+     - Comment sections (constants, variables, conversion factor, output)
+
+- *Sample Output*
+  #+begin_example
+  Alice's height: 1.74 = 1.74e-03 kilometers
+  Bob's height:   1.98 = 1.98e-03 kilometers
+  Alice's height: 1.67 = 1.67e-03 kilometers
+  #+end_example
+
+- *Starter code:* [[https://tinyurl.com/meters-to-kilometers][tinyurl.com/meters-to-kilometers]]
+  #+begin_src C :main yes :includes <stdio.h> :results output :exports both
+    // convert.c: Convert number of meters (input) to kilometers (output)
+    // Author: ... (pledged)
+    // Date: ...
+    #include <stdio.h>
+
+    // main program
+    int main()
+    {
+      // define constant: number of meters per kilometer
+     
+      // define three heights as floating-point variables
+      
+      // compute conversion factor and store it in a variable
+      
+      // print the results using scientific notation
+      
+      return 0;
+    }
+
+  #+end_src
+
+- *Sample solution:*
+  #+begin_src C :main no :includes :results output :exports both
+    // convert.c: Convert number of meters (input) to kilometers (output)
+    // Author: Marcus Birkenkrahe (pledged)
+    // Date: 02/12/2026
+
+    #include <stdio.h>
+
+    // main program
+    int main()
+    {
+      // define constant: number of meters per kilometer
+      const int METERS_PER_KILOMETER = 1000;
+     
+      // define three heights as floating-point variables
+      double height_alice = 1.74;
+      double height_bob = 1.98;
+      double height_carol = 1.67;
+      
+      // compute conversion factor and store it in a variable
+      float meters_to_kilometers = 1.0f / METERS_PER_KILOMETER;
+      
+      // print the results using scientific notation
+      printf("Alice's height: %.2f = %.2e kilometers\n",
+    	 height_alice, height_alice * meters_to_kilometers);
+      printf("Bob's height:   %.2f = %.2e kilometers\n",
+    	 height_bob, height_bob * meters_to_kilometers);
+      printf("Alice's height: %.2f = %.2e kilometers\n",
+    	 height_carol, height_carol * meters_to_kilometers);
+      
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Alice's height: 1.74 = 1.74e-03 kilometers
+  : Bob's height:   1.98 = 1.98e-03 kilometers
+  : Alice's height: 1.67 = 1.67e-03 kilometers
