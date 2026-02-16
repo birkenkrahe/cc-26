@@ -1,9 +1,8 @@
-#+TITLE: Introduction to Programming - Variables and Types
+#+TITLE: Introduction to Programming - Printing values
 #+AUTHOR: Marcus Birkenkrahe
 #+SUBTITLE: CSC 100 - Lyon College - Spring 2025
 #+SEQ_TODO: PRACTICE TODO NEXT CODEALONG | DONE
 #+STARTUP: overview hideblocks indent entitiespretty
-#+options: toc:nil num:nil ^:nil: 
 #+attr_latex: :float nil
 #+property: :header-args:C      :main yes :includes <stdio.h> :results output :exports both
 #+property: :header-args:python :session *Python* :python python3 :results output :exports both
