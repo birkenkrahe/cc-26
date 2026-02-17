@@ -971,12 +971,6 @@ Review of the last session:
 - [X] *New bonus assignment:* Algebra with C 
 - [X] *Assignment*: One assignment due Friday!
 - [X] *Review*: Constants Part 1
-- [ ] *Lecture + Codealong + Practice*: Constants
-- [ ] *Bonus assignment*: [[https://lyon.instructure.com/courses/4410/assignments/58495][Create your own coding notebook in Colab!]]
-- [ ] *Review*: Home programming assignments
-- [ ] *Review*: Constants Part 2
-- [ ] *Lab*: Preparing for the "your height in light-years" assignment
-- [ ] *No class on Friday, 20 February 2026* - work on assignments!
 
 ** DONE Review: Introduction to C/C++ and Shell Practice
 
@@ -1266,7 +1260,17 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
      statements must be inside a function, typically =main()=.
    #+end_quote
 
-** Review: Programming assignment 2 Printing Basic Values in C
+* Week 6: Naming & ~printf~ (again!)
+
+- [X] *Lecture + Codealong + Practice*: Constants
+- [X] *Bonus assignment*: [[https://lyon.instructure.com/courses/4410/assignments/58495][Create your own coding notebook in Colab!]]
+- [X] *Review*: Home programming assignments
+- [X] *Review*: Constants Part 2
+- [X] *No class on Friday, 20 February 2026* - work on assignments!
+- [X] *Lab*: Preparing for the "your height in light-years" assignment
+- [ ] *Assignment*: Four easy pieces to complete during cancelled class
+
+** DONE Review: Programming assignment 2 Printing Basic Values in C
 
 - Some solutions looked *as if AI had helped you*. To account for that,
   you must add ~ChatGPT~ (or whatever your poison is) as author to the
@@ -1288,7 +1292,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
   2. Clear and formatted output exactly like the example output.
   3. Comments explaining the code [minimal comments are OK].
   4. Program header with program name, purpose, input, output, author
-     name, pledge, date
+     name, pledge, date.
 
 - Many submissions violated the constraints.
 
@@ -1330,7 +1334,14 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
     }
   #+end_src
 
-** Review: Programming assignment 3 Fahrenheit to Celsius conversion
+  #+RESULTS:
+  : The integer values is: 10
+  : The floating-point value is: 3.14
+  : The character values is: A
+  : 
+  : The values are: 10, 3.14, and A.
+
+** DONE Review: Programming assignment 3 Fahrenheit to Celsius conversion
 
 - Most submissions were much better (but also more submissions were
   just missing).
@@ -1359,8 +1370,8 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
     int main()
     {
       // declare variables
-      float fahrenheit=0.;
-      float celsius=0.;
+      float fahrenheit=0.f;
+      float celsius=0.f;
 
       // assign values
       fahrenheit = 98.6f;
@@ -1380,7 +1391,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
   : Temperature in Fahrenheit: 98.60
   : Temperature in Celsius: 37.00
 
-** Review: Missing practice assignments and missing quizzes
+** DONE Review: Missing practice assignments and missing quizzes
 
 - You can *upload missing practice assignments within one week* after
   the practice in class. That's enough time to check the recording. If
@@ -1395,7 +1406,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
 
 [[../img/final_15_feb.png]]
 
-** Lab: Preparing for the "Your height in light-years" assignment
+** DONE Lab: Preparing for the "Your height in light-years" assignment
 
 Every once in a while we'll do an independent programming exercise in
 class. Today is that day. I'll give you some time to solve a problem
@@ -1414,7 +1425,7 @@ code. After 2 minutes, I will reveal the partial solution.
   To convert meters to kilometers: d_km = d_m / 1000
 
 - *Problem*: Write a C program that computes three heights in
-  kilometers and prints the result in scientific notation.
+  kilometers and prints the result in *scientific notation.*
 
   | height [m] | name  |
   |------------+-------|
@@ -1432,7 +1443,7 @@ code. After 2 minutes, I will reveal the partial solution.
   2. Define the three heights as floating point variables.
   3. Compute the conversion factor from meters to kilometers and store
      it in a variable.
-  4. Print the results using scientific notation (~%e~).
+  4. Print the results using scientific notation (~%E~).
   5. Reproduce the sample output exactly.
   6. Include:
      - Program header
@@ -1442,71 +1453,49 @@ code. After 2 minutes, I will reveal the partial solution.
   #+begin_example
   Alice's height: 1.74 = 1.74e-03 kilometers
   Bob's height:   1.98 = 1.98e-03 kilometers
-  Alice's height: 1.67 = 1.67e-03 kilometers
+  Carol's height: 1.67 = 1.67e-03 kilometers
   #+end_example
 
 - *Starter code:* [[https://tinyurl.com/meters-to-kilometers][tinyurl.com/meters-to-kilometers]]
   #+begin_src C :main yes :includes <stdio.h> :results output :exports both
     // convert.c: Convert number of meters (input) to kilometers (output)
-    // Author: ... (pledged)
-    // Date: ...
-    #include <stdio.h>
-
-    // main program
-    int main()
-    {
-      // define constant: number of meters per kilometer
-     
-      // define three heights as floating-point variables
-      
-      // compute conversion factor and store it in a variable
-      
-      // print the results using scientific notation
-      
-      return 0;
-    }
-
-  #+end_src
-
-- *Sample solution:*
-  #+begin_src C :main no :includes :results output :exports both
-    // convert.c: Convert number of meters (input) to kilometers (output)
     // Author: Marcus Birkenkrahe (pledged)
-    // Date: 02/12/2026
-
+    // Date: 2/16/2026
     #include <stdio.h>
 
     // main program
     int main()
     {
       // define constant: number of meters per kilometer
-      const int METERS_PER_KILOMETER = 1000;
-     
+      const double METERS_PER_KILOMETER = 1000.f;
+
       // define three heights as floating-point variables
-      double height_alice = 1.74;
-      double height_bob = 1.98;
-      double height_carol = 1.67;
-      
+      double height_alice = 1.74f;
+      double height_bob   = 1.98f;
+      double height_carol = 1.67f;
+              
       // compute conversion factor and store it in a variable
-      float meters_to_kilometers = 1.0f / METERS_PER_KILOMETER;
-      
+      double meters_to_kilometers = 1.f / METERS_PER_KILOMETER;
+            
       // print the results using scientific notation
-      printf("Alice's height: %.2f = %.2e kilometers\n",
+      printf("Alice's height: %.2f = %.2E kilometers\n",
     	 height_alice, height_alice * meters_to_kilometers);
-      printf("Bob's height:   %.2f = %.2e kilometers\n",
+      printf("Bob's height: %.2f = %.2E kilometers\n",
     	 height_bob, height_bob * meters_to_kilometers);
-      printf("Alice's height: %.2f = %.2e kilometers\n",
+      printf("Carol's height: %.2f = %.2E kilometers\n",
     	 height_carol, height_carol * meters_to_kilometers);
       
       return 0;
     }
+
   #+end_src
 
   #+RESULTS:
-  : Alice's height: 1.74 = 1.74e-03 kilometers
-  : Bob's height:   1.98 = 1.98e-03 kilometers
-  : Alice's height: 1.67 = 1.67e-03 kilometers
-** Review: Constants II -> Constants III
+  : Alice's height: 1.74 = 1.74E-03 kilometers
+  : Bob's height: 1.98 = 1.98E-03 kilometers
+  : Carol's height: 1.67 = 1.67E-03 kilometers
+
+** DONE Review: Constants II -> Constants III
 
 *Quiz 4: Constants* is live now.
 
@@ -1552,6 +1541,9 @@ code. After 2 minutes, I will reveal the partial solution.
      }
    #+end_src
 
+   #+RESULTS:
+   : M_PI on this computer: 3.141592653589793
+
 5. In the statement ~scanf("%i", &num);~, why is the ~&~ operator
    required?
    #+begin_quote
@@ -1576,11 +1568,13 @@ code. After 2 minutes, I will reveal the partial solution.
 
    #+begin_src C :tangle undef.c :main yes :includes <stdio.h> :results output :exports both 
      #define PI 3.14
-     printf("%g\n",PI);
+     printf("%g\n",PI); // %g picks the format
 
-     //#undef PI
-     //printf("%g\n",PI);     
+     #undef PI // deletes the constant
+     printf("%g\n",PI);     
    #+end_src   
+
+   #+RESULTS:
 
 8. What does the format specifier ~%E~ do in ~printf~, and how does it
    differ from ~%f~?
@@ -1600,3 +1594,20 @@ code. After 2 minutes, I will reveal the partial solution.
      printf("1 can be written 'scientifically' as: %.0E", 1.f);                    
    #+end_src
 
+   #+RESULTS:
+   : Pi is 3.141592653589793E+00
+   : 10,000 can be written 'scientifically' as: 1E+04
+   : 1,000 can be written 'scientifically' as: 1E+03
+   : 100 can be written 'scientifically' as: 1E+02
+   : 10 can be written 'scientifically' as: 1E+01
+   : 1 can be written 'scientifically' as: 1E+00
+
+** IN-PROGRESS Constants - three ways of defining and using them
+
+- Constants are hugely important: All scientific calculations depend
+  on them (see \pi), and all accounting and tax calculations (see tax
+  rate).
+
+- Reading input with ~scanf~.
+
+- Naming rules and nameing identifiers.
