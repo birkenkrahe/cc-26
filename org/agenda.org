@@ -1268,9 +1268,9 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
 - [X] *Review*: Constants Part 2
 - [X] *No class on Friday, 20 February 2026* - work on assignments!
 - [X] *Lab*: Preparing for the "your height in light-years" assignment
-- [ ] *Assignment*: Four easy pieces to complete during cancelled class
+- [X] *Assignment*: "Four easy pieces" to complete during cancelled class
 
-** DONE Review: Programming assignment 2 Printing Basic Values in C
+** Review: Programming assignment 2 Printing Basic Values in C
 
 - Some solutions looked *as if AI had helped you*. To account for that,
   you must add ~ChatGPT~ (or whatever your poison is) as author to the
@@ -1341,7 +1341,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
   : 
   : The values are: 10, 3.14, and A.
 
-** DONE Review: Programming assignment 3 Fahrenheit to Celsius conversion
+** Review: Programming assignment 3 Fahrenheit to Celsius conversion
 
 - Most submissions were much better (but also more submissions were
   just missing).
@@ -1391,7 +1391,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
   : Temperature in Fahrenheit: 98.60
   : Temperature in Celsius: 37.00
 
-** DONE Review: Missing practice assignments and missing quizzes
+** Review: Missing practice assignments and missing quizzes
 
 - You can *upload missing practice assignments within one week* after
   the practice in class. That's enough time to check the recording. If
@@ -1406,7 +1406,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
 
 [[../img/final_15_feb.png]]
 
-** DONE Lab: Preparing for the "Your height in light-years" assignment
+** Lab: Preparing for the "Your height in light-years" assignment
 
 Every once in a while we'll do an independent programming exercise in
 class. Today is that day. I'll give you some time to solve a problem
@@ -1495,7 +1495,7 @@ code. After 2 minutes, I will reveal the partial solution.
   : Bob's height: 1.98 = 1.98E-03 kilometers
   : Carol's height: 1.67 = 1.67E-03 kilometers
 
-** DONE Review: Constants II -> Constants III
+** Review: Constants II -> Constants III
 
 *Quiz 4: Constants* is live now.
 
@@ -1602,7 +1602,7 @@ code. After 2 minutes, I will reveal the partial solution.
    : 10 can be written 'scientifically' as: 1E+01
    : 1 can be written 'scientifically' as: 1E+00
 
-** IN-PROGRESS Constants - three ways of defining and using them
+** Constants - three ways of defining and using them
 
 - Constants are hugely important: All scientific calculations depend
   on them (see \pi), and all accounting and tax calculations (see tax
@@ -1611,3 +1611,39 @@ code. After 2 minutes, I will reveal the partial solution.
 - Reading input with ~scanf~.
 
 - Naming rules and nameing identifiers.
+
+
+* Week 7:
+
+- [ ] Review: Height in light-years (5 min)
+- [ ] Finish overview of ~printf~ (10 min)
+- [ ] Practice ~printf~ (30 min)
+
+** Review: Height in light-years  
+
+- Some people got grossly different values from the sample output that
+  was given (-1p).
+
+- They defined integer constants that were converted (implicitly) to
+  high-precision floating-point variables.
+
+- Since the integers were very large, their product is even larger,
+  and their inverse introduces a big rounding error in the solution.
+
+- It was explicitly mentioned that the constants should be defined as
+  permanent, so not with ~#define~ but with ~const double~ (-1p).
+
+- Several people are still missing the program header (-1p.)
+
+- Nobody got the sample output exactly right: You should have used ~\t~
+  (an escaped TAB) to align the values:
+  #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+    printf("Height 1 is\t= %.2f m\n", 1.80);
+    printf("But height 2 is\t= %.2f m\n", 1.80);
+  #+end_src
+
+- You should not alter the names and heights for the submission
+  (otherwise you should play around with the code as you wish).
+
+- If you did not submit this program, you can submit it within a week
+  and get 50% of the available points provided all is well.
