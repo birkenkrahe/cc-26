@@ -1,0 +1,111 @@
+#+TITLE: C FUNDAMENTALS PRACTICE - PRINTF
+#+AUTHOR: [yourName] (pledged)
+#+SUBTITLE: CSC 100 - Introduction to programming (Lyon College/Spring 2026)
+#+PROPERTY: header-args:C :main yes :includes <stdio.h> :results output :exports both
+#+STARTUP: hideblocks overview indent
+* README
+
+- Open [[https://tinyurl.com/printf-practice-ipynb][tinyurl.com/printf-practice-ipynb]] in a browser.
+
+- Make a "Copy to drive" to be able to edit the file.
+
+- Change the settings to uncheck all autocompletions.
+
+- This file is a practice file for C input function ~printf~.
+
+- Time: approx. 30 min.
+
+- Use Google Colab and upload the URL to the notebook.
+
+* Identify yourself
+
+- Put your name into the program header.
+  
+* Conversion specification
+
+Recreate the output below exactly, using only format specifiers (no
+extra white space). The ruler is already prepared for you.
+
+#+begin_example
+: ....|....|....|
+:   100100
+: 200200
+:        3.1416
+: 3.141593
+#+end_example
+
+Code:
+#+begin_src C
+  printf("....|....|....|\n");
+  
+  #+end_src
+
+* Integer decimal ~d~
+
+Show that the default for ~d~ is p=1. Print the numbers 1, 1, 100 and
+10000 with the specifiers ~%d~, ~%.1d~, ~%.5d~, ~%.2d~. Print each expression
+on its own line, but use only ONE ~printf~ statement.
+
+#+begin_src C :results output
+  printf("....|....|....|\n");
+
+#+end_src
+
+* Integer decimal precision ~p~
+
+Print the number 42 on a space of 10 characters with precision 5.
+
+The result should look like this:
+#+begin_example
+: ....|....|....|
+:      00042
+#+end_example
+
+Code:
+#+begin_src C :results output
+  printf("....|....|....|\n");
+
+#+end_src
+
+* Scientific notation ~e~
+
+- Print 1, 1000.100, and 1,000,000,000,000,000 using ~%e~.
+- Provide for the required number of decimal positions (but not more)
+- Print each expression on its own line with its own ~printf~ function.
+
+Desired output:
+#+begin_example
+    : 1e+00
+    : 1.0001e+03
+    : 1E+15
+#+end_example
+
+Code:
+#+begin_src C
+
+#+end_src
+
+* Variable floating point ~g~
+
+- Use the format specifier ~g~ to display the following numbers: 
+  1) ~200~
+  2) ~3.142574654~ with ~p=8~, 
+  3) ~2.71~
+  4) ~!5~
+
+- Desired output:
+  #+begin_example
+  200
+  3.1425747
+  2.71
+  120
+  #+end_example
+
+- ~!N~ is defined as the factorial of ~N~: $N \times (N-1) \times \dots \times 1$.
+
+Code:
+#+begin_src C :results output
+
+#+end_src
+
+* [[https://lyon.instructure.com/courses/4410/assignments/58915][Upload the completed file to Canvas now!]]
