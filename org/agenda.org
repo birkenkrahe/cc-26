@@ -1612,13 +1612,16 @@ code. After 2 minutes, I will reveal the partial solution.
 
 - Naming rules and nameing identifiers.
 
-* Week 7: 
+* Week 7: ~printf~ practice
 
 - [ ] Review: Height in light-years (5 min)
 - [ ] Finish overview of ~printf~ (10 min)
 - [ ] Practice ~printf~ (30 min)
+- [ ] Review: What's wrong with this ~printf~ statement?
+- [ ] Lecture + code along: ~scanf~
+- [ ] *No class next Monday! Watch lecture recording & practice live*
 
-** Review: Height in light-years
+** DONE Review: Height in light-years
 
 - Some people got grossly different values from the sample output that
   was given (-1p).
@@ -1650,3 +1653,65 @@ code. After 2 minutes, I will reveal the partial solution.
 
 - If you did not submit this program, you can submit it within a week
   and get max. 50% of the available points provided all is well.
+
+** NEXT Review: What is wrong with these ~printf~ statements?
+
+For each fragment:
+- State what is wrong.
+- Be specific (type mismatch? wrong number of arguments? misunderstanding of precision?).
+- Guess the output.
+-----
+1. Code
+   #+begin_src C
+   printf("%i\n", 3.14);
+   #+end_src
+
+   #+begin_quote
+   Type mismatch: =%i= expects an integer (~int~). Narrowing conversion
+   (tries to fit large number in tiny space). Undefined behavior.
+   #+end_quote
+   
+2. Code
+   #+begin_src C
+   printf("%20.5f\n", 42);
+   #+end_src
+
+   #+begin_quote
+   Type mismatch: =%f= expects a floating point (~double~) but gets ~int~.
+   Widening conversion. Undefined behavior.
+   #+end_quote
+
+3. Code
+   #+begin_src C
+   printf("%e\n", 1000.100, 1.0);
+   #+end_src
+
+   #+begin_quote
+   Too many arguments. Format string contains one specifier, but two
+   values are provided. The extra argument is ignored.
+   #+end_quote
+
+4. Code
+   #+begin_src C
+   printf("%8.4i\n", 3.141593);
+   #+end_src
+
+   #+begin_quote
+   Type mismatch and misunderstanding of precision: For integers,
+   "precision" means minimum number of digits (leading zeros).
+   #+end_quote
+
+5. Code
+   #+begin_src C
+   printf("%g %g\n", 200);
+   #+end_src
+
+   #+begin_quote
+   Too few arguments. Format string contains two specifiers, but only
+   one value is supplied. Undefined behavior. 
+   #+end_quote
+
+** Lecture + codealong + practice: Getting input from ~stdin~ with ~scanf~
+
+
+
