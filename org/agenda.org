@@ -7,7 +7,7 @@ xs#+author: Marcus Birkenkrahe
 #+property: header-args:python :session *Python* :python python3 :results output :exports both
 #+property: header-args:R      :session *R* :results graphics output file :exports both
 #+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
-* Week 1: Entry survey + test / Overview
+* DONE Week 1: Entry survey + test / Overview
 #+attr_html: :width 300px:
 #+caption: Patriotic poster for 2026
 [[../img/cover.png]]
@@ -185,7 +185,7 @@ xs#+author: Marcus Birkenkrahe
    generate summaries, flashcards, questions, and explanations.
    #+end_quote
 
-* Week 2 ("MLK week"): The Way of the Program
+* DONE Week 2 ("MLK week"): The Way of the Program
 #+attr_html: :width 400px :float nil:
 #+caption: Plato's Cave
 [[../img/cave.png]]
@@ -414,7 +414,7 @@ transcript - with a little bit of back and forth to sharpen them.]
 - When we're done, upload the URL to Canvas: =In-class practice 2:
   Getting started with OneCompiler=.
 
-* Week 3 ("Winter week"): Extra practice / Variables and Types
+* DONE Week 3 ("Winter week"): Extra practice / Variables and Types
 #+attr_html: :width 400px :float nil:
 #+caption: Bryan Lake, January 28, 2026
 [[../img/summary_practice_1_2.png]]
@@ -754,7 +754,7 @@ sheet in if you want your points to be counted as bonus (@ midterms).
 ** Quiz - Instructions
 #+attr_html: :width 400px :float nil:
 [[../img/quiz.png]]
-* Week 4: Compiling in Linux / Printing with ~printf~
+* DONE Week 4: Compiling in Linux / Printing with ~printf~
 
 - [X] *Review*: Popquiz
 - [X] *Review:* "Hello world" commenting assignment.
@@ -964,7 +964,7 @@ Review of the last session:
    :  3.145900
    : 3.1459
 
-* Week 5: Variable manipulation / Constants
+* DONE Week 5: Variable manipulation / Constants
 
 - [X] *Lecture* + *Codealong* + *Practice*: Variables and types.
 - [X] *Review*: Variables and types
@@ -1260,7 +1260,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
      statements must be inside a function, typically =main()=.
    #+end_quote
 
-* Week 6: Naming & ~printf~ (again!)
+* DONE Week 6: Naming & ~printf~ (again!)
 
 - [X] *Lecture + Codealong + Practice*: Constants
 - [X] *Bonus assignment*: [[https://lyon.instructure.com/courses/4410/assignments/58495][Create your own coding notebook in Colab!]]
@@ -1612,14 +1612,13 @@ code. After 2 minutes, I will reveal the partial solution.
 
 - Naming rules and nameing identifiers.
 
-
-* Week 7:
+* Week 7: 
 
 - [ ] Review: Height in light-years (5 min)
 - [ ] Finish overview of ~printf~ (10 min)
 - [ ] Practice ~printf~ (30 min)
 
-** Review: Height in light-years  
+** Review: Height in light-years
 
 - Some people got grossly different values from the sample output that
   was given (-1p).
@@ -1642,8 +1641,12 @@ code. After 2 minutes, I will reveal the partial solution.
     printf("But height 2 is\t= %.2f m\n", 1.80);
   #+end_src
 
+  #+RESULTS:
+  : Height 1 is	= 1.80 m
+  : But height 2 is	= 1.80 m
+
 - You should not alter the names and heights for the submission
   (otherwise you should play around with the code as you wish).
 
 - If you did not submit this program, you can submit it within a week
-  and get 50% of the available points provided all is well.
+  and get max. 50% of the available points provided all is well.
