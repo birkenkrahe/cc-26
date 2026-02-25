@@ -16,6 +16,21 @@
 
 - Practice workbooks, input files and PDF solution files in GitHub
 
+* The secret of the three doors
+#+attr_html: :width 400px :float nil:
+[[../img/doors.jpg]]
+
+There are three doors that lead in and out of your computer.
+
+These are the only doors that data can get through:
+
+1) ~stdin~ or "Standard input" - for example from the keyboard
+2) ~stdout~ or "Standard output" - for example the screen
+3) ~stderr~ or "Standard error" - all errors and warnings
+
+If you want to read from, or write to files instead the standard
+input/output devices, you need to build and install new doors.
+
 * scanf
 
 - A ~scanf~ *format string* may contain ordinary characters and conversion
@@ -28,6 +43,8 @@
 
 * First example
 
+- Open a OneCompiler.com file and code along.
+
 - Example input:
   #+begin_example
   1  -20  .3   -4.0e3
@@ -35,12 +52,13 @@
 
 - Emacs: Create input file
   #+begin_src bash
-    echo "1  -20 .3 -4.0e+3" > input  # store string in file`input`
+    echo "1  -20 .3 -4.0e+3" > input  # store string in file `input`
     cat input  # view the file `input`
   #+end_src
 
   #+RESULTS:
   : 1  -20 .3 -4.0e+3
+
 
 - Example program to read this input:
   #+name: pgm:tscanf
@@ -56,14 +74,14 @@
   #+RESULTS: pgm:tscanf
   : |    1|  -20|  0.3|  -4.0e+03|
 
-* Main traps
+* Main traps when using ~scanf~
 
 - The compiler will not check that specs and variable input match up.
 
 - The ~&~ pointer symbol must not miss in front of the input variable.
 
 - ~scanf~ works in mysterious ways (we'll see why in a moment)
-
+  
 * How scanf works
 
 - ~scanf~ is a pattern-matching function: it tries to match input groups
@@ -91,7 +109,7 @@
 - ~scanf~ sees a character stream (~¤~ = new-line, ~s~ = skip'd, ~r~ = read):
 
   #+begin_example
-  ••1¤-20•••.3¤•••-4.0e3¤
+  ••1¤-20•••.3¤•••-4.0e3¤   // format string: "%d%d%f%e"
   ssrsrrrsssrrssssrrrrrr
   #+end_example
 
@@ -111,7 +129,7 @@
 * Walk through example
 
 This example has the same spec as our earlier example:
-~"%d%d%f%f",&i,&j&x&y~. This is what the computer "sees":
+~"%d%d%f%f",&i,&j,&x,&y~. This is what the computer "sees":
 #+begin_example
   1-20.3-4.0e3¤
 #+end_example
@@ -144,7 +162,7 @@ This example has the same spec as our earlier example:
   #+RESULTS:
   : 1.0 3.56 100 5 0.1
 
-- To create the input file on the shell[fn:1]:
+- To create the input file on the shell:
   #+begin_src bash
     echo "1. 3.56 100 5 .1" > input2
     cat ./input2
@@ -161,7 +179,14 @@ This example has the same spec as our earlier example:
 
 - If the input is ~•5•/•96~ , ~scanf~ fails, because the ~/~ in the format
   string doesn’t match the space in the input: an ~/~ is expected
-  immediately[fn:2].
+  immediately.
+  #+begin_quote
+  Details: After reading the first integer, =scanf= expects to find a ~/~
+  character immediately. It encounters a whitespace character instead,
+  which is not skipped because the whitespace is not leading (from
+  scanf's perspective at this point; it's looking for a specific
+  non-whitespace character, ~"/"~, and aborts.
+  #+end_quote
 
 - To allow spaces after the first number, use ~"%d•/%d"~ instead.
 
@@ -190,10 +215,39 @@ This example has the same spec as our earlier example:
    - To ~scanf~, the new-line is /white-space/. It will advance to the
      next white-space character and not finding one will hang forever
 
+* The golden rule
+
+- To avoid trouble with ~scanf~, simply avoid any ordinary characters in
+  the format string if you can.
+
+- If you need ordinary characters, make sure that the format string
+  matches the input structure exactly.
+
+- Example: I want to enter a phone number with three dashes:
+
+  Input:
+  #+begin_src bash :results output :exports both
+    echo "800-123-5678" > input
+    cat input
+  #+end_src
+
+  #+RESULTS:
+  : 800-123-5678
+
+  To scan it in this form, I need to copy the structure "X-Y-Z":
+  #+begin_src C :cmdline < input :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+    int i,j,k;
+    scanf("%i-%i-%i", &i, &j, &k);
+    printf("Phone number: (%i) %i-%i", i, j, k);
+  #+end_src
+
+  #+RESULTS:
+  : Phone number: (800) 123-5678
+
 * PRACTICE Reading input with =scanf=
 
 - You can open the exercises here on GitHub whenever you're lost.
-  [[https://tinyurl.com/8-scanf-practice][tinyurl.com/8-scanf-practice]]
+  [[https://tinyurl.com/scanf-practice-26][tinyurl.com/scanf-practice-26]]
 
 - We'll do these in class together and you will upload your results to
   Canvas (~"In-class practice 8: input with scanf"~).
@@ -210,19 +264,5 @@ This example has the same spec as our earlier example:
   + Open the editor and download a file
   + Compress files and upload archive files to Canvas
 
-* Footnotes
 
-[fn:1]This should really work inside Emacs, too - in a ~bash~ or ~sh~ code
-block provided that you have one of these programs installed (e.g. via
-Cygwin or MSYS2). But Windows puts a weird symbol at the end of the
-filename so that it cannot be read. The ~cat~ command works with ~input*~
-but the ~:cmdline < input~ command in the Org-mode code block header
-does not, alas.
 
-[fn:2]After reading the first integer, =scanf= expects to find a ~/~
-character immediately. It encounters a whitespace character instead,
-which is not skipped because the whitespace is not leading (from
-scanf's perspective at this point; it's looking for a specific
-non-whitespace character, ~"/"~, and aborts.
-
-[fn:3]The correct format specifier is: ="|%d|%d|%.3f|%.0f|\n"=.

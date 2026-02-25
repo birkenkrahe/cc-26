@@ -14,12 +14,16 @@
 - For Google Cloud Shell, you need to be logged into your Google
   account & you have 50 hours of free usage per week.
 
+- [[https://lyon.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7bbd3842-92a3-4a8d-ba4a-b28401094232][Check out this video to learn how to operate Google Cloud Shell.]]
+
+- Submission: ZIP file of the four scan files created (extra credit).
+
 - Time: approx. 30-45 min.
 
 * Reading input with =scanf=
 
 - You can open the exercises here on GitHub whenever you're lost.
-  [[https://tinyurl.com/8-scanf-practice][tinyurl.com/8-scanf-practice]]
+  [[https://tinyurl.com/scanf-practice-26][tinyurl.com/scanf-practice-26]]
 
 - We'll do these in class together and you will upload your results to
   Canvas (~"In-class practice 8: input with scanf"~).
