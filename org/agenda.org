@@ -1,5 +1,5 @@
 #+title: Agenda Notebook
-xs#+author: Marcus Birkenkrahe
+#+author: Marcus Birkenkrahe
 #+subtitle: CSC 100 [Spring 2026]
 #+SEQ_TODO: TODO NEXT IN-PROGRESS PRACTICE | DONE CANCELLED
 #+startup: overview hideblocks indent entitiespretty
@@ -1612,14 +1612,23 @@ code. After 2 minutes, I will reveal the partial solution.
 
 - Naming rules and nameing identifiers.
 
-* Week 7: ~printf~ practice
+* Week 7: ~printf~ practice & ~scanf~
+#+attr_html: :width 400px :float nil:
+[[../img/doors.jpg]]
 
-- [ ] Review: Height in light-years (5 min)
-- [ ] Finish overview of ~printf~ (10 min)
-- [ ] Practice ~printf~ (30 min)
-- [ ] Review: What's wrong with this ~printf~ statement?
-- [ ] Lecture + code along: ~scanf~
-- [ ] *No class next Monday! Watch lecture recording & practice live*
+- [X] Review: Height in light-years (5 min)
+- [X] Finish overview of ~printf~ (10 min)
+- [X] Practice ~printf~ (30 min)
+- [X] *My bad*: "Five Easy Pieces" is a bonus assignment now.
+- [X] *No class next Monday! Watch lecture recording & practice live*
+- [X] Review: What's wrong with this ~printf~ statement?
+- [ ] *Three new bonus programs:*
+  1. "Skill building: Constants" (deadline March 6)
+  2. "Skill building: Keyboard input" (deadline March 6)
+  3. "Bonus: Statistical formula" (deadline May 8)
+- [ ] *New quiz* (~printf~ and ~scanf~) deadline March 6 (midterm relevant)
+- [ ] *Video lecture* 30 minutes with *short quiz*: must complete March 2!!!
+- [ ] Lecture + code along: ~scanf~ to get input from ~stdin~
 
 ** DONE Review: Height in light-years
 
@@ -1654,7 +1663,7 @@ code. After 2 minutes, I will reveal the partial solution.
 - If you did not submit this program, you can submit it within a week
   and get max. 50% of the available points provided all is well.
 
-** NEXT Review: What is wrong with these ~printf~ statements?
+** DONE Review: What is wrong with these ~printf~ statements?
 
 For each fragment:
 - State what is wrong.
@@ -1666,6 +1675,9 @@ For each fragment:
    printf("%i\n", 3.14);
    #+end_src
 
+   #+RESULTS:
+   : 295865656
+
    #+begin_quote
    Type mismatch: =%i= expects an integer (~int~). Narrowing conversion
    (tries to fit large number in tiny space). Undefined behavior.
@@ -1675,6 +1687,9 @@ For each fragment:
    #+begin_src C
    printf("%20.5f\n", 42);
    #+end_src
+
+   #+RESULTS:
+   : 0.00000
 
    #+begin_quote
    Type mismatch: =%f= expects a floating point (~double~) but gets ~int~.
@@ -1686,6 +1701,9 @@ For each fragment:
    printf("%e\n", 1000.100, 1.0);
    #+end_src
 
+   #+RESULTS:
+   : 1.000100e+03
+
    #+begin_quote
    Too many arguments. Format string contains one specifier, but two
    values are provided. The extra argument is ignored.
@@ -1695,6 +1713,9 @@ For each fragment:
    #+begin_src C
    printf("%8.4i\n", 3.141593);
    #+end_src
+
+   #+RESULTS:
+   : -12650248
 
    #+begin_quote
    Type mismatch and misunderstanding of precision: For integers,
@@ -1706,12 +1727,51 @@ For each fragment:
    printf("%g %g\n", 200);
    #+end_src
 
+   #+RESULTS:
+   : 0 0
+
    #+begin_quote
    Too few arguments. Format string contains two specifiers, but only
    one value is supplied. Undefined behavior. 
    #+end_quote
 
-** Lecture + codealong + practice: Getting input from ~stdin~ with ~scanf~
+** DONE Lecture + codealong + practice: Getting input from ~stdin~ with ~scanf~
 
+What is wrong in the following fragment? (Questions for experts.)
 
+#+begin_src C :cmdline < input :main yes :includes <stdio.h> :results output :exports both 
+   // declare variables
+   double length;
+   double width;
+   
+   // get input from stdin
+   scanf("%f", &length);
+   scanf("%lf", &width);
+
+  // compute and compute area
+   printf("Area: %.2f", length * width);
+#+end_src
+
+#+RESULTS:
+: Area: -0.00
+
+Input file:
+#+begin_src bash :results output :exports both
+  echo "3.5 2.0" > input
+  cat input
+#+end_src
+
+#+RESULTS:
+: 3.5 2.0
+
+For the answer, check [[https://en.cppreference.com/w/c/io/fscanf][cppreference.com]] and type ~scanf~ in the search
+field at the top.
+
+** ~scanf~ lab (code along - upload when complete)
+
+- We're going to work through the exercises together.
+- We're going to work in Google Cloud Shell on the command-line.
+- You're going to produce four C files, which you download and
+  compress as a ZIP file.
+- You'll upload the ZIP file to Canvas.
 
