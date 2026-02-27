@@ -8,15 +8,15 @@
 
 - You will work through and complete the exercises using a shell.
 
-- You can use Google Cloud Shell or any other Linux shell
-  (e.g. Windows OS with WSL, or a Linux VM).
+- We use Google Cloud Shell (https://ide.cloud.google.com).
 
 - For Google Cloud Shell, you need to be logged into your Google
   account & you have 50 hours of free usage per week.
 
 - [[https://lyon.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7bbd3842-92a3-4a8d-ba4a-b28401094232][Check out this video to learn how to operate Google Cloud Shell.]]
 
-- Submission: ZIP file of the four scan files created (extra credit).
+- Submission: ZIP file of the four scan and input files created (extra
+  credit): look for ="Bonus: in-class practice: scanf"= in Canvas.
 
 - Time: approx. 30-45 min.
 
@@ -28,8 +28,8 @@
 - We'll do these in class together and you will upload your results to
   Canvas (~"In-class practice 8: input with scanf"~).
 
-- You will learn:
-  + How to open a cloud command-line terminal (aka shell)
+- You will use the Linux operating system to learn:
+  + Open a cloud command-line terminal (aka shell)
   + Create a new file with GNU =nano=
   + Save and rename files
   + Change and make directories
@@ -38,6 +38,8 @@
   + Create an input file with =echo=
   + Run an executable using a relative path
   + Open the editor and download a file
+
+- When done, you will use your own PC to:    
   + Compress files and upload archive files to Canvas
 
 * Scan integer and floating-point input
@@ -59,62 +61,68 @@ floating-point values from the keyboard and prints them.
 
 1) Open a terminal.
 
-2) Create a new file =scan1.c=.
+2) Create a new file =scan1.c= with the command =nano scan1.c=.
 
-3) Write the source code for a C program with input and output. Save
-   at any point with =CTRL + s=.
+3) Write the source code for the following C program with input and
+   output. Save at any point with =CTRL + s=.
 
-4) Define two /integer/ variables ~k~, ~l~, and two /floating-point/ variables
+4) Write a minimal program header:
+   #+begin_example C++
+   // scan1.c: Scan and print integer and floating-point variables.
+   // Author: [your name] (pledged)
+   #+end_example
+
+5) Define two /integer/ variables ~k~, ~l~, and two /floating-point/ variables
    ~u~ and ~v~
 
-5) Ask the user for input.
+6) Ask the user for input.
 
-6) Complete the ~scanf~ /format string/ and enter the variables list to
+7) Complete the ~scanf~ /format string/ and enter the variables list to
    scan these variables
 
-7) Save your file and compile it with =gcc= to check for syntax
+8) Save your file and compile it with =gcc= to check for syntax
    correctness. The standard executable is called =a.out=.
 
-8) Run the executable using the relative path =./a.out= and enter the
+9) Run the executable using the relative path =./a.out= and enter the
    input by hand: ~100 -1000 .456 -9.34e2~
 
-9) Alternatively, you can put the input into a file and redirect it to
-   the executable. First create the input file:
-   #+begin_src bash
-     echo "100 -1000 .456 -9.34e2" > input1
-     cat input1
-   #+end_src
+10) Alternatively, you can put the input into a file and redirect it to
+    the executable. First create the input file:
+    #+begin_src bash
+      echo "100 -1000 .456 -9.34e2" > input1
+      cat input1
+    #+end_src
 
-   #+RESULTS:
-   : 100 -1000 .456 -9.34e2
+    #+RESULTS:
+    : 100 -1000 .456 -9.34e2
 
-10) Next, run the file using the =input1= file:
+11) Next, run the file using the =input1= file:
     #+begin_example sh
     ./a.out < input1
     #+end_example
 
-11) Fix the =scanf= format until you get the desired output[fn:3]:
+12) Fix the =scanf= format until you get the desired output[fn:3]:
     #+name: pgm:scanf_out
     #+begin_example
      |  100|-1000|0.456| -934|
     #+end_example
 
-12) Compile your file with =gcc= once more, and name the executable
+13) Compile your file with =gcc= once more, and name the executable
     (object file) =scan1= with the command:
     #+begin_example sh
     gcc scan1.c -o scan1
     #+end_example
 
-13) Run the file using the relative path to the file and the input
+14) Run the file using the relative path to the file and the input
     data:
     #+begin_example
     ./scan1 < input1
     #+end_example
 
-14) If everything works, download the file to your PC (~Open editor~,
+15) If everything works, download the file to your PC (~Open editor~,
     find the file in the sidebar, right-click to ~Download~).
 
-15) Revisit all that you learnt before tackling the next one!
+16) Revisit all that you learnt before tackling the next one!
     #+begin_quote
 
 |    | Concept/Action                       | Command/Code Example               |

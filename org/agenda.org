@@ -1771,7 +1771,10 @@ field at the top.
 
 - We're going to work through the exercises together.
 - We're going to work in Google Cloud Shell on the command-line.
-- You're going to produce four C files, which you download and
-  compress as a ZIP file.
-- You'll upload the ZIP file to Canvas.
+- You're going to produce four C files and four input files, which you
+  download and compress as a ZIP file.
+- You can upload the ZIP file to Canvas as a bonus (by March 6).
 
+This is what you should see in your ZIP file:
+#+attr_html: :width 600px :float nil:
+[[../img/scanf_practice_output.png]]
