@@ -514,7 +514,8 @@ absolutely everyone get a picture of what it means.
   tables. Watch "[[https://youtu.be/iPbLzl2kMHA?si=YkyZsUhDWTNiayuT][Proving Logical Equivalences without Truth Tables]]"
   (2012) as an example.
 
-* Order of operator operations (codealong)
+
+* NEXT Order of operator operations (codealong)
 
 - In compound operations (multiple operators), you need to know the
   order of operator precedence.

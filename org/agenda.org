@@ -1,4 +1,4 @@
-#+title: Agenda Notebook
+g#+title: Agenda Notebook
 #+author: Marcus Birkenkrahe
 #+subtitle: CSC 100 [Spring 2026]
 #+SEQ_TODO: TODO NEXT IN-PROGRESS PRACTICE | DONE CANCELLED
@@ -920,7 +920,7 @@ Review of the last session:
    #+end_src
 
    #+RESULTS:
-   : 3.1459 
+   : 3.1459
 
    How can you fix it?
 
@@ -932,7 +932,7 @@ Review of the last session:
    #+end_src
 
    #+RESULTS:
-   : Birkenkrahe 
+   : Birkenkrahe
 
    How can you fix it?
 
@@ -943,7 +943,7 @@ Review of the last session:
    #+end_src
 
    #+RESULTS:
-   : "A" 
+   : "A"
 
 4) Preview: why we don't start with C++ (see =onecompiler.com/cpp=)
 
@@ -953,9 +953,9 @@ Review of the last session:
      int main()
      {
        printf("%f\n", 3.1459); // C-style printing
-       
+
        std::cout << 3.1459 << std::endl;
-         
+
        return 0;
      }
    #+end_src
@@ -968,7 +968,7 @@ Review of the last session:
 
 - [X] *Lecture* + *Codealong* + *Practice*: Variables and types.
 - [X] *Review*: Variables and types
-- [X] *New bonus assignment:* Algebra with C 
+- [X] *New bonus assignment:* Algebra with C
 - [X] *Assignment*: One assignment due Friday!
 - [X] *Review*: Constants Part 1
 
@@ -1113,7 +1113,7 @@ understand every little bit of it.
    #+RESULTS:
    : The height is 0
 
-      #+begin_quote
+   #+begin_quote
    The variable =height= is uninitialized, so its value is undefined
    (even though computer says it's =0=, *this is not guaranteed*).
    #+end_quote
@@ -1275,7 +1275,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
 - Some solutions looked *as if AI had helped you*. To account for that,
   you must add ~ChatGPT~ (or whatever your poison is) as author to the
   program. If AI is the only author, that's better than nothing.
-  
+
 - The problem is that if you give the problem to the AI without
   constraints, it will not respect them. And it will automatically
   assume that you want variables (which were not required).
@@ -1303,7 +1303,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
   grade it after your resubmission, let me know!
 
 - Sample solution:
-  #+begin_src C :tangle main.c :main no :includes :results output :exports both 
+  #+begin_src C :tangle main.c :main no :includes :results output :exports both
     //******************************************************************
     // main.c: print different types of values with the
     // correct format specifiers.
@@ -1338,7 +1338,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
   : The integer values is: 10
   : The floating-point value is: 3.14
   : The character values is: A
-  : 
+  :
   : The values are: 10, 3.14, and A.
 
 ** Review: Programming assignment 3 Fahrenheit to Celsius conversion
@@ -1353,7 +1353,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
   floating-point variables: therefore you should only use this type.
 
 - Sample solution:
-  #+begin_src C :tangle f_to_c.c :main no :includes :results output 
+  #+begin_src C :tangle f_to_c.c :main no :includes :results output
     //******************************************************************
     // f_to_c.c: convert given Fahrenheit temperature to Celsius.
     // INPUT: none
@@ -1381,8 +1381,8 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
 
       // print results
       printf("Temperature in Fahrenheit: %.2f\n", fahrenheit);
-      printf("Temperature in Celsius: %.2f\n", celsius);      
-      
+      printf("Temperature in Celsius: %.2f\n", celsius);
+
       return 0;
     }
   #+end_src
@@ -1396,7 +1396,7 @@ them (see \pi), and all accounting and tax calculations (see tax rate).
 - You can *upload missing practice assignments within one week* after
   the practice in class. That's enough time to check the recording. If
   you have trouble orienting yourself, talk to me.
-  
+
 - You can submit missing quizzes *any time for 50% of the points*. And
   you should! It will help you master the material and code better.
 
@@ -1473,18 +1473,18 @@ code. After 2 minutes, I will reveal the partial solution.
       double height_alice = 1.74f;
       double height_bob   = 1.98f;
       double height_carol = 1.67f;
-              
+
       // compute conversion factor and store it in a variable
       double meters_to_kilometers = 1.f / METERS_PER_KILOMETER;
-            
+
       // print the results using scientific notation
       printf("Alice's height: %.2f = %.2E kilometers\n",
-    	 height_alice, height_alice * meters_to_kilometers);
+         height_alice, height_alice * meters_to_kilometers);
       printf("Bob's height: %.2f = %.2E kilometers\n",
-    	 height_bob, height_bob * meters_to_kilometers);
+         height_bob, height_bob * meters_to_kilometers);
       printf("Carol's height: %.2f = %.2E kilometers\n",
-    	 height_carol, height_carol * meters_to_kilometers);
-      
+         height_carol, height_carol * meters_to_kilometers);
+
       return 0;
     }
 
@@ -1566,13 +1566,13 @@ code. After 2 minutes, I will reveal the partial solution.
    should no longer apply or needs to be redefined differently.
    #+end_quote
 
-   #+begin_src C :tangle undef.c :main yes :includes <stdio.h> :results output :exports both 
+   #+begin_src C :tangle undef.c :main yes :includes <stdio.h> :results output :exports both
      #define PI 3.14
      printf("%g\n",PI); // %g picks the format
 
      #undef PI // deletes the constant
-     printf("%g\n",PI);     
-   #+end_src   
+     printf("%g\n",PI);
+   #+end_src
 
    #+RESULTS:
 
@@ -1591,7 +1591,7 @@ code. After 2 minutes, I will reveal the partial solution.
      printf("1,000 can be written 'scientifically' as: %.0E\n", 1000.f);
      printf("100 can be written 'scientifically' as: %.0E\n", 100.f);
      printf("10 can be written 'scientifically' as: %.0E\n", 10.f);
-     printf("1 can be written 'scientifically' as: %.0E", 1.f);                    
+     printf("1 can be written 'scientifically' as: %.0E", 1.f);
    #+end_src
 
    #+RESULTS:
@@ -1612,7 +1612,7 @@ code. After 2 minutes, I will reveal the partial solution.
 
 - Naming rules and nameing identifiers.
 
-* Week 7: ~printf~ practice & ~scanf~
+* DONE Week 7: ~printf~ practice & ~scanf~
 #+attr_html: :width 400px :float nil:
 [[../img/doors.jpg]]
 
@@ -1622,15 +1622,15 @@ code. After 2 minutes, I will reveal the partial solution.
 - [X] *My bad*: "Five Easy Pieces" is a bonus assignment now.
 - [X] *No class next Monday! Watch lecture recording & practice live*
 - [X] Review: What's wrong with this ~printf~ statement?
-- [ ] *Three new bonus programs:*
+- [X] *Three new bonus programs:*
   1. "Skill building: Constants" (deadline March 6)
   2. "Skill building: Keyboard input" (deadline March 6)
   3. "Bonus: Statistical formula" (deadline May 8)
-- [ ] *New quiz* (~printf~ and ~scanf~) deadline March 6 (midterm relevant)
-- [ ] *Video lecture* 30 minutes with *short quiz*: must complete March 2!!!
-- [ ] Lecture + code along: ~scanf~ to get input from ~stdin~
+- [X] *New quiz* (~printf~ and ~scanf~) deadline March 6 (midterm relevant)
+- [X] *Video lecture* 30 minutes with *short quiz*: must complete March 2!!!
+- [X] Lecture + code along: ~scanf~ to get input from ~stdin~
 
-** DONE Review: Height in light-years
+** Review: Height in light-years
 
 - Some people got grossly different values from the sample output that
   was given (-1p).
@@ -1654,8 +1654,8 @@ code. After 2 minutes, I will reveal the partial solution.
   #+end_src
 
   #+RESULTS:
-  : Height 1 is	= 1.80 m
-  : But height 2 is	= 1.80 m
+  : Height 1 is = 1.80 m
+  : But height 2 is     = 1.80 m
 
 - You should not alter the names and heights for the submission
   (otherwise you should play around with the code as you wish).
@@ -1663,7 +1663,7 @@ code. After 2 minutes, I will reveal the partial solution.
 - If you did not submit this program, you can submit it within a week
   and get max. 50% of the available points provided all is well.
 
-** DONE Review: What is wrong with these ~printf~ statements?
+** Review: What is wrong with these ~printf~ statements?
 
 For each fragment:
 - State what is wrong.
@@ -1672,7 +1672,7 @@ For each fragment:
 -----
 1. Code
    #+begin_src C
-   printf("%i\n", 3.14);
+     printf("%i\n", 3.14);
    #+end_src
 
    #+RESULTS:
@@ -1682,10 +1682,10 @@ For each fragment:
    Type mismatch: =%i= expects an integer (~int~). Narrowing conversion
    (tries to fit large number in tiny space). Undefined behavior.
    #+end_quote
-   
+
 2. Code
    #+begin_src C
-   printf("%20.5f\n", 42);
+     printf("%20.5f\n", 42);
    #+end_src
 
    #+RESULTS:
@@ -1698,7 +1698,7 @@ For each fragment:
 
 3. Code
    #+begin_src C
-   printf("%e\n", 1000.100, 1.0);
+     printf("%e\n", 1000.100, 1.0);
    #+end_src
 
    #+RESULTS:
@@ -1711,7 +1711,7 @@ For each fragment:
 
 4. Code
    #+begin_src C
-   printf("%8.4i\n", 3.141593);
+     printf("%8.4i\n", 3.141593);
    #+end_src
 
    #+RESULTS:
@@ -1724,7 +1724,7 @@ For each fragment:
 
 5. Code
    #+begin_src C
-   printf("%g %g\n", 200);
+     printf("%g %g\n", 200);
    #+end_src
 
    #+RESULTS:
@@ -1732,24 +1732,24 @@ For each fragment:
 
    #+begin_quote
    Too few arguments. Format string contains two specifiers, but only
-   one value is supplied. Undefined behavior. 
+   one value is supplied. Undefined behavior.
    #+end_quote
 
-** DONE Lecture + codealong + practice: Getting input from ~stdin~ with ~scanf~
+** Lecture + codealong + practice: Getting input from ~stdin~ with ~scanf~
 
 What is wrong in the following fragment? (Questions for experts.)
 
-#+begin_src C :cmdline < input :main yes :includes <stdio.h> :results output :exports both 
-   // declare variables
-   double length;
-   double width;
-   
-   // get input from stdin
-   scanf("%f", &length);
-   scanf("%lf", &width);
+#+begin_src C :cmdline < input :main yes :includes <stdio.h> :results output :exports both
+  // declare variables
+  double length;
+  double width;
+
+  // get input from stdin
+  scanf("%f", &length);
+  scanf("%lf", &width);
 
   // compute and compute area
-   printf("Area: %.2f", length * width);
+  printf("Area: %.2f", length * width);
 #+end_src
 
 #+RESULTS:
@@ -1778,3 +1778,178 @@ field at the top.
 This is what you should see in your ZIP file:
 #+attr_html: :width 600px :float nil:
 [[../img/scanf_practice_output.png]]
+
+* DONE Week 8: Operators I
+
+- [X] We're half way through the term!
+- [X] Review: introduction to operators
+- [X] Lecture & practice: Exploring Boolean algebra
+- [ ] Lecture & practice: Compoun operators
+
+** Review: Introduction to operators
+
+1. Name one operator that C++ does not have?
+   #+begin_quote
+   The *exponentiation* operator: To compute x^2 use =*=: =x * x=
+   #+end_quote
+
+2. What type of operator is "===="?
+   #+begin_quote
+   - It's a binary operator: Two operands (1 == 1)
+   - It's a relational operator (compares its operands)
+   - It's an equality operator (checks for equality of its operands)
+   #+end_quote
+
+3. What can the "=>=" operator do?
+   #+begin_quote
+   That depends on the environment:
+   - On the command-line, it can redirect data: =echo "100" > input=
+   - In a program, it is a relational operator: =10 > 5=
+   - Expressions with =>= evaluate to a Boolean value: =10>5= is ~TRUE~
+   #+end_quote
+
+4. How can I test if my input value is not zero?
+   #+begin_src C :cmdline < input :main yes :includes <stdio.h> :results output :exports both
+     // use the inequality operator != to test for non-zero values
+     int input;
+     scanf("%i", &input);
+     if (input != 0) {      // tests if input is not zero
+       puts("Input is not zero!");
+      } else {g
+         puts("Input is zero!");
+      }
+   #+end_src
+
+   #+RESULTS:
+   : Input is not zero!
+
+   Create input:
+   #+begin_src bash :results output :exports both
+     echo "0" > input
+     cat input
+   #+end_src
+
+   #+RESULTS:
+   : 0
+
+   A shorter form with a "ternary" operator:
+   #+begin_src C :cmdline < input :main yes :includes <stdio.h> :results output :exports both
+     int input;
+     scanf("%i", &input);
+     (input != 0) ? puts("Input is not zero") : puts("Input is zero");
+   #+end_src
+
+   #+RESULTS:
+   : Input is zero
+
+* Week 9: Operators II
+
+- [X] Review: Boolean Algebra
+- [X] Phone number assignment: What did you need AI for?
+- [ ] Programming assignment: De Morgan's Law Demonstrator (March 20)
+- [ ] New quiz: Command-line and Operators (March 20)
+
+** DONE Review: Boolean Algebra (popquiz)
+
+*A last ditch effort to gain a few more points for midterm grades.*
+
+1. What are the three components required to define an algebra?
+#+begin_quote
+An algebra consists of:
+1) a *set* of elements,
+2) *operations* defined on the elements,
+3) *rules or axioms* that the operations
+   satisfy.
+#+end_quote
+
+2. What is the set used in Boolean algebra and what do its elements
+   represent?
+#+begin_quote
+The set is {0,1}. 1 represents TRUE and 0 represents FALSE. Boolean
+algebra operates on these two logical values.
+#+end_quote
+
+3. What are the three basic operations in Boolean algebra?
+#+begin_quote
+The three basic Boolean operations are:
+- AND (conjunction)
+- OR (disjunction)
+- NOT (negation).
+#+end_quote
+
+4. What is the result of the Boolean expression: NOT 0 ?
+#+begin_quote
+NOT 0 = 1. The NOT operation reverses the truth value: FALSE becomes
+TRUE and TRUE becomes FALSE.
+#+end_quote
+
+5. What does the rule of *commutativity* mean for the AND operation?
+#+begin_quote
+Commutativity means the order of operands does not matter.  For
+example: p AND q = q AND p. Both expressions produce the same result.
+#+end_quote
+
+6. What is the result of the Boolean expression: 0 AND 1 ?
+#+begin_quote
+0 AND 1 = 0. The AND operation is TRUE (1) only when both operands
+are 1.  If either operand is 0, the result is 0.
+#+end_quote
+
+7. What is the result of the Boolean expression: 0 OR 1 ?
+#+begin_quote
+0 OR 1 = 1. The OR operation is TRUE (1) when at least one operand
+is 1.
+#+end_quote
+
+8. What is the result of applying the NOT operation twice: NOT (NOT p) ?
+#+begin_quote
+NOT (NOT p) = p. Applying NOT twice returns the original value.
+#+end_quote
+
+9. What is the value of the Boolean expression: 1 AND 1 ?
+#+begin_quote
+1 AND 1 = 1. The AND operation produces TRUE only when both inputs are
+TRUE.
+#+end_quote
+
+10. Why is Boolean algebra important in computing?
+#+begin_quote
+Boolean algebra forms the mathematical foundation of *digital logic*.
+Logical operations such as AND, OR, and NOT correspond to *logic gates*
+used to build digital *circuits* and computers.
+#+end_quote
+
+** Review Operators (Monday)
+
+1. In C Boolean expressions, what values represent ~TRUE~ and ~FALSE~?
+   #+begin_quote
+   TRUE is represented by 1 and FALSE is represented by 0. Any
+   non-zero value is treated as TRUE.
+   #+end_quote
+
+2. If =x = 1= and =y = 0=, what is the result of the expression =x && y=?
+   #+begin_quote
+   0, because =TRUE AND FALSE= (or =1 && 0=) evaluates to ~FALSE~.
+   #+end_quote
+
+3. If =x = 1= and =y = 0=, what is the result of the expression =x || y=?
+   #+begin_quote
+   1, because =TRUE OR FALSE= (or =1 || 0=) evaluates to ~TRUE~.
+   #+end_quote
+
+4. If =x = 1=, what is the result of the expression =!x= ?
+   #+begin_quote
+   0, because =NOT TRUE= (or =!1=) evaluates to ~FALSE~.
+   #+end_quote
+
+5. What Boolean expression using the operators =AND=, =OR=, and =NOT= is
+   equivalent to =p XOR q= (also called exclusive =OR=)?
+   #+begin_quote
+   (p AND NOT q) OR (NOT p AND q).
+   #+end_quote
+
+6. What method can be used to show that p XOR q is equivalent to (p AND NOT q) OR (NOT p AND q)?
+   #+begin_quote
+   By evaluating the expression for all four combinations of p and q
+   =(0,0)=, =(0,1)=, =(1,0)=, and =(1,1)= in a *truth table* or *program*.
+   #+end_quote
