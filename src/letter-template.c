@@ -1,10 +1,3 @@
-#include <stdio.h>
-
-
-
-
-
-
 /****************************************
 // letter.c: check character input       *
 // Input: two character values           *

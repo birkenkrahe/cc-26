@@ -1,10 +1,3 @@
-#include <stdio.h>
-
-
-
-
-
-
 /***********************************************/
 // logical.c: Write and predict logical results *
 // Input: None. Output: integer values          *
