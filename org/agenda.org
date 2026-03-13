@@ -1,4 +1,4 @@
-g#+title: Agenda Notebook
+#+title: Agenda Notebook
 #+author: Marcus Birkenkrahe
 #+subtitle: CSC 100 [Spring 2026]
 #+SEQ_TODO: TODO NEXT IN-PROGRESS PRACTICE | DONE CANCELLED
@@ -1919,7 +1919,7 @@ Logical operations such as AND, OR, and NOT correspond to *logic gates*
 used to build digital *circuits* and computers.
 #+end_quote
 
-** Review Operators (Monday)
+** DONE Review Operators (Monday)
 
 1. In C Boolean expressions, what values represent ~TRUE~ and ~FALSE~?
    #+begin_quote
@@ -1953,3 +1953,94 @@ used to build digital *circuits* and computers.
    By evaluating the expression for all four combinations of p and q
    =(0,0)=, =(0,1)=, =(1,0)=, and =(1,1)= in a *truth table* or *program*.
    #+end_quote
+
+** Review: Arithmetic operators & Linux shell commands (Wednesday)
+
+1. What is the difference between the prefix and postfix increment operators in C?
+   #+begin_quote
+   - Prefix (~++i~) increments the variable first and then returns the new value.
+   - Postfix (~i++~) returns the current value first and then increments
+     the variable.
+   #+end_quote
+
+2. What will the following program print?
+   #+begin_src C
+   int j = 1;
+   printf("%d", j++);
+   printf(" %d", j);
+   #+end_src
+   #+begin_quote
+   Output: =1= =2=
+   The postfix operator prints the value first and then increments it.
+   #+end_quote
+
+3. What are the values of a, b, and c after this code runs?
+   #+begin_src C
+   int a = 5, b = 10, c;
+   c = ++a + b--;
+   #+end_src
+   #+begin_quote
+   Output: =a = 6= | =b = 9= | =c = 16=
+   
+   Prefix increments a first, postfix decrements b after its value is used.
+   #+end_quote
+
+4. What is the value of i after running this code?
+   #+begin_src C
+   int i = 10, j = 5;
+   i %= j;
+   #+end_src
+   #+begin_quote
+   Output: =0=
+   
+   Because 10 % 5 = 0, and the result is assigned back to i.
+   #+end_quote
+
+5. What is the result of the Boolean expression below?
+   #+begin_src C
+   3 > 5 || 5 == 5
+   #+end_src
+   #+begin_quote
+   Output: =TRUE (1)=
+   
+   Logical OR is TRUE if at least one side of the expression is TRUE.
+   #+end_quote
+
+6. What does the command ~pwd~ print in a Linux shell?
+   #+begin_quote
+   The current working directory (the full path of the directory you
+   are in).
+   #+end_quote
+
+7. What does the command below do?
+   #+begin_src bash
+   ls
+   #+end_src
+   #+begin_quote
+   Lists the files and directories in the current directory.
+   #+end_quote
+
+8. What happens when you run this command?
+   #+begin_src bash
+   cd ..
+   #+end_src
+   #+begin_quote
+   Moves to the parent directory (one level up in the directory
+   hierarchy).
+   #+end_quote
+
+9. What does the command ~make~ typically do in a programming project?
+   #+begin_quote
+   It reads instructions from a Makefile and compiles the program
+   automatically according to those rules.
+   #+end_quote
+
+10. What will the following command print?
+    #+begin_src bash
+    echo Hello
+    #+end_src
+    #+begin_quote
+    Output: =Hello=
+    
+    The echo command prints its arguments to the terminal.
+    #+end_quote   

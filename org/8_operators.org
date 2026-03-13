@@ -328,7 +328,6 @@ absolutely everyone get a picture of what it means.
   #+caption: Euler diagram: p AND (NOT p) = Universe
   [[../img/universe.png]]
 
-
 * PRACTICE Boolean logic test
 
 - Go to Google Cloud shell (ide.cloud.google.com) and run the
@@ -514,8 +513,7 @@ absolutely everyone get a picture of what it means.
   tables. Watch "[[https://youtu.be/iPbLzl2kMHA?si=YkyZsUhDWTNiayuT][Proving Logical Equivalences without Truth Tables]]"
   (2012) as an example.
 
-
-* NEXT Order of operator operations (codealong)
+* Order of operator operations (codealong)
 
 - In compound operations (multiple operators), you need to know the
   order of operator precedence.
@@ -806,12 +804,13 @@ absolutely everyone get a picture of what it means.
   #+RESULTS: ||_op_false
   : The expression is FALSE.
 
+
 * PRACTICE Logical operators
 
 - Go to Google Cloud shell (ide.cloud.google.com) and run the
   following command on the shell (~-O~ is a big-Oh, not a zero):
   #+begin_example
-  wget -O logical.c tinyurl.com/logical-output
+  wget -O logical.c tinyurl.com/logical-template
   #+end_example
 
 - Open the file ~logical.c~ in the ~nano~ editor.
@@ -920,7 +919,7 @@ absolutely everyone get a picture of what it means.
 : 1 = 1
 : 1 = 1
 
-* Proving Boolean equivalence with code
+* PRACTICE Proving Boolean equivalence with code
 
 - Problem: show that ~p XOR q~ and ~(p AND NOT q) OR (NOT p AND q)~ are
   equivalent.
@@ -948,23 +947,23 @@ absolutely everyone get a picture of what it means.
   End
   #+end_example
 
-- Create the input file ~demorgan~ (or generate it manually on Windoze):
-  #+begin_src bash
-    echo "0 0" >  demorgan
-    echo "0 1" >> demorgan
-    echo "1 0" >> demorgan
-    echo "1 1" >> demorgan
-    cat demorgan
+- Create the input file =truth_table= (or generate it manually on Windoze):
+  #+begin_src bash :results output
+    echo "0 0" >  truth_table
+    echo "0 1" >> truth_table
+    echo "1 0" >> truth_table
+    echo "1 1" >> truth_table
+    cat truth_table
   #+end_src
 
   #+RESULTS:
-  | 0 | 0 |
-  | 0 | 1 |
-  | 1 | 0 |
-  | 1 | 1 |
+  : 0 0
+  : 0 1
+  : 1 0
+  : 1 1
 
 - C code (without loops or arrays)
-  #+begin_src C :cmdline < demorgan :main yes :includes <stdio.h> :results output :exports both :noweb yes
+  #+begin_src C :cmdline < truth_table :main yes :includes <stdio.h> :results output :exports both :noweb yes
     // Declare Boolean variables
     int p0,p1,p2,p3,q0,q1,q2,q3;
 
@@ -993,10 +992,10 @@ absolutely everyone get a picture of what it means.
   10
   11
   p XOR q: 0 1 1 0
-  p = 0, q = 0,(p AND !q) OR (!p AND q) = 0
-  p = 0, q = 1,(p AND !q) OR (!p AND q) = 1
-  p = 1, q = 0,(p AND !q) OR (!p AND q) = 1
-  p = 1, q = 1,(p AND !q) OR (!p AND q) = 0
+  p = 0, q = 0,(p AND !q) OR (!p AND q) = 0 
+  p = 0, q = 1,(p AND !q) OR (!p AND q) = 1 
+  p = 1, q = 0,(p AND !q) OR (!p AND q) = 1 
+  p = 1, q = 1,(p AND !q) OR (!p AND q) = 0 
 
   .........Q.E.D.
   #+end_example
@@ -1073,7 +1072,7 @@ absolutely everyone get a picture of what it means.
 
 1) Get the file ~letter.c~ from the command-line and open it in ~nano~:
    #+begin_src bash :results output
-     wget -O letter.c tinyurl.com/letter-template
+     wget -O letter.c tinyurl.com/letter-check
    #+end_src
 
 2) ~letter.c~ accepts a character =letter= as input, checks whether the
