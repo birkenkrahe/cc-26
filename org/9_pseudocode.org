@@ -171,17 +171,10 @@ programming language like C. For example:
                   Drink a health potion
         else
           Go back to fighting
-        endif
-        return 0;
+            endif
+            return 0;
     }
   #+end_src
-
-  #+RESULTS:
-
-  Answer:
-  #+begin_quote
-  - =health= is undeclared - compiler aborts there.
-  #+end_quote
 
 * Making the Pseudocode Better
 
@@ -192,19 +185,15 @@ Let’s fix the pseudocode to be a little closer to real code by using
 // "When a character’s health is 100 or less, drink a health potion.
 // If the health is more than 100, go back to fighting."
 
-if health < 100
+if health < 100  // Logical expression that results in a Boolean value
     Drink a health potion
 else
     Go back to fighting
 endif
 #+end_example
 
-- Why is this better?
-  #+begin_quote
-  Now it’s clearer: we’re checking if =health= is less than =100= using
-  the ~<~ (relational operator), which computers identify as a logical
-  expression, which can be evaluated as a *Boolean* value (TRUE/FALSE).
-  #+end_quote
+- Now it’s clearer: we’re checking if ~health~ is less than 100 using
+  the ~<~ symbol, which computers understand.
 
 * Trying a Different Way
 
@@ -232,14 +221,14 @@ endif
 
 When you’re turning a problem into pseudocode (or real code), try to:
 
-- Use words and ideas that *match* the problem description as closely as
+- Use words and ideas that match the problem description as closely as
   possible.
 
-- If you’re not sure what the problem means, *ask* someone to explain it
+- If you’re not sure what the problem means, ask someone to explain it
   better (remember that 'understanding' always comes first).
 
-- Unfortunately, trying to *understand* something can (and perhaps
-  should make your brain hurt and may make you feel dizzy for a bit).
+- Unfortunately, trying to understand something can (and perhaps
+  should make your brain hurt and make you feel bad for a bit).
 
 * Questions to Think About
 
@@ -256,7 +245,15 @@ Using the pseudocode examples above, let’s think about these ideas:
 4. *Anything Else*: Are there other details in the problem we might need
    to think about?
 
-* NEXT Practice: Turn a Problem into Pseudocode and Code
+   Would anything have changed, if the problem had sounded like this:
+
+   #+begin_quote
+   "When a character’s health is 100 or less, drink a health potion
+   and feel better instantly. If the health is more than 100, go back
+   to fighting, and be fierce."
+   #+end_quote
+
+* PRACTICE Turn a Problem into Pseudocode and Code
 
 ** Step 1: Understand the Problem
 
@@ -283,7 +280,16 @@ Here’s a problem about a game:
   // If the player chooses to deposit, add gold to the account
   // Else if the player chooses to withdraw, subtract gold from the account
   #+end_example
-  
+
+  #+begin_example C
+  // IF player deposits THEN
+  //     add gold to the account
+  // ELSE IF player withdraws gold
+  //     subtract gold from the account
+  #+end_example
+
+... or a million other ways to do this.
+
 ** Step 3: Write Code
 
 - The pseudocode contains a decision and an action. This pseudocode is
@@ -305,7 +311,7 @@ Here’s a problem about a game:
   1. Try `choice = 1` and `amount = 50` to deposit.
   2. Try `choice = 2` and `amount = 30` to withdraw.
 
-- *Questions:* What kind of *error handling* might be necessary?
+- What kind of *error handling* might be necessary?
   #+begin_quote
   1. Checking for negative amounts (~amount < 0~).
   2. Ensuring enough =gold= for withdrawal (~gold >= amount~).
@@ -315,7 +321,7 @@ Here’s a problem about a game:
   6. Dealing with input overflow (~amount > 100000000~).
   #+end_quote
 
-- Starter code: 
+- Starter code:
   #+begin_src C
     // pseudogold.c: "Allow a player to deposit or withdraw gold from a
     // game bank account."
@@ -355,7 +361,9 @@ Here’s a problem about a game:
 
       return 0;
     }
-#+end_src
+  #+end_src
+
+  #+end_src
 
 ** Solution
 
@@ -403,7 +411,7 @@ Code: [[https://onecompiler.com/c/43bc89w2e][In OneCompiler]]
   }
 #+end_src
 
-#+RESULTS:
+#+RESULTS: pseudogold
 : Your gold: 100
 : Choose an action (1 to deposit, 2 to withdraw):
 : Your choice: 2
@@ -411,10 +419,13 @@ Code: [[https://onecompiler.com/c/43bc89w2e][In OneCompiler]]
 : Your amount: 100
 : Withdrew 100 gold. New balance: 0
 
-* Practice: Modify solution to handle errors
+* PRACTICE Modify solution to handle errors
 
 - First copy your entire program into a new program (so as not to spoil your
   nice solution).
+
+- The former program is available for you to work with at
+  [[https://tinyurl.com/pseudogold-solution][tinyurl.com/pseudogold-solution]].
 
 - Now modify your copy to check if there is enough ~gold~ for a
   withdrawal (~choice == 2~).
@@ -437,7 +448,7 @@ Code: [[https://onecompiler.com/c/43bc89w2e][In OneCompiler]]
 ** Solution
 
 Code: [[https://onecompiler.com/c/43bcbj34u][In OneCompiler]]
-#+name: pseudogold2
+#+name: tinyurl.com/pseudogold2-improved
 #+begin_src C :cmdline < input :tangle ../src/pseudogold.c
   #include <stdio.h>
   #include <stdlib.h>
@@ -466,12 +477,12 @@ Code: [[https://onecompiler.com/c/43bcbj34u][In OneCompiler]]
       return EXIT_FAILURE;
     }
 
-    // If (deposit chosen)
+    // If (deposit chosen - choice is 1)
     if (choice == 1) {
       // add gold to the account
       gold = gold + amount;
       printf("Deposited %d gold. New balance: %d\n", amount, gold);
-    } else {   // Else if (withdrawal chosen)
+    } else {   // Else if (withdrawal chosen - choise is 2)
       // subtract gold from the account
       gold = gold - amount;
       printf("Withdrew %d gold. New balance: %d\n", amount, gold);
@@ -530,9 +541,40 @@ Code: [[https://onecompiler.com/c/43bcceg7t][In OneCompiler]]
   }
 #+end_src
 
-#+RESULTS: pseudogold3
 
-* Practice: Buy or sell a sword
+** What you just saw
+
+- So the following two codes are equivalent
+
+  A:
+  #+begin_example C
+  if (NOT P and Q)
+     X;
+  
+  if (P)
+     Y;
+  else // NOT P
+     Z;
+  #+end_example
+
+  B:
+  #+begin_example C
+  if (P) {
+     Y;
+  } else { // if NOT P
+     if (Q) {
+       X;
+     }
+     Z;
+  }     
+  #+end_example
+
+  Algebraically:
+  #+begin_example
+  If !P is already TRUE, then (!P && Q) = TRUE && Q = Q
+  #+end_example
+  
+* PRACTICE Buy or sell a sword (lab)
 
 *Problem:* "Allow a player to buy a sword from a shop if they have
 enough gold (50 gold or more), or sell a sword if they don’t have
@@ -570,15 +612,15 @@ else
   #+end_example
 
 - The pseudocode has already been copied into the starter code:
-  https://onecompiler.com/c/43bj5b7tx
+  [[https://tinyurl.com/sword-gold-starter][tinyurl.com/sword-gold-starter]]
 
 - Test this with 40 gold, and then change it to 100 gold.
 
-- Notice that there is no input required for this program. 
+- Notice that there is no input required for this program.
 
 ** Sample solution:
 
-[[https://onecompiler.com/c/43bj58v5n][OneCompiler link]]
+[[https://tinyurl.com/sword-gold-solution][tinyurl.com/sword-gold-solution]]
 
 #+begin_src C :main no :includes
   #include <stdio.h>

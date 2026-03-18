@@ -1967,9 +1967,9 @@ used to build digital *circuits* and computers.
 
 2. What will the following program print?
    #+begin_src C
-   int j = 1;
-   printf("%d", j++);
-   printf(" %d", j);
+     int j = 1;
+     printf("%d", j++);
+     printf(" %d", j);
    #+end_src
    #+begin_quote
    Output: =1= =2=
@@ -1978,33 +1978,33 @@ used to build digital *circuits* and computers.
 
 3. What are the values of a, b, and c after this code runs?
    #+begin_src C
-   int a = 5, b = 10, c;
-   c = ++a + b--;
+     int a = 5, b = 10, c;
+     c = ++a + b--;
    #+end_src
    #+begin_quote
    Output: =a = 6= | =b = 9= | =c = 16=
-   
+
    Prefix increments a first, postfix decrements b after its value is used.
    #+end_quote
 
 4. What is the value of i after running this code?
    #+begin_src C
-   int i = 10, j = 5;
-   i %= j; // same as i = (i % j)
+     int i = 10, j = 5;
+     i %= j; // same as i = (i % j)
    #+end_src
    #+begin_quote
    Output: =0=
-   
+
    Because 10 % 5 = 0, and the result is assigned back to i.
    #+end_quote
 
 5. What is the result of the Boolean expression below?
    #+begin_src C
-   3 > 5 || 5 == 5 // either 3 greater than 5 OR 5 is equal 5
+     3 > 5 || 5 == 5 // either 3 greater than 5 OR 5 is equal 5
    #+end_src
    #+begin_quote
    Output: =TRUE (1)=
-   
+
    Logical OR is TRUE if at least one side of the expression is TRUE.
    #+end_quote
 
@@ -2020,10 +2020,10 @@ used to build digital *circuits* and computers.
 
    #+RESULTS:
    : /home/marcus/GitHub/admin/spring26/csc100/org
-   
+
 7. What does the command below do?
    #+begin_src bash
-   ls
+     ls
    #+end_src
    #+begin_quote
    Lists the files and directories in the current directory.
@@ -2124,7 +2124,7 @@ used to build digital *circuits* and computers.
 
 8. What happens when you run this command?
    #+begin_src bash
-   cd .. # change directory to the next one up
+     cd .. # change directory to the next one up
    #+end_src
    #+begin_quote
    Moves to the parent directory (one level up in the directory
@@ -2155,13 +2155,13 @@ used to build digital *circuits* and computers.
 
 10. What will the following command print?
     #+begin_src bash
-    echo Hello
+      echo Hello
     #+end_src
     #+begin_quote
     Output: =Hello=
-    
+
     The echo command prints its arguments to the terminal.
-    #+end_quote   
+    #+end_quote
 
     #+begin_src bash :results output
       echo "Students, wake up!"
@@ -2176,6 +2176,108 @@ used to build digital *circuits* and computers.
 - [ ] Three new *bonus* assignments (operators).
 - [ ] Developing programs with *pseudocode*.
 - [ ] Conditional structures: ~if~, ~else~, ~elseif~ and ~switch~.
+
+** Review: Pseudocode
+
+1. What is pseudocode used for?
+   #+begin_quote
+   To plan and describe a solution to a problem in simple,
+   human-readable steps before writing actual code.
+   #+end_quote
+
+2. What is the first thing you should do before writing pseudocode?
+   #+begin_quote
+   Make sure you understand the problem clearly.
+   #+end_quote
+
+3. How can pseudocode represent a choice between two actions?
+   #+begin_quote
+   By using a decision structure such as ~if~ - ~else~.
+   #+end_quote
+
+4. Why should pseudocode be written in simple and clear language?
+   #+begin_quote
+   So that the logic is easy to follow and matches the problem
+   description.
+   #+end_quote
+
+5. What is one thing you should check or think about after writing
+   pseudocode?
+   #+begin_quote
+   Whether there are missing cases, edge conditions, or unclear steps
+   in the solution.
+   #+end_quote
+
+** Pseudocode warmup example
+
+- Add a new *rule* to the program after the user has entered the amount
+  and the choice: If the =amount= is greater than =100=, print ="That is a
+  large transaction."=
+
+- Time: 5 minutes.
+
+- If you did not attend the last class or don't have the code, open
+  this in OneCompiler.com: [[https://tinyurl.com/pseudogold-solution][tinyurl.com/pseudogold-solution]]
+
+- Solution:
+  #+begin_src C :main no :includes :noeval :tangle ../src/pseudogold2.c
+    // pseudogold2.c: "Allow a player to deposit or withdraw gold from a
+    // game bank account. Check if the amount is negative first.
+    // Input: choice (1=deposit,2=withdrawal, amount (integer)
+    // Output: Deposited/withdrawn amount, new balance
+    // Author: Marcus Birkenkrahe GNU GPLv3
+    // Date: 03/17/2026
+
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    int main() {
+      // variables
+      int gold = 100; // Example: starting gold amount
+      int choice;     // To store the player's choice (1 for deposit, 2 for withdraw)
+      int amount;     // Amount to deposit or withdraw
+
+      // Print balance and ask for action
+      printf("Your gold: %d\n", gold);
+      printf("Choose an action (1 to deposit, 2 to withdraw):\n");
+
+      // Get action (print confirmation)
+      scanf("%d", &choice);
+      printf("Your choice: %d\n", choice);
+
+      // Get amount (print confirmation)
+      printf("Enter amount:\n");
+      scanf("%d", &amount);
+      printf("Your amount: %d\n", amount);
+
+      // Check if the amount is a large transaction (amount > 100)
+      if (amount > 100) {
+        puts("--------> That is a large transaction. <-------");
+      }
+
+      // If (deposit chosen)
+      if (choice == 1) {
+        // add gold to the account
+        gold = gold + amount;
+        printf("Deposited %d gold. New balance: %d\n", amount, gold);
+      } else {   // Else if (withdrawal chosen)
+        // subtract gold from the account
+        gold = gold - amount;
+        printf("Withdrew %d gold. New balance: %d\n", amount, gold);
+      }
+
+      return 0;
+    }
+  #+end_src
+
+- Test the program
+  #+begin_src bash :results output :exports both
+    cd ../src
+    ls -l pseudogold2*
+    make pseudogold2
+    echo "2 200" | ./pseudogold2
+  #+end_src
+
 
 * Week 11: Loops: ~while~, ~do~, ~for~
 * Week 12: Arrays
