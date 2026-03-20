@@ -2172,14 +2172,15 @@ used to build digital *circuits* and computers.
 
 * Week 10: Pseudocode / if-else-elseif / switch
 
-- [ ] For the end of the operators lecture, see GitHub (no video).
-- [ ] Three new *bonus* assignments (operators).
-- [ ] Developing programs with *pseudocode*.
-- [ ] Conditional structures: ~if~, ~else~, ~elseif~ and ~switch~.
+- [X] For the end of the *operators* lecture, see GitHub (no video).
+- [X] Three new *bonus* assignments (operators).
+- [X] Developing programs with *pseudocode*.
+- [ ] *Three *home* assignments: operators / pseudocode / switch (Apr 3)
+- [ ] *Conditional* structures: ~if~, ~else~, ~elseif~ and ~switch~.
 
-** Review: Pseudocode
+** DONE Review: Pseudocode
 
-1. What is pseudocode used for?
+1. What is *pseudocode* used for?
    #+begin_quote
    To plan and describe a solution to a problem in simple,
    human-readable steps before writing actual code.
@@ -2205,10 +2206,11 @@ used to build digital *circuits* and computers.
    pseudocode?
    #+begin_quote
    Whether there are missing cases, edge conditions, or unclear steps
-   in the solution.
+   in the solution. This is part of a feedback cycle where you write
+   some code, test it, add additional guardrails until perfection.
    #+end_quote
 
-** Pseudocode warmup example
+** DONE Pseudocode warmup example
 
 - Add a new *rule* to the program after the user has entered the amount
   and the choice: If the =amount= is greater than =100=, print ="That is a
@@ -2229,7 +2231,6 @@ used to build digital *circuits* and computers.
     // Date: 03/17/2026
 
     #include <stdio.h>
-    #include <stdlib.h>
 
     int main() {
       // variables
@@ -2260,7 +2261,7 @@ used to build digital *circuits* and computers.
         // add gold to the account
         gold = gold + amount;
         printf("Deposited %d gold. New balance: %d\n", amount, gold);
-      } else {   // Else if (withdrawal chosen)
+      } else {   // Else if (withdrawal chosen) choice == 2
         // subtract gold from the account
         gold = gold - amount;
         printf("Withdrew %d gold. New balance: %d\n", amount, gold);
@@ -2275,8 +2276,22 @@ used to build digital *circuits* and computers.
     cd ../src
     ls -l pseudogold2*
     make pseudogold2
-    echo "2 200" | ./pseudogold2
+    echo "2 101" | ./pseudogold2
   #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  -rwxrwxr-x 1 marcus marcus 16112 Mar 18 09:15 pseudogold2
+  -rw-rw-r-- 1 marcus marcus  1426 Mar 18 09:15 pseudogold2.c
+  make: 'pseudogold2' is up to date.
+  Your gold: 100
+  Choose an action (1 to deposit, 2 to withdraw):
+  Your choice: 2
+  Enter amount:
+  Your amount: 101
+  --------> That is a large transaction. <-------
+  Withdrew 101 gold. New balance: -1
+  #+end_example
 
 
 * Week 11: Loops: ~while~, ~do~, ~for~

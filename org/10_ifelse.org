@@ -178,7 +178,6 @@
   #+RESULTS:
   : You defeat a monster! You find an iron ring!
 
-
 * Nested ~if~ Structures
 
 ** Explanation
