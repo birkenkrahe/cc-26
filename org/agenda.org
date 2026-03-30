@@ -2170,13 +2170,13 @@ used to build digital *circuits* and computers.
     #+RESULTS:
     : Students, wake up!
 
-* Week 10: Pseudocode / if-else-elseif / switch
+* DONE Week 10: Pseudocode / if-else-elseif / switch
 
 - [X] For the end of the *operators* lecture, see GitHub (no video).
 - [X] Three new *bonus* assignments (operators).
 - [X] Developing programs with *pseudocode*.
-- [ ] *Three *home* assignments: operators / pseudocode / switch (Apr 3)
-- [ ] *Conditional* structures: ~if~, ~else~, ~elseif~ and ~switch~.
+- [X] *Three *home* assignments: operators / pseudocode / ~switch~
+- [X] *Conditional* structures: ~if~, ~else~, ~elseif~ and ~switch~.
 
 ** DONE Review: Pseudocode
 
@@ -2295,6 +2295,11 @@ used to build digital *circuits* and computers.
 
 
 * Week 11: Loops: ~while~, ~do~, ~for~
+
+- [ ] Looping over values using ~while~
+- [ ] Looping over values using ~do..while~
+- [ ] Looping over values using ~for~
+
 * Week 12: Arrays
 * Week 13: Functions
 * Week 14: Pointers
