@@ -6,13 +6,11 @@
 #+PROPERTY: header-args:C :main yes :includes <stdio.h> :exports both :results output :comments none
 * README
 
-- This script introduces C looping structures.
+- This script introduces C looping structures with ~while~.
 
 - This section is based on chapter 4 in Davenport/Vine (2015) and
   chapter 6 in King (2008).
-
-- Practice workbooks, input files and PDF solution files in GitHub
-
+  
 * Loops
 
 - A *loop* is a statement whose job is to repeatedly execute over
@@ -75,7 +73,7 @@
   #+caption: Simple while example
   [[../img/13_double.png]]
 
-* TODO Practice: First loop
+* PRACTICE First loop
 
 - Your turn! Open an editor and enter the starter code:
   #+begin_example C
@@ -181,7 +179,7 @@
 - Note that in the concise version, it makes a difference if we use
   ~i--~ or ~--i~. Try it!
   
-* TODO Practice: Countdown
+* PRACTICE Countdown
 
 - Your turn! The program below counts down from ~i=N~ and prints both
   the counter variable and the end value.
@@ -284,7 +282,7 @@
 - To stop infinite loops from within, you need to provide ~break~,
   ~goto~ or ~return~ statements ("controlled jump").
 
-* TODO Practice: Infinite loop
+* PRACTICE Infinite loop
 
 - Your turn! Complete a simple practice exercise under "Infinite
   loops" in the practice file.
@@ -298,7 +296,7 @@
 
 - Run it and see what happens.
 
-* TODO Exercise: Printing a table of squares
+* PRACTICE Printing a table of squares
 
 ** Problem
 

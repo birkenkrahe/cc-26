@@ -2299,6 +2299,70 @@ used to build digital *circuits* and computers.
 - [ ] Looping over values using ~while~
 - [ ] Looping over values using ~do..while~
 - [ ] Looping over values using ~for~
+- [ ] Loop control with ~break~, ~exit~, ~continue~
+
+** Review: ~while~ loops
+
+1. What is a loop and what are its two essential components?
+   #+begin_quote
+   A loop is a statement that repeatedly executes a loop body. Its two
+   essential components are the *{ loop body }* and the *controlling
+   expression*.
+   #+end_quote
+
+2. How does the controlling expression affect the execution of a while
+   loop?
+   #+begin_quote
+   The controlling expression is evaluated before each iteration. If
+   it is ~TRUE~ (non-zero), the loop continues; if it is ~FALSE~ (zero),
+   the loop stops.
+   #+end_quote
+
+3. What does the following loop do?
+   #+begin_example C
+   const int n = 10;
+   int i = 0
+   while (i < n)
+   {
+      i * 2;
+   }
+   #+end_example
+   
+   #+begin_quote
+   It doubles the value of =i= in each iteration and runs forever.
+   #+end_quote
+
+4. What is wrong with this loop?
+   #+begin_example C
+     int i = 0;
+     while (i < 10); {
+       printf("%d\n", i);
+       i++;
+     }
+   #+end_example
+
+   #+begin_quote
+   The semicolon after =while (i < 10)= creates an empty loop. The block
+   that follows is not part of the loop, so =i= is never incremented
+   inside the loop, causing an infinite loop.
+   #+end_quote
+
+5. Prints =4 3 2 1 0= - change it to print =5 4 3 2 1= instead.
+   #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+     int i = 5;
+     while (i > 0)
+       {
+         printf("%d\n", --i);
+       }
+   #+end_src
+
+   #+begin_quote
+   The code prints values starting from 4 down to 0 instead of 5 down
+   to 1. This is because =--i= decrements i before printing
+   (pre-decrement). If the intention was to print 5 first, =i--=
+   (post-decrement) should be used instead.
+   #+end_quote
+   
 
 * Week 12: Arrays
 * Week 13: Functions
