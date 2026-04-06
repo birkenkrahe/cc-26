@@ -2294,10 +2294,10 @@ used to build digital *circuits* and computers.
   #+end_example
 
 
-* Week 11: Loops: ~while~, ~do~, ~for~
+* Week 11: Loops: ~while~, ~do-while~
 
-- [ ] Looping over values using ~while~
-- [ ] Looping over values using ~do..while~
+- [X] Looping over values using ~while~
+- [X] Looping over values using ~do..while~
 - [ ] Looping over values using ~for~
 - [ ] Loop control with ~break~, ~exit~, ~continue~
 
@@ -2307,7 +2307,7 @@ used to build digital *circuits* and computers.
    #+begin_quote
    A loop is a statement that repeatedly executes a loop body. Its two
    essential components are the *{ loop body }* and the *controlling
-   expression*.
+   expression*, which evaluates to a Boolean value (~TRUE~ or ~FALSE~).
    #+end_quote
 
 2. How does the controlling expression affect the execution of a while
@@ -2320,24 +2320,25 @@ used to build digital *circuits* and computers.
 
 3. What does the following loop do?
    #+begin_example C
-   const int n = 10;
-   int i = 0
-   while (i < n)
+   const int n = 10; // sets a loop limit
+   int i = 0 // sets a loop variable value
+   while (i < n) // check if i is smaller than n
    {
-      i * 2;
+      i * 2;  // double the loop variable
    }
    #+end_example
    
    #+begin_quote
-   It doubles the value of =i= in each iteration and runs forever.
+   It doubles the value of =i= in each iteration and runs forever,
+   or until your memory is exhausted (like in OneCompiler.com)
    #+end_quote
 
 4. What is wrong with this loop?
    #+begin_example C
-     int i = 0;
-     while (i < 10); {
-       printf("%d\n", i);
-       i++;
+     int i = 0; // set loop variable at start
+     while (i < 10); { // is i smaller than 10
+       printf("%d\n", i); // print i
+       i++;  // increase i by one
      }
    #+end_example
 
@@ -2352,9 +2353,16 @@ used to build digital *circuits* and computers.
      int i = 5;
      while (i > 0)
        {
-         printf("%d\n", --i);
+         printf("%d\n", i--);
        }
    #+end_src
+
+   #+RESULTS:
+   : 5
+   : 4
+   : 3
+   : 2
+   : 1
 
    #+begin_quote
    The code prints values starting from 4 down to 0 instead of 5 down
@@ -2364,7 +2372,53 @@ used to build digital *circuits* and computers.
    #+end_quote
    
 
-* Week 12: Arrays
-* Week 13: Functions
-* Week 14: Pointers
-* Week 15: Structs
+* Week 12: ~for~ loops, ~break~, ~exit~, ~continue~
+
+- [ ] New home assignment live: Sum integers with ~while~ (Apr 10)
+- [ ] New quiz live: Pseudocode, ~if-else~ (Apr 10)
+- [ ] New quiz live: Loop structures ~while~, ~do~, ~for~ (Apr 17)
+- [ ] New bonus assignment live: Summing numbers with ~do-while~ (May 8)
+
+** Review: ~do-while~ loops
+
+1. What is the key difference between a ~while~ loop and a ~do~ loop?
+   #+begin_quote
+   A ~while~ loop checks its condition before executing the loop body,
+   while a ~do~ loop executes the body first and checks the condition
+   afterward, guaranteeing at least one execution.
+   #+end_quote
+
+2. Why is it recommended to always use braces ~{...}~ with ~do~ loops?
+   #+begin_quote
+   Because without braces, the structure can be confusing and may be
+   mistaken for a ~while~ loop, leading to logical errors.
+   #+end_quote
+
+3. In a ~do~ loop, when does the loop terminate?
+   #+begin_quote
+   The loop terminates when the controlling expression evaluates to 0
+   (~FALSE~) after the loop body has been executed.
+   #+end_quote
+
+4. Why is a ~do~ loop useful for counting the number of digits in an
+   integer?
+   #+begin_quote
+   Because the loop must execute at least once, even if the number is
+   0, ensuring that at least one digit is counted.
+   #+end_quote
+
+5. What problem occurs when using a standard ~int~ for very large
+   numbers like =6565656565= in the digit-counting program?
+   #+begin_quote
+   Integer overflow occurs because ~int~ cannot represent values larger
+   than its maximum range [-2^{31},2^31], so a larger type such as ~long
+   int~ must be used.
+   #+end_quote
+
+
+* Week 13: Arrays
+* Week 14: Functions
+* Week 15: Pointers
+* Week 16: Structs
+
+
