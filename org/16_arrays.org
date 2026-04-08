@@ -93,7 +93,7 @@
 
 - The computer stores them differently - sequentially as a set of
   memory addresses. Example: 2D matrix of characters, stored in
-  row-major fashion:
+  row-major fashion: =sports[i][j] = sports[i * cols + j]=
   #+name: fig:storage
   #+attr_html: :width 600px
   [[../img/c_array_memory_diagram_5x8.png]]
@@ -328,7 +328,7 @@
 - Remember that now ~N~ will *blindly* be replaced by ~10~ *everywhere* in the
   program by the pre-processor.
 
-* Array subscripting side effects
+* SOMEDAY Array subscripting side effects
 ** C is very permissive
 
 - C does not require that the subscript bounds be checked.
@@ -567,7 +567,7 @@
 * Iteration examples
 
 - These short problems build on the three examples you’ve just seen.
-- Open a new file at OneCompiler.Com and put all of these into it.
+- Open a new file at OneCompiler.Com and put all of them into it.
 
 ** Initialization with Pattern
 
@@ -771,7 +771,7 @@
 
 - Arrays in C cannot be assigned to after their declaration.
 
-* Practice declaring and initializing matrices
+* PRACTICE Declaring and initializing matrices
 
 - Declare a 3 x 3 character matrix =hw=.
 
@@ -878,7 +878,7 @@
   : a b
   : c d
 
-* Practice: Accessing arrays with nested ~for~ loops
+* Accessing arrays with nested ~for~ loops
 
 - Nested ~for~ loops are ideal for processing multi-dimensional arrays.
 
