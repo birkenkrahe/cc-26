@@ -1,6 +1,6 @@
 #+TITLE: PSEUDOCODE and IF/ELSE
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:CSC100 Introduction to programming in C/C++ (Spring 2025)
+#+SUBTITLE:CSC100 Introduction to programming in C/C++ (Spring 2026)
 #+STARTUP: overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil ^:nil num:nil
 #+PROPERTY: header-args:C :main yes :includes <stdio.h> :exports both :results output :noweb yes :tangle yes
@@ -541,7 +541,6 @@ Code: [[https://onecompiler.com/c/43bcceg7t][In OneCompiler]]
   }
 #+end_src
 
-
 ** What you just saw
 
 - So the following two codes are equivalent
@@ -595,7 +594,7 @@ enough."
 
 The pseudocode could look like this:
 #+begin_example
-if gold >= 50
+nif gold >= 50
     Buy a sword
 else
     Sell a sword
@@ -666,7 +665,7 @@ Input for [[pseudogold]]
 : 2
 : 100
 
-Input for [[pseudogold2]]
+Input for pseudogold2:
 #+begin_src bash :results output :exports both
   echo "2" > input # action (1 = deposit, 2 = withdraw)
   echo "200" >> input # amount of gold

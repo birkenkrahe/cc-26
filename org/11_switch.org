@@ -1,6 +1,6 @@
 #+TITLE: SWITCH AND BREAK STATEMENTS
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:CSC100 Introduction to programming in C/C++ (Spring 2025)
+#+SUBTITLE:CSC100 Introduction to programming in C/C++ (Spring 2026)
 #+STARTUP: overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil ^:nil num:nil
 #+PROPERTY: header-args:C :main yes :includes <stdio.h> :exports both :results output :noweb yes :tangle yes

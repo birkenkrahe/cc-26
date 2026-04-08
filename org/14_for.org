@@ -1,6 +1,6 @@
 #+TITLE:Iteration / for loops
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:CSC100 / Introduction to programming in C/C++ - Spring 2025
+#+SUBTITLE:CSC100 / Introduction to programming in C/C++ - Spring 2026
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:1 ^:nil num:1
 #+PROPERTY: header-args:C :main yes :includes <stdio.h> :exports both :results output :comments none
@@ -264,6 +264,11 @@ Convert this to a ~while~ loop (start with pseudocode).
       printf("T minus %d and counting\n", i);
      }
   #+end_src
+
+  #+RESULTS: omit1
+  : T minus 3 and counting
+  : T minus 2 and counting
+  : T minus 1 and counting
 
 - If the *third* expression is omitted, the loop body is responsible for
   ensuring that the value of the 2nd expression eventually becomes

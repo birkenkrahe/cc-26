@@ -1,6 +1,6 @@
 #+TITLE: Stacked and Nested If Structures
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: CSC 100  - Lyon College - Spring 2025
+#+SUBTITLE: CSC 100  - Lyon College - Spring 2026
 #+STARTUP: overview hideblocks indent entitiespretty:
 #+PROPERTY: header-args:C :main yes :includes <stdio.h> <stdlib.h> <stdbool.h> <string.h> :results output :exports both :noweb yes
 * Introduction
@@ -23,7 +23,7 @@
   matching blocks will execute. The outcome of one does not affect the
   others.
 
-- Simple sequential ~if~ statements:
+- Simple sequential (or serial) ~if~ statements:
   #+begin_example C
   if ( i == 1 ) {
      // do one thing
@@ -33,7 +33,7 @@
   }
   #+end_example
 
-- An illustration in BPMN:
+- An illustration in BPMN (Business Process Model and Notation):
   #+name: fig:singleif
   #+attr_latex: :width 400px
   #+caption: Single IF statements
@@ -274,7 +274,10 @@
   END IF
   #+END_example
 
-- Source code: Run this in [[https://onecompiler.com/c/43br7x7b4][onecompiler.com/c/43br7x7b4]]
+- Source code: Run this in
+
+  [[https://tinyurl.com/wounded-but-alive][tinyurl.com/wounded-but-alive]]
+  
   #+begin_src C
     int health = 10; // SET health = 60
     int enemy_defeated = 1; // SET enemy_defeated = 1 (true))
@@ -314,19 +317,23 @@
   #+begin_src C
     int health = 10; // SET health = 10
 
-    if (health > 75) { // IF health > 75
-      puts("You’re in top form! You find a golden shield."); 
-     } else if (health > 50) { // ELSE IF health > 50
-      puts("You’re scratched but standing. You find a rusty sword."); 
-     } else if (health > 25) { // ELSE IF health > 25
-      puts("You’re wounded but alive. You find a healing potion.");
-     } else { // ELSE
-      puts("You collapse but grab a small coin.");
-     } // END IF
+    if (health > 75)
+      { // IF health > 75
+        puts("You’re in top form! You find a golden shield.");
+      } else if (health > 50)
+      { // ELSE IF health > 50
+        puts("You’re scratched but standing. You find a rusty sword.");
+      } else if (health > 25)
+      { // ELSE IF health > 25
+        puts("You’re wounded but alive. You find a healing potion.");
+      } else
+      { // ELSE
+        puts("You collapse but grab a small coin.");
+      } // END IF
   #+end_src
 
-#+RESULTS:
-: You collapse but grab a small coin.
+  #+RESULTS:
+  : You collapse but grab a small coin.
 
 * Conclusion
 

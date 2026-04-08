@@ -1,6 +1,6 @@
 #+TITLE: OPERATORS
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:CSC100 Introduction to programming in C/C++ (Spring 2024)
+#+SUBTITLE:CSC100 Introduction to programming in C/C++ (Spring 2026)
 #+STARTUP: overview hideblocks indent inlineimages
 #+SEQ_TODO: PRACTICE NEXT | DONE
 #+OPTIONS: toc:1 ^:nil
@@ -805,7 +805,7 @@ absolutely everyone get a picture of what it means.
   : The expression is FALSE.
 
 
-* PRACTICE Logical operators
+n* PRACTICE Logical operators
 
 - Go to Google Cloud shell (ide.cloud.google.com) and run the
   following command on the shell (~-O~ is a big-Oh, not a zero):
@@ -1221,9 +1221,6 @@ absolutely everyone get a picture of what it means.
     cat num
   #+end_src
 
-  #+RESULTS: valid_input
-  : 11
-
 - What does the code below do? Will it run? What will the output be
   for our choice of input?
   #+name: validate
@@ -1240,9 +1237,6 @@ absolutely everyone get a picture of what it means.
       puts("Number in range.");
      }
   #+end_src
-
-  #+RESULTS: validate
-  : Number not in range.
 
 - How can you translate a range like ~![1,10]~ into a conditional
   expression? It means that we want to test if a number is outside of

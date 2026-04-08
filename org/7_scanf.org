@@ -2,7 +2,7 @@
 #+AUTHOR:Marcus Birkenkrahe
 #+Source: KN King C Programming
 #+SEQ_TODO: PRACTICE TODO NEXT | DONE
-#+SUBTITLE:CSC 100 Introduction to programming in C/C++, Spring 2025
+#+SUBTITLE:CSC 100 Introduction to programming in C/C++, Spring 2026
 #+STARTUP: overview hideblocks indent entitiespretty
 #+OPTIONS: toc:1 num:1 ^:nil
 #+PROPERTY: header-args:C :main yes :includes <stdio.h>  :exports both
@@ -263,6 +263,4 @@ This example has the same spec as our earlier example:
   + Run an executable using a relative path
   + Open the editor and download a file
   + Compress files and upload archive files to Canvas
-
-
 

@@ -1,8 +1,9 @@
 #+TITLE: Intro to Programming - Variables and Types
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: CSC 100 - Lyon College - Spring 2025
+#+SUBTITLE: CSC 100 - Lyon College - Spring 2026
 #+SEQ_TODO: PRACTICE TODO NEXT | DONE
 #+STARTUP: overview hideblocks indent entitiespretty
+#+options: toc:nil num:nil ^:nil:
 #+property: :header-args:C      :main yes :includes <stdio.h> :results output :exports both
 #+property: :header-args:python :session *Python* :python python3 :results output :exports both
 #+property: :header-args:R      :session *R* :results graphics output file :exports both

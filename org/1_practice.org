@@ -1,6 +1,6 @@
 #+TITLE:Practice - Course platforms
 #+AUTHOR:Marcus Birkenkrahe, Lyon College
-#+SUBTITLE:CSC 100 - Lyon College - Spring 2025
+#+SUBTITLE:CSC 100 - Lyon College - Spring 2026
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
