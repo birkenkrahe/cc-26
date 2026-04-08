@@ -2293,8 +2293,7 @@ used to build digital *circuits* and computers.
   Withdrew 101 gold. New balance: -1
   #+end_example
 
-
-* Week 11: Loops: ~while~, ~do-while~
+* DONE Week 11: Loops: ~while~, ~do-while~
 
 - [X] Looping over values using ~while~
 - [X] Looping over values using ~do..while~
@@ -2374,10 +2373,10 @@ used to build digital *circuits* and computers.
 
 * Week 12: ~for~ loops, ~break~, ~exit~, ~continue~
 
-- [ ] New home assignment live: Sum integers with ~while~ (Apr 10)
-- [ ] New quiz live: Pseudocode, ~if-else~ (Apr 10)
-- [ ] New quiz live: Loop structures ~while~, ~do~, ~for~ (Apr 17)
-- [ ] New bonus assignment live: Summing numbers with ~do-while~ (May 8)
+- [X] New home assignment live: Sum integers with ~while~ (Apr 10)
+- [X] New quiz live: Pseudocode, ~if-else~ (Apr 10)
+- [X] New quiz live: Loop structures ~while~, ~do~, ~for~ (Apr 17)
+- [X] New bonus assignment live: Summing numbers with ~do-while~ (May 8)
 
 ** Review: ~do-while~ loops
 
@@ -2396,8 +2395,8 @@ used to build digital *circuits* and computers.
 
 3. In a ~do~ loop, when does the loop terminate?
    #+begin_quote
-   The loop terminates when the controlling expression evaluates to 0
-   (~FALSE~) after the loop body has been executed.
+   The loop terminates when the ~while~ *controlling expression* evaluates
+   to 0 (~FALSE~) after the loop body has been executed.
    #+end_quote
 
 4. Why is a ~do~ loop useful for counting the number of digits in an
@@ -2410,11 +2409,24 @@ used to build digital *circuits* and computers.
 5. What problem occurs when using a standard ~int~ for very large
    numbers like =6565656565= in the digit-counting program?
    #+begin_quote
-   Integer overflow occurs because ~int~ cannot represent values larger
+   *Integer overflow* occurs because ~int~ cannot represent values larger
    than its maximum range [-2^{31},2^31], so a larger type such as ~long
    int~ must be used.
    #+end_quote
 
+
+** AI Review: ~for~ loops
+
+- Open the review app: [[https://tinyurl.com/rev-for-loops][tinyurl.com/rev-for-loops]]
+- Start the review questions
+- Continue for 10 questions
+- Print your conversation - save to PDF
+- Upload PDF to Canvas OR share conversation link (preferred)
+- Assignment is called *In-class practice 9: `for` loops review with AI*
+
+** Exit strategies: ~break~, ~continue~, ~exit~
+
+Lecture and code along.
 
 * Week 13: Arrays
 * Week 14: Functions
