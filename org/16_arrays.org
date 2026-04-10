@@ -169,6 +169,7 @@
 : hello
 : hellohello
 
+
 * PRACTICE Declaring Arrays in C
 
 *Code along with me in OneCompiler.com/c*
@@ -569,7 +570,7 @@
 - These short problems build on the three examples you’ve just seen.
 - Open a new file at OneCompiler.Com and put all of them into it.
 
-** Initialization with Pattern
+* Initialization with Pattern
 
 - Initialize the array =a= with the values 1,2, ..., 10 using a ~for~
   loop that starts at i = 0;
@@ -591,7 +592,7 @@
   #+RESULTS:
   : 1 2 3 4 5 6 7 8 9 10
 
-** Input and Count
+* Input and Count
 
 - Read 5 whole (non-negative integer) numbers into an array =b= and
   count how many of them are even:
@@ -640,7 +641,7 @@
   #+RESULTS:
   : 10 21 33 4 5
 
-** Conditional Summation
+* Conditional Summation
 
 - Initialize an array =c= of 10 elements, and only sum up the positive
   values in the array.
@@ -882,7 +883,7 @@
 
 - Nested ~for~ loops are ideal for processing multi-dimensional arrays.
 
-** 2x2 matrix of floating point values
+* 2x2 matrix of floating point values
 
 - Declare and print a 2 x 2 array =M= of floating-point values.
 
@@ -931,7 +932,7 @@
   : 0.00 3.14
   : 2.71 0.00
 
-** 5x5 identity matrix
+* 5x5 identity matrix
 
 - Open a new file in ~OneCompiler.com~.
 

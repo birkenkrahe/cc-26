@@ -2415,7 +2415,7 @@ used to build digital *circuits* and computers.
    int~ must be used.
    #+end_quote
 
-** AI Review: ~for~ loops
+** DONE AI Review: ~for~ loops
 
 - Open the review app: [[https://tinyurl.com/rev-for-loops][tinyurl.com/rev-for-loops]]
 - Start the review questions
@@ -2424,7 +2424,7 @@ used to build digital *circuits* and computers.
 - Upload PDF to Canvas OR share conversation link (preferred)
 - Assignment is called *In-class practice 9: `for` loops review with AI*
 
-** C/C++ Tutor Updated
+** DONE C/C++ Tutor Updated
 #+attr_html: :width 200px :float nil:
 [[../img/tutor.png]]
 
@@ -2432,7 +2432,7 @@ used to build digital *circuits* and computers.
 - Complete only one tutorial session for bonus points
 - Share the conversation and upload the URL to Canvas
 
-** Exit strategies: ~break~, ~continue~, ~exit~
+p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 - You can peruse this lecture and examples on your own.
 - Find it on GitHub in the =/org/= repo as =15_exit.org=.
