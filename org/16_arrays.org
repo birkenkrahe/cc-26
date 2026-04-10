@@ -279,19 +279,23 @@
      }
   #+end_src
 
+
 ** PRACTICE Writing array declarations
 
 - *Task*: Write C declarations for the following array scenarios, then
-  print them.
+  print them. Starter code: [[https://onecompiler.com/c/44jw8f8s2][tinyurl.com/array-declarations]]
 
   1. An array =a= of 10 integers.
   2. An array =b= of 5 floats initialized to 1.1, 2.2,...,5.5
   3. A character array =c= initialized to the word "Hi"
   4. An array =d= of 100 doubles initialized to 0 (print first and last
      five elements only)
+  5. An array =e= of 2 Boolean values whose conjunction (=&=) is ~TRUE~.
 
-*- Solution:*
-  #+begin_src C :results output :exports both
+- Submit solution: *In-class practice 10: writing array declarations.*
+
+** Solution:
+#+begin_src C :results output :exports both
   // 1. An array of 10 integers
   int a[10];
   for (int i=0;i<10;i++) printf("%d ", a[i]);
@@ -308,14 +312,17 @@
     if (i < 5 || i > 94)
       printf("%g ", d[i]);
    }
-  #+end_src
+  // 5. An array e of 2 Boolean values whose conjunction (&) is TRUE
+  int e[2] = {1,1};
+  printf("\n%d AND %d is %d (TRUE)\n", e[0], e[1], e[0] & e[1]);
+#+end_src
 
-  #+RESULTS:
-  : -1309341432 31406 -1309231520 31406 10022912 0 -1639298064 32765 1 0 
-  : 1.1 2.2 3.3 4.4 5.5 
-  : H i 
-  : 0 0 0 0 0 0 0 0 0 0 
-
+#+RESULTS:
+: 900495624 28893 900605536 28893 10022912 0 -183454480 32767 1 0 
+: 1.1 2.2 3.3 4.4 5.5 
+: H i 
+: 0 0 0 0 0 0 0 0 0 0 
+: 1 AND 1 is 1 (TRUE)
 
 * Array length
 

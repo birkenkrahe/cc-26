@@ -2377,7 +2377,8 @@ used to build digital *circuits* and computers.
 - [X] New quiz live: Pseudocode, ~if-else~ (Apr 10)
 - [X] New quiz live: Loop structures ~while~, ~do~, ~for~ (Apr 17)
 - [X] New bonus assignment live: Summing numbers with ~do-while~ (May 8)
-- [ ] C/C++ tutor updated: Complete a session for bonus points (May 8)
+- [X] C/C++ tutor updated: Complete a session for bonus points (May 8)
+- [ ] Review: Array declarations
 
 ** DONE Review: ~do-while~ loops
 
@@ -2437,6 +2438,8 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 - You can peruse this lecture and examples on your own.
 - Find it on GitHub in the =/org/= repo as =15_exit.org=.
 
+
+** Review: Array declarations (submit solution to Canvas)
 
 * Week 13: Arrays II
 * Week 14: Functions
