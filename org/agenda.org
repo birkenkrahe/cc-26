@@ -2370,8 +2370,7 @@ used to build digital *circuits* and computers.
    (post-decrement) should be used instead.
    #+end_quote
    
-
-* Week 12: ~for~ loops, ~break~, ~exit~, ~continue~ & Arrays I
+* DONE Week 12: ~for~ loops, ~break~, ~exit~, ~continue~ & Arrays
 
 - [X] New home assignment live: Sum integers with ~while~ (Apr 10)
 - [X] New quiz live: Pseudocode, ~if-else~ (Apr 10)
@@ -2441,9 +2440,17 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 ** Review: Array declarations (submit solution to Canvas)
 
-* Week 13: Arrays II
-* Week 14: Functions
-* Week 15: Pointers
-* Week 16: Structs
+* Week 13: Functions
+
+- [X] New home assignment: Fancy loops (simple)
+- [X] New home assignment: Fibonacci numbers (medium)
+- [X] New bonus assignment: ASCII Triangle with nested loops (simple)
+- [X] New bonus assignment: Euler number approximation (medium)
+- [X] New AI-assisted quiz: Arrays (20 questions).
+- [ ] AI-assisted quiz is a bonus quiz now (max 20 points)
+
+* Week 14: Pointers
+* Week 15: Structs
+* Week 16: From C to C++
 
 
