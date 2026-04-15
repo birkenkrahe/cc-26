@@ -347,7 +347,142 @@
   2) returning the result as a ~double~ number
   #+end_quote
 
-* Function calls
+
+* Review: Introduction to functions
+
+1. Write a function =print_value= that
+   - returns ~void~
+   - has one ~int~ argument
+   - prints its ~int~ argument
+
+2. Declare the function before ~main~
+
+3. Define the function after ~main~
+
+4. Call the function in ~main~ on the value =100=
+
+Sample output:
+#+begin_example C
+"The value is 100."
+#+end_example
+
+Starter code:
+#+begin_src C :main no :includes :results output :exports both
+  #include <stdio.h>
+
+  // function prototype: print_value
+
+  // main function
+  int main()
+  {
+
+    return 0;
+  }
+  // function definition: print_value
+
+#+end_src
+
+** Solution
+
+#+begin_src C :main no :includes :results output :exports both
+  #include <stdio.h>
+
+  // function prototype: print_value
+  void print_value(int);
+
+  // main function
+  int main(void)
+  {
+    print_value(100);
+    return 0;
+  }
+  // function definition: print_value
+  void print_value(int x)
+  {
+    printf("The value is %d\n",x);
+  }
+#+end_src
+
+#+RESULTS:
+: The value is 100
+
+* Extension: Printing an array with a function
+
+- To print an array, you need to pass two things to the function:
+  1. The array's name followed by =[]=
+  2. The length of the array (as an ~int~)
+  3. You can compute the length of an array:
+     #+begin_example C
+     sizeof(array)/sizeof(array[0])
+     #+end_example
+
+- Let's code this together: Open a new file.
+
+- Version 1: With set array length
+  #+begin_src C :main no :includes :results output :exports both 
+    #include <stdio.h>
+    #define SIZE 5 // SET array length
+
+    // function prototype: print_array
+    void print_array(int [], int);
+
+    // main function
+    int main(void)
+    {
+      // define array
+      int arr[SIZE] = {10,20,30,40,50};
+
+      // call print_array function to print array
+      print_array(arr,SIZE);
+        
+      return 0;
+    }
+
+    // function definition: print_array
+    void print_array(int a[], int n)
+    {
+      for (int i=0; i<n; i++)
+        printf("%d ", a[i]);
+    }
+  #+end_src
+
+  #+RESULTS:
+  : 10 20 30 40 50 
+
+- Version 2: Compute array length
+  #+begin_src C :main no :includes :results output :exports both 
+    #include <stdio.h>
+
+    // function prototype: print_array
+    void print_array(int [], int);
+
+    // main function
+    int main(void)
+    {
+      // define array
+      int arr[] = {10,20,30,40,50};
+      int length = sizeof(arr)/sizeof(arr[0]);
+
+      // call print_array function to print array
+      print_array(arr,length);
+        
+      return 0;
+    }
+
+    // function definition: print_array
+    void print_array(int a[], int n)
+    {
+      for (int i=0; i<n; i++)
+        printf("%d ", a[i]);
+    }
+  #+end_src
+
+  #+RESULTS:
+  : 10 20 30 40 50 
+
+
+
+* NEXT Function calls
 
 - To call a function, write the /function name/ followed by a list of
   /function arguments/, e.g.

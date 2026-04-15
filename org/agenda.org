@@ -2448,6 +2448,8 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 - [X] New bonus assignment: Euler number approximation (medium)
 - [X] New AI-assisted quiz: Arrays (20 questions).
 - [ ] AI-assisted quiz is a bonus quiz now (max 20 points)
+- [ ] Review: Introduction to functions
+- [ ] Practice: Printing arrays
 
 * Week 14: Pointers
 * Week 15: Structs
