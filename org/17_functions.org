@@ -347,7 +347,6 @@
   2) returning the result as a ~double~ number
   #+end_quote
 
-
 * Review: Introduction to functions
 
 1. Write a function =print_value= that
@@ -481,8 +480,7 @@ Starter code:
   : 10 20 30 40 50 
 
 
-
-* NEXT Function calls
+* Function calls
 
 - To call a function, write the /function name/ followed by a list of
   /function arguments/, e.g.
@@ -664,6 +662,7 @@ Starter code:
   ~main~, it cannot be found because the compiler has not seen it yet.
   #+end_quote
 
+
 * Exercise 1: Add three integers
 
 - Write a function =add= that takes three integer arguments, adds them
@@ -804,6 +803,90 @@ Starter code:
 
   #+RESULTS:
   : The larger value is 9
+
+* Exercise 3: Sum an array
+
+- *Goal:* Write a function =sum_array= that accepts an array of integers
+  and its length, and returns the sum of all elements.
+
+- *Tip 1*: To pass an array to a function =f=, use the arguments =f(int a,
+  int n)= where =a= is the array, and =n= is the array's size or length.
+
+- *Sample array:* ={10, 20, 30, 40, 50}=
+
+- *Expected output:*
+  #+begin_example
+  Sum = 150
+  #+end_example
+
+- *Steps:*
+  1. Write the function prototype for ~sum_array~.
+  2. In ~main~, define an integer array and compute its length using
+     ~sizeof(arr)/sizeof(arr[0])~.
+  3. Call ~sum_array~ with the array and its length, and store the result.
+  4. Print the result in ~main~.
+  5. Define the ~sum_array~ function using a loop to compute the sum.
+
+- *Tip 2:* In =sum_array=, use a variable like ~sum~ initialized to 0, and
+  add each array element inside a ~for~ loop.
+
+- *Starter code*: [[https://tinyurl.com/sum-array][tinyurl.com/sum-array]]
+
+  #+begin_src C
+  // INCLUDE input/output functions
+
+  // DECLARE function prototype
+  // return the sum of an integer array
+
+  /* main program */
+  // BEGIN main
+     // DEFINE array
+     // COMPUTE length
+     // CALL sum_array
+     // PRINT result
+  // END main
+
+  // DEFINE function sum_array
+  // RETURN sum of all elements
+  #+end_src
+
+- *Sample solution*:
+
+  #+begin_src C
+    // INCLUDE input/output functions
+    #include <stdio.h>
+    // DECLARE function prototype
+    // return the sum of an integer array
+    int sum_array(int [], int);
+
+    /* main program */
+    int main(void)
+    { // BEGIN main
+      // DEFINE array
+      int arr[] = {10,20,30,40,50};
+      // COMPUTE length
+      int size = sizeof(arr)/sizeof(arr[0]);
+      // CALL sum_array
+      int result = sum_array(arr,size);
+      // PRINT result
+      printf("Sum = %d\n", result);
+    } // END main
+
+    // DEFINE function sum_array
+    // RETURN sum of all elements
+    int sum_array(int a[], int n)
+    {
+      int sum = 0;
+      for (int i=0; i<n; i++)
+        {
+          sum+=a[i];
+        }
+      return sum;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Sum = 150
 
 * References
 

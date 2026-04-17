@@ -2447,9 +2447,14 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 - [X] New bonus assignment: ASCII Triangle with nested loops (simple)
 - [X] New bonus assignment: Euler number approximation (medium)
 - [X] New AI-assisted quiz: Arrays (20 questions).
-- [ ] AI-assisted quiz is a bonus quiz now (max 20 points)
-- [ ] Review: Introduction to functions
-- [ ] Practice: Printing arrays
+- [X] AI-assisted quiz is a bonus quiz now (max 20 points)
+- [ ] Quiz 10 with 40 questions open: Arrays and Functions
+
+** Friday functions and arrays competitive programming lab
+
+- Three problems of increasing difficulty.
+- You have 10 minutes to solve each problem.
+- After each problem, I'll walk through the solution with you.
 
 * Week 14: Pointers
 * Week 15: Structs
