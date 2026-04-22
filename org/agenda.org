@@ -2326,7 +2326,7 @@ used to build digital *circuits* and computers.
       i * 2;  // double the loop variable
    }
    #+end_example
-   
+
    #+begin_quote
    It doubles the value of =i= in each iteration and runs forever,
    or until your memory is exhausted (like in OneCompiler.com)
@@ -2369,7 +2369,7 @@ used to build digital *circuits* and computers.
    (pre-decrement). If the intention was to print 5 first, =i--=
    (post-decrement) should be used instead.
    #+end_quote
-   
+
 * DONE Week 12: ~for~ loops, ~break~, ~exit~, ~continue~ & Arrays
 
 - [X] New home assignment live: Sum integers with ~while~ (Apr 10)
@@ -2440,7 +2440,7 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 ** Review: Array declarations (submit solution to Canvas)
 
-* Week 13: Functions
+* DONE Week 13: Functions
 
 - [X] New home assignment: Fancy loops (simple)
 - [X] New home assignment: Fibonacci numbers (medium)
@@ -2453,11 +2453,108 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 ** Friday functions and arrays competitive programming lab
 
 - Three problems of increasing difficulty.
-- You have 10 minutes to solve each problem.
+- You have 10-15 minutes to solve each problem.
 - After each problem, I'll walk through the solution with you.
 
-* Week 14: Pointers
+* IN-PROGRESS Week 14: Pointers
+
+- [ ] Last home assignment: Student Score Analyzer (May 1)
+- [ ] This week: Pointers - the C/C++ memory miracle weapon
+- [ ] Popquiz: Pointers I
+- [ ] Introduction to structures (C-style classes)
+
+** Pop Quiz: Pointers and Memory (10 Questions)
+
+1. What is a *pointer* in C?
+   #+begin_quote
+   A pointer is a variable that stores the memory address of another
+   variable.
+   #+end_quote
+
+2. True or False: The operator ~&~ returns the value stored in a
+   variable.
+   #+begin_quote
+   False. The ~&~ operator returns the memory address of a variable.
+   #+end_quote
+
+3. Consider the code:
+   #+begin_src C
+     int x = 10;
+     int *p = &x;
+     printf("%d\n", *p);
+   #+end_src
+   What is printed?
+   #+begin_quote
+   10
+   #+end_quote
+
+4. True or False: The expression ~*p~ accesses the value stored at the
+   address held by ~p~.
+   #+begin_quote
+   True.
+   #+end_quote
+
+5. What does the following code do?
+   #+begin_src C
+     int a = 5;
+     int *p = &a;
+     ,*p = 20;
+   #+end_src
+   #+begin_quote
+   It changes the value of ~a~ to 20 using the pointer.
+   #+end_quote
+
+6. True or False: Assigning ~p = 1;~ (where ~p~ is an int pointer) is
+   valid and safe.
+   #+begin_quote
+   False. This assigns an invalid address and produces a compiler
+   warning.
+   #+end_quote
+
+7. Consider the code:
+   #+begin_src C
+     int arr[3] = {1,2,3};
+     printf("%d\n", *arr);
+   #+end_src
+   What is printed?
+   #+begin_quote
+   1 (the first element of the array).
+   #+end_quote
+
+8. True or False: The address of a variable changes after assigning a
+   new value to it.
+   #+begin_quote
+   False. The address remains the same; only the value changes.
+   #+end_quote
+
+9. What is the relationship between ~*~ and ~&~ operators?
+   #+begin_quote
+   They are inverse operations: ~*(&x) = x~ and ~&(*p) = p~.
+   #+end_quote
+
+10. Consider the code:
+    #+begin_src C
+      int a = 5, b = 10;
+      int *p = &a;
+      int *q = &b;
+      ,*q = *p;
+    #+end_src
+    What are the values of ~a~ and ~b~ after execution?
+    #+begin_quote
+    a = 5, b = 5 (value of a copied into b via pointers).
+    #+end_quote
+
+** Last home programming assignment graded with PS rubric
+
+- The last assignment is graded using the [[https://docs.google.com/document/d/1xEnXyFmTsek1IEaqLSU164Uo4VDOmGmR/edit][COR problem-solving rubric]].
+
+- Besides a correct program with the expected sample output, you need
+  to provide some prose in the program header (as comment block):
+
+  1. Define the problem in your own words
+  2. Describe your solution path in your own words
+  3. Describe what you learnt in this exercise
+
 * Week 15: Structs
+
 * Week 16: From C to C++
-
-
