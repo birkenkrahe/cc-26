@@ -501,7 +501,7 @@ interface is offered).
     j = *&i  // same as j = i
   #+end_example
 
-* Practice: Referencing and De-referencing
+* PRACTICE Referencing and De-referencing
 
 - Practice how ~*~ (indirection) and ~&~ (address-of) are inverse
   operations in C.
@@ -640,7 +640,7 @@ interface is offered).
   #+RESULTS:
   : 0x7ffd909f44fc 0x7ffd909f44fc 7
 
-* Practice: Initializing pointers
+* PRACTICE Initializing pointers
 
 - A few things went wrong in the code block below.
 
@@ -681,12 +681,12 @@ interface is offered).
 
   // print pointer, address and value of i
   printf("Deref'd ptr %g\nAddress-of var = %p\nValue of var = %g\n",
-         ,*ptr, ptr, var);
+         (*ptr), ptr, var);
 #+end_src
 
 #+RESULTS:
 : Deref'd ptr 2.71828
-: Address-of var = 0x7ffeee9bca28
+: Address-of var = 0x7ffee6eee948
 : Value of var = 2.71828
 
 * Pass by value and pass by reference
@@ -816,7 +816,19 @@ interface is offered).
   : After swap (in 'swap'): (10,5)
   : After swap (in 'main'): (10,5)
 
-* Challenge: Incrementing an integer by value/reference
+* Pass-by-value vs. Pass-by-reference
+
+  In C++, *pass-by-value* means a function receives a *copy* of the
+  argument: Any changes inside the function affect only the copy and
+  not the original variable (each have their own memory
+  locations). This is not efficient for large data.
+
+  In contrast, *pass-by-reference* (using the address-of operator ~&~ in
+  the parameter), gives the function access to the original variable's
+  memory location: Changes inside the function change the original
+  variable. The function works on the same storage.
+
+* PRACTICE Incrementing an integer by value/reference
 
 - The difference between modfiying a variable inside a function by:
   1) Pass by value (no lasting effect)
@@ -976,7 +988,7 @@ interface is offered).
       // PRINT "Sum with array: " + addArr(num)
       printf("Sum with array: %d\n", addArr(num));
       // PRINT "Sum with pointer: " + addPtr(num)
-      printf("Sum with pointer: %d\n", addPtr(num));
+      printf("Sum with pointer: %d\n", addPtr(num)); // same as addPtr(&num[0])
       return 0;
     } // END
 
@@ -1001,6 +1013,9 @@ interface is offered).
   : Sum with array: 30
   : Sum with pointer: 30
 
+- Notice that we did not pass the size of the array to the function:
+  we did not need this because we did not loop over the array.
+
 - Even though arrays decay to pointers in function calls, they are not
   the same type in general:
   | Feature            | Array                | Pointer                    |
@@ -1010,7 +1025,7 @@ interface is offered).
   | Pointer arithmetic | No                   | Yes                        |
   | Can be reassigned? | No (name is fixed)   | Yes (can point elsewhere)  |
 
-* Challenge: Passing arrays and pointers to functions
+* PRACTICE Passing arrays and pointers to functions
 
 - Write a program that
   1. Creates an array =arr= of 5 integers 100,200,300,400,500.
@@ -1161,6 +1176,9 @@ interface is offered).
 
   #+RESULTS:
   : 100 200 300 400 500 
+
+- Notice that we did not pass the size of the array to the function:
+  Instead we used the constant =N= which was set with ~#define~.
 
 * References
 

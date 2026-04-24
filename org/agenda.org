@@ -1,4 +1,4 @@
-#+title: Agenda Notebook
+n#+title: Agenda Notebook
 #+author: Marcus Birkenkrahe
 #+subtitle: CSC 100 [Spring 2026]
 #+SEQ_TODO: TODO NEXT IN-PROGRESS PRACTICE | DONE CANCELLED
@@ -2458,12 +2458,14 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 * IN-PROGRESS Week 14: Pointers
 
-- [ ] Last home assignment: Student Score Analyzer (May 1)
-- [ ] This week: Pointers - the C/C++ memory miracle weapon
-- [ ] Popquiz: Pointers I
+- [X] Last home assignment: Student Score Analyzer (May 1)
+- [X] This week: Pointers - the C/C++ memory miracle weapon
+- [X] Popquiz: Pointers I
+- [ ] No more quizzes, no more new assignments
+- [ ] Remember bonus programs if you want to get more points.
 - [ ] Introduction to structures (C-style classes)
 
-** Pop Quiz: Pointers and Memory (10 Questions)
+** DONE Pop Quiz: Pointers and Memory (10 Questions)
 
 1. What is a *pointer* in C?
    #+begin_quote
@@ -2498,7 +2500,7 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
    #+begin_src C
      int a = 5;
      int *p = &a;
-     ,*p = 20;
+     (*p) = 20;
    #+end_src
    #+begin_quote
    It changes the value of ~a~ to 20 using the pointer.
@@ -2516,6 +2518,10 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
      int arr[3] = {1,2,3};
      printf("%d\n", *arr);
    #+end_src
+
+   #+RESULTS:
+   : 1
+
    What is printed?
    #+begin_quote
    1 (the first element of the array).
@@ -2537,14 +2543,14 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
       int a = 5, b = 10;
       int *p = &a;
       int *q = &b;
-      ,*q = *p;
+      (*q) = *p;
     #+end_src
     What are the values of ~a~ and ~b~ after execution?
     #+begin_quote
     a = 5, b = 5 (value of a copied into b via pointers).
     #+end_quote
 
-** Last home programming assignment graded with PS rubric
+** DONE Last home programming assignment graded with PS rubric
 
 - The last assignment is graded using the [[https://docs.google.com/document/d/1xEnXyFmTsek1IEaqLSU164Uo4VDOmGmR/edit][COR problem-solving rubric]].
 
@@ -2554,6 +2560,150 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
   1. Define the problem in your own words
   2. Describe your solution path in your own words
   3. Describe what you learnt in this exercise
+
+
+** Review: Pass-by-value vs. pass-by-reference
+
+* Pass-by-value vs. Pass-by-reference
+
+  In C++, *pass-by-value* means a function receives a *copy* of the
+  argument: Any changes inside the function affect only the copy and
+  not the original variable (each have their own memory
+  locations). This is not efficient for large data.
+
+  In contrast, *pass-by-reference* (using the address-of operator ~&~ in
+  the parameter), gives the function access to the original variable's
+  memory location: Changes inside the function change the original
+  variable. The function works on the same storage.
+
+** Review: Pointers II - what's wrong with this code?
+
+1. What is wrong with this code?
+
+    #+begin_example C
+     int x = 10;
+     int *p;
+
+     *p = x;
+
+     printf("%d\n", x);
+   #+end_example
+
+   #+begin_quote
+   =p= is not initialized. It points to an unknown address.
+   Dereferencing it causes undefined behavior. Set =p = &x=
+   before using =*p=.
+   #+end_quote
+
+2. What is wrong with this code?
+
+   #+begin_example C
+     double var = 3.14159;
+     int *ptr = &var;
+
+     printf("%d\n", *ptr);
+   #+end_example
+
+   #+begin_quote
+   Type mismatch: =var= is a =double= but =ptr= is =int *=.
+   Pointer type must match the variable type.
+   #+end_quote
+
+3. What is wrong with this code if we want to change =x= to =20= using the
+   pointer =p=?
+
+   #+begin_example C
+     int x = 5;
+     int *p = &x;
+
+     p = 20;
+
+     printf("%d\n", x);
+   #+end_example
+
+   #+begin_quote
+   Assigning =20= to =p= changes the address, not the value.
+   To change =x=, use =*p = 20=.
+   #+end_quote
+
+4. What is wrong with this code?
+
+   #+begin_example C
+     int x = 5;
+     int *p = &x;
+
+     printf("address = %d\n", p);
+     printf("value = %p\n", *p);
+   #+end_example
+
+   #+begin_quote
+   Wrong format specifiers: use =%p= for addresses and =%d=
+   for integer values.
+   #+end_quote
+
+5. What is wrong with this code if we want to increment =x=?
+
+   #+begin_example C
+     void increment(int n);
+
+     int main(void)
+     {
+       int x = 1;
+       increment(x);
+       printf("%d\n", x);
+       return 0;
+     }
+
+     void increment(int n)
+     {
+       n++;
+     }
+   #+end_example
+
+   #+begin_quote
+   =n= is passed by value. Only a copy is modified, so =x=
+   remains unchanged.
+   #+end_quote
+
+6. What is wrong with this code?
+
+   #+begin_example C
+     void increment_ref(int *n);
+
+     int main(void)
+     {
+       int x = 1;
+       increment_ref(x);
+       printf("%d\n", x);
+       return 0;
+     }
+
+     void increment_ref(int *n)
+     {
+       (*n)++;
+     }
+   #+end_example
+
+   #+begin_quote
+   The function expects an address (=int *=), but =x= is passed.
+   Use =increment_ref(&x)=.
+   #+end_quote
+
+7. What is wrong with this code if we want to increment an integer in
+   the calling function?
+
+   #+begin_example C
+     void increment_ref(int *n)
+     {
+       n++;
+     }
+   #+end_example
+
+   #+begin_quote
+   =n++= changes the pointer itself, not the value it points to.
+   Use =(*n)++= to modify the value.
+   #+end_quote
+
 
 * Week 15: Structs
 
