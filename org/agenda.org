@@ -2456,7 +2456,7 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 - You have 10-15 minutes to solve each problem.
 - After each problem, I'll walk through the solution with you.
 
-* IN-PROGRESS Week 14: Pointers
+* DONE Week 14: Pointers
 
 - [X] Last home assignment: Student Score Analyzer (May 1)
 - [X] This week: Pointers - the C/C++ memory miracle weapon
@@ -2561,10 +2561,136 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
   2. Describe your solution path in your own words
   3. Describe what you learnt in this exercise
 
+** DONE Review: Pointers II - what's wrong with this code?
 
-** Review: Pass-by-value vs. pass-by-reference
+1. What is wrong with this code?
 
-* Pass-by-value vs. Pass-by-reference
+    #+begin_example C
+     int x = 10;
+     int *p;
+     //  *p = x;
+     p = &x; // attach address of x to pointer
+
+     printf("%d %d\n", x, *p);
+   #+end_example
+
+   #+begin_quote
+   =p= is not initialized. It points to an unknown address.
+   Dereferencing it causes undefined behavior. Set =p = &x=
+   before using =*p=.
+   #+end_quote
+
+2. What is wrong with this code?
+
+   #+begin_example C
+     double var = 3.14159;
+     int *ptr = &var; // correct: double *ptr = &var
+
+     printf("%d\n", *ptr);
+   #+end_example
+
+   #+begin_quote
+   Type mismatch: =var= is a =double= but =ptr= is =int *=.
+   Pointer type must match the variable type.
+   #+end_quote
+
+3. What is wrong with this code if we want to change =x= to =20= using the
+   pointer =p=?
+
+   #+begin_example C
+     int x = 5;
+     int *p = &x;
+
+     p = 20; // correct: *p = 20;
+
+     printf("%d\n", x); // print 5
+   #+end_example
+
+   #+begin_quote
+   Assigning =20= to =p= changes the address, not the value.
+   To change =x=, use =*p = 20=.
+   #+end_quote
+
+4. What is wrong with this code?
+
+   #+begin_example C
+     int x = 5;
+     int *p = &x;
+
+     printf("address = %d\n", p); // correct: %p
+     printf("value = %p\n", *p);  // correct: %d
+   #+end_example
+
+   #+begin_quote
+   Wrong format specifiers: use =%p= for addresses and =%d=
+   for integer values.
+   #+end_quote
+
+5. What is wrong with this code if we want to increment =x=?
+
+   #+begin_example C
+     void increment(int n);
+
+     int main(void)
+     {
+       int x = 1;
+       increment(x); // x is unchanged
+       printf("%d\n", x); // print 1 not 2
+       return 0;
+     }
+
+     void increment(int n) // receives copy of n
+     {
+       n++; // increments copy of n
+     }
+   #+end_example
+
+   #+begin_quote
+   =n= is passed by value. Only a copy is modified, so =x=
+   remains unchanged.
+   #+end_quote
+
+6. What is wrong with this code?
+
+   #+begin_example C
+     void increment_ref(int *n);
+
+     int main(void)
+     {
+       int x = 1;
+       increment_ref(x); // correct: increment_ref(&x);
+       printf("%d\n", x); // prints 1
+       return 0;
+     }
+
+     void increment_ref(int *n) // reference to the original x
+     {
+       (*n)++; // changes x
+     }
+   #+end_example
+
+   #+begin_quote
+   The function expects an address (=int *=), but =x= is passed.
+   Use =increment_ref(&x)=.
+   #+end_quote
+
+7. What is wrong with this code if we want to increment an integer in
+   the calling function?
+
+   #+begin_example C
+     void increment_ref(int *n)
+     {
+       n++; // correct: (*n)++;
+     }
+   #+end_example
+
+   #+begin_quote
+   =n++= changes the pointer itself, not the value it points to.
+   Use =(*n)++= to modify the value.
+   #+end_quote
+
+
+** Pass-by-value vs. Pass-by-reference
 
   In C++, *pass-by-value* means a function receives a *copy* of the
   argument: Any changes inside the function affect only the copy and
@@ -2705,6 +2831,6 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
    #+end_quote
 
 
-* Week 15: Structs
+* Week 15: From ~struct~ (C) to ~class~ (C++)
 
-* Week 16: From C to C++
+* Week 16: Classes C++
