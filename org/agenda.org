@@ -1,4 +1,4 @@
-n#+title: Agenda Notebook
+xgnn#+title: Agenda Notebook
 #+author: Marcus Birkenkrahe
 #+subtitle: CSC 100 [Spring 2026]
 #+SEQ_TODO: TODO NEXT IN-PROGRESS PRACTICE | DONE CANCELLED
@@ -2832,5 +2832,129 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 
 * Week 15: From ~struct~ (C) to ~class~ (C++)
+
+** Review: ~struct~ in C
+
+1. What is wrong with this code?
+   #+begin_src C :results none
+     struct Point {
+       int x;
+       int y;
+     }
+
+     int main(void) {
+       struct Point p = {3, 4};
+       return 0;
+     }
+   #+end_src
+
+   #+begin_quote
+   The ~struct~ definition is missing a semicolon after the closing
+   brace: ~};~
+   #+end_quote
+
+2. What is wrong with this code?
+   #+begin_src C :results output
+     struct Point {
+       int x;
+       int y;
+     };
+
+     int main(void) {
+       Point p = {3, 4};
+       printf("(%d,%d)\n", p.x, p.y);
+       return 0;
+     }
+   #+end_src
+   
+   #+begin_quote
+   In C, the type name is ~struct Point~, not just ~Point~. The declaration
+   should be ~struct Point p = {3, 4};~.
+   #+end_quote
+
+3. What is wrong with this code?
+   #+begin_src C
+     struct Point {
+       int x;
+       int y;
+     };
+
+     int main(void) {
+       struct Point p = {3, 4};
+       printf("(%d,%d)\n", p->x, p->y);
+       return 0;
+     }
+   #+end_src
+
+   #+begin_quote
+   ~p~ is a struct variable, not a pointer. Use dot notation:
+   ~p.x~ and ~p.y~.
+   #+end_quote
+
+4. What is wrong with this code?
+   #+begin_src C   :results none
+     struct Point {
+       float x;
+       float y;
+     };
+
+     void move_point(struct Point p, float dx, float dy) {
+       p.x += dx;
+       p.y += dy;
+     }
+   #+end_src
+
+   #+begin_quote
+   The function receives a copy of the struct. It changes only the
+   copy, not the original point. To modify the original, pass a
+   pointer: ~void move_point(struct Point *p, float dx, float dy)~.
+   #+end_quote
+
+5. What is wrong with this code?
+   #+begin_src C
+     struct Point {
+       float x;
+       float y;
+     };
+
+     void move_point(struct Point *p, float dx, float dy) {
+       p.x += dx;
+       p.y += dy;
+     }
+   #+end_src
+   #+begin_quote
+   ~p~ is a pointer to a struct, so dot notation is wrong. Use arrow
+   notation: ~p->x += dx;~ and ~p->y += dy;~.
+   #+end_quote
+
+6. What is wrong with this code?
+   #+begin_src C
+     #include <stdio.h>
+
+     struct Point {
+       int x;
+       int y;
+     };
+
+     void move_point(struct Point *p) {
+       p->x += 1;
+       p->y += 1;
+     }
+
+     int main(void) {
+       struct Point pt = {3,4};
+       move_point(pt);
+       printf("(%d,%d)\n", pt.x, pt.y);
+       return 0;
+     }
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   The function expects a pointer (~struct Point *p~), but the call
+   passes the struct value (~pt~). The address must be passed using ~&pt~:
+   ~move_point(&pt);~.
+   #+end_quote
 
 * Week 16: Classes C++
