@@ -396,7 +396,8 @@
   : Player's health after battle = 50
   : Player's health after healing = 130
 
-* Bonus challenge: Cap =Player= =health= at 100
+
+* PRACTICE Cap =Player= =health= at 100
 
 - Modify the previous program to cap the =health= at 100. That is, ~if~
   =health= is above 100, reset it to 100.
@@ -497,6 +498,7 @@
   3) Display =John='s =health=.
 
 - Starter code: [[https://onecompiler.com/cpp/43gpntxa2][onecompiler.com/cpp/43gpntxa2]]
+  https://tinyurl.com/player-with-constructor
   #+begin_src C++ :main yes :includes :results output
     // Include Input/Output functions
     // Use standard namespace
@@ -551,7 +553,9 @@
 * Initializer Lists Syntax
 
 - A better style for initializing member variables in constructors is
-  using a list:
+  using a list.
+
+- We add a =Player= =level= to the ~private~ data:
   #+begin_src C++ :main no :results output :includes <iostream> :namespaces std
     class Player {
     private:
@@ -576,12 +580,17 @@
   created.
 
 - Any number of members can be initialized, e.g. this list would
-  create a =Player= with default =health=100=, =level=1=, and =build=3=:
-  #+begin_example C
+  construct a =Player= with default =health=100=, =level=1=, and =build=3=:
+  #+begin_example C++
   Player() : health(100), level(1), build(3) { }
   #+end_example
 
-- Why is this better?
+- To create a =Player= with that constructor, in ~main~:
+  #+begin_example C++
+    Player Jane; // invokes `Player()` in the class
+  #+end_example
+
+- Why is this constructor list initialization better?
   1) Member variables are initialized directly at construction time
      (rather than default-constructed first and then assigned a value)
   2) You must use initializer lists for ~const~ members or references
@@ -593,6 +602,111 @@
          Person(int i) : ssn(i) { } // must use initializer list
        };
      #+end_src
+
+
+* PRACTICE BankAccount With Initializer Lists
+
+- Write a C++ program that defines a ~BankAccount~ class.
+
+- The class must have three *private* data members:
+  1. ~balance~
+  2. ~owner~
+  3. ~accountNumber~ (must not change after initialization)
+
+- The class must provide:
+  1. A constructor that uses an *initializer list* to initialize all
+     members.
+  2. A public method ~printAccount()~ that prints account details.
+
+** Starter code
+
+#+begin_src C++
+#include <iostream>
+#include <string>
+using namespace std;
+
+class BankAccount {
+private:
+  // declare member variables
+
+public:
+  // constructor with initializer list
+
+  void print_account() {
+    // print account details
+  }
+};
+
+int main() {
+  BankAccount a1("Alice", 500.0, 1001);
+  BankAccount a2("Bob", 1200.5, 1002);
+
+  a1.print_account();
+  a2.print_account();
+
+  return 0;
+}
+#+end_src
+
+** Expected output
+
+#+begin_example
+Account 1001 owned by Alice has balance 500
+Account 1002 owned by Bob has balance 1200.5
+#+end_example
+
+** Requirements
+
+1. Use an initializer list in the constructor.
+2. Keep all data members private.
+3. Do not assign values inside the constructor body.
+4. Use ~cout~ for output.
+
+
+** Solution
+
+https://onecompiler.com/cpp/44mxmm498
+
+https://tinyurl.com/bank-account-initializer
+
+#+begin_src C++ :results output
+  #include <iostream>
+  #include <string>
+  using namespace std;
+
+  class BankAccount {
+  private:
+    // declare member variables
+    double balance;
+    string owner;
+    const int accountNumber;
+  public:
+    // constructor with initializer list
+    BankAccount(string o, double b, int n)
+      : owner(o), balance(b), accountNumber(n) {}
+    void printAccount() {
+      // print account details
+      cout << "Account " << accountNumber
+           << " owned by " << owner
+           << " has balance " << balance
+  	 << endl;
+    }
+  };
+
+  int main() {
+    BankAccount a1("Alice", 500.0, 1001);
+    BankAccount a2("Bob", 1200.5, 1002);
+
+    a1.printAccount();
+    a2.printAccount();
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: Account 1001 owned by Alice has balance 500
+: Account 1002 owned by Bob has balance 1200.5
 
 * Destructor: Clean up =Player= at the end of the game
 
@@ -631,10 +745,6 @@
       Player John(100);
      }
   #+end_src
-
-  #+RESULTS:
-  : Player created with health: 100
-  : Player destroyed.
 
 - This looks as if the =Player= =John= was created and instantly
   destroyed. But that's not true: =John= lived for the duration of the
@@ -679,7 +789,7 @@
   Python, in C++ you know exactly when objects are destroyed - that's
   a feature!
 
-* Challenge: Create two =Player= characters
+* PRACTICE Create two =Player= characters
 
 - Create two =Player= characters, name them =Alice= and =Bob=, start them
   off with =health= 100 and 200, respectively. Let them =takeDamage= (50),
@@ -761,13 +871,21 @@
     };
     int main(void)
     {
+      // Create two players, Alice and Bob
       Player Alice(100), Bob(200);
+      // PRINT Game in progress...
       cout << "Game in progress...\n" << endl;
+      // Alice takes damage
       Alice.takeDamage(50);
+      // Bob takes damage
       Bob.takeDamage(50);
+      // PRINT "Game is about to end...
       cout << "Game is about to end...\n" << endl;
+      // PRINT Alice's health
       cout << "Alice's health: " << Alice.getHealth() << endl;
+      // PRINT Bob's health
       cout << "Bob's health: " << Bob.getHealth() << endl;
+      // PRINT Game over
       cout << "Game over.\n" << endl;
       return 0;
     }
@@ -847,7 +965,7 @@
      #+end_example
   3. To reinforce object identity.
 
-* Practice: ~this~
+* PRACTICE ~this~
 
 - Write a constructor for the =Car= class that creates a =Car= with the
   following features: =cyl= (number of cylinders), and =speed= (maximum
@@ -992,7 +1110,7 @@
     because these methods do not belong to any object - they can be
     called without creating an object.
 
-* Challenge: =Enemy= ~class~
+* PRACTICE =Enemy= ~class~
 
 - Create an =Enemy= class with:
   1. A constructor

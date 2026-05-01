@@ -2565,14 +2565,14 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 1. What is wrong with this code?
 
-    #+begin_example C
-     int x = 10;
-     int *p;
-     //  *p = x;
-     p = &x; // attach address of x to pointer
+   #+begin_example C
+    int x = 10;
+    int *p;
+    //  *p = x;
+    p = &x; // attach address of x to pointer
 
-     printf("%d %d\n", x, *p);
-   #+end_example
+    printf("%d %d\n", x, *p);
+  #+end_example
 
    #+begin_quote
    =p= is not initialized. It points to an unknown address.
@@ -2692,28 +2692,28 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 ** Pass-by-value vs. Pass-by-reference
 
-  In C++, *pass-by-value* means a function receives a *copy* of the
-  argument: Any changes inside the function affect only the copy and
-  not the original variable (each have their own memory
-  locations). This is not efficient for large data.
+In C++, *pass-by-value* means a function receives a *copy* of the
+argument: Any changes inside the function affect only the copy and
+not the original variable (each have their own memory
+locations). This is not efficient for large data.
 
-  In contrast, *pass-by-reference* (using the address-of operator ~&~ in
-  the parameter), gives the function access to the original variable's
-  memory location: Changes inside the function change the original
-  variable. The function works on the same storage.
+In contrast, *pass-by-reference* (using the address-of operator ~&~ in
+the parameter), gives the function access to the original variable's
+memory location: Changes inside the function change the original
+variable. The function works on the same storage.
 
 ** Review: Pointers II - what's wrong with this code?
 
 1. What is wrong with this code?
 
-    #+begin_example C
-     int x = 10;
-     int *p;
+   #+begin_example C
+    int x = 10;
+    int *p;
 
-     *p = x;
+    *p = x;
 
-     printf("%d\n", x);
-   #+end_example
+    printf("%d\n", x);
+  #+end_example
 
    #+begin_quote
    =p= is not initialized. It points to an unknown address.
@@ -2833,7 +2833,7 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
 
 * Week 15: From ~struct~ (C) to ~class~ (C++)
 
-** Review: ~struct~ in C
+** DONE Review: ~struct~ in C
 
 1. What is wrong with this code?
    #+begin_src C :results none
@@ -2842,7 +2842,7 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
        int y;
      }
 
-     int main(void) {
+       int main(void) {
        struct Point p = {3, 4};
        return 0;
      }
@@ -2866,7 +2866,9 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
        return 0;
      }
    #+end_src
-   
+
+   #+RESULTS:
+
    #+begin_quote
    In C, the type name is ~struct Point~, not just ~Point~. The declaration
    should be ~struct Point p = {3, 4};~.
@@ -2957,4 +2959,146 @@ p*** Exit strategies: ~break~, ~continue~, ~exit~
    ~move_point(&pt);~.
    #+end_quote
 
-* Week 16: Classes C++
+
+** Review: ~class~ in C++
+
+1. What is the main *difference* between a C ~struct~ and a C++ ~class~ in
+   terms of data access?
+   #+begin_quote
+   C structs expose data publicly by default, while C++ classes can hide
+   data using private access and enforce controlled access via methods
+   (encapsulation).
+   #+end_quote
+
+2. True or False: Private members of a class can only be accessed
+   through ~public~ methods defined in the same class.
+   #+begin_quote
+   True.
+   #+end_quote
+
+3. What's wrong with this code?
+   #+begin_src C++
+     class Player {
+     private:
+       int health = 100;
+     };
+
+     int main() {
+       Player p;
+       p.health = 50;
+     }
+   #+end_src
+   #+begin_quote
+   health is private and cannot be accessed directly from outside the class.
+   #+end_quote
+
+4. What is a *method* in C++ and how is it different from a regular
+   function in a program without ~class~?
+   #+begin_quote
+   A method is a function defined inside a class that operates on its
+   data and can access private members.
+   #+end_quote
+
+5. What's wrong with this code?
+   #+begin_src C++
+     #include <iostream>
+     using namespace std;
+
+     class Player {
+     private:
+       int health = 100;
+     public:
+       int getHealth();
+     };
+
+     int main() {
+       Player p;
+       cout << p.getHealth();
+     }
+   #+end_src
+
+   #+RESULTS:
+
+   #+begin_quote
+   =getHealth= is declared but not defined, so the program will fail to
+   link (~ld~ error). To define, it has to have a scope ~{...}~
+   #+end_quote
+
+6. True or False: A method can directly modify ~private~ data of its class.
+   #+begin_quote
+   True.
+   #+end_quote
+
+7. What's wrong with this code?
+   #+begin_src C++
+     class Player {
+     private:
+       int health = 100;
+     public:
+       void takeDamage(int amount) {
+         health = amount;
+       }
+     };
+   #+end_src
+   #+begin_quote
+   The method overwrites health instead of reducing it (should use
+   ~health -= amount~).
+   #+end_quote
+
+8. Consider the following:
+   #+begin_src C++
+     Player John;
+     John.takeDamage(50);
+   #+end_src
+   What must exist in the class definition for this to compile?
+   #+begin_quote
+   A ~public~ method =takeDamage(int)= must be declared and defined in the
+   ~class~ =Player=.
+   #+end_quote
+
+11. What's wrong with this code?
+    #+begin_src C++
+      #include <stdio.h>
+
+      class Player {
+      private:
+        int health = 100;
+      public:
+        int getHealth() {
+          return health;
+        }
+      };
+
+      int main() {
+        Player p;
+        cout << getHealth();
+      }
+    #+end_src
+    #+begin_quote
+    =getHealth()= is a =Player= method and must be called on an object:
+    =p.getHealth()=. ~cout~ requires ~iostream~ and ~using namespace std;~
+    #+end_quote
+
+10. What's wrong with this code?
+    #+begin_src C++
+      class Player {
+      private:
+        int health = 100;
+      public:
+        int getHealth() {
+          return health;
+        }
+      }
+
+      int main() {
+        class Player p;
+        cout << p.getHealth();
+      }
+    #+end_src
+    #+begin_quote
+    Missing ~#include <iostream>~ and ~using namespace std;~ and missing
+    semi-colon ~;~ at the end of the ~class~ definition.
+    #+end_quote
+
+
+* Week 16: More on classes in C++ / Summary
