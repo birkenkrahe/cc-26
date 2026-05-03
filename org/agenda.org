@@ -2830,10 +2830,9 @@ variable. The function works on the same storage.
    Use =(*n)++= to modify the value.
    #+end_quote
 
+* DONE Week 15: From ~struct~ (C) to ~class~ (C++)
 
-* Week 15: From ~struct~ (C) to ~class~ (C++)
-
-** DONE Review: ~struct~ in C
+** Review: ~struct~ in C
 
 1. What is wrong with this code?
    #+begin_src C :results none
@@ -2959,7 +2958,6 @@ variable. The function works on the same storage.
    ~move_point(&pt);~.
    #+end_quote
 
-
 ** Review: ~class~ in C++
 
 1. What is the main *difference* between a C ~struct~ and a C++ ~class~ in
@@ -2967,7 +2965,7 @@ variable. The function works on the same storage.
    #+begin_quote
    C structs expose data publicly by default, while C++ classes can hide
    data using private access and enforce controlled access via methods
-   (encapsulation).
+   (*encapsulation*).
    #+end_quote
 
 2. True or False: Private members of a class can only be accessed
@@ -2985,9 +2983,12 @@ variable. The function works on the same storage.
 
      int main() {
        Player p;
-       p.health = 50;
+       p.health = 50; // Player health is private
      }
    #+end_src
+
+   #+RESULTS:
+
    #+begin_quote
    health is private and cannot be accessed directly from outside the class.
    #+end_quote
@@ -3008,7 +3009,7 @@ variable. The function works on the same storage.
      private:
        int health = 100;
      public:
-       int getHealth();
+       int getHealth(); // declared but not defined
      };
 
      int main() {
@@ -3018,6 +3019,7 @@ variable. The function works on the same storage.
    #+end_src
 
    #+RESULTS:
+   : 100
 
    #+begin_quote
    =getHealth= is declared but not defined, so the program will fail to
@@ -3036,7 +3038,7 @@ variable. The function works on the same storage.
        int health = 100;
      public:
        void takeDamage(int amount) {
-         health = amount;
+         health = amount; // overwrites health
        }
      };
    #+end_src
@@ -3045,7 +3047,7 @@ variable. The function works on the same storage.
    ~health -= amount~).
    #+end_quote
 
-8. Consider the following:
+8. Consider the following in the ~main~ program:
    #+begin_src C++
      Player John;
      John.takeDamage(50);
@@ -3058,7 +3060,7 @@ variable. The function works on the same storage.
 
 11. What's wrong with this code?
     #+begin_src C++
-      #include <stdio.h>
+      #include <stdio.h> // use <iostream>
 
       class Player {
       private:
@@ -3071,9 +3073,12 @@ variable. The function works on the same storage.
 
       int main() {
         Player p;
-        cout << getHealth();
+        cout << getHealth(); // must be in Player scope
       }
     #+end_src
+
+    #+RESULTS:g
+
     #+begin_quote
     =getHealth()= is a =Player= method and must be called on an object:
     =p.getHealth()=. ~cout~ requires ~iostream~ and ~using namespace std;~
@@ -3081,6 +3086,8 @@ variable. The function works on the same storage.
 
 10. What's wrong with this code?
     #+begin_src C++
+      #include <iostream>
+
       class Player {
       private:
         int health = 100;
@@ -3088,13 +3095,17 @@ variable. The function works on the same storage.
         int getHealth() {
           return health;
         }
-      }
+      };
 
       int main() {
         class Player p;
         cout << p.getHealth();
       }
     #+end_src
+
+    #+RESULTS:
+    : 100
+
     #+begin_quote
     Missing ~#include <iostream>~ and ~using namespace std;~ and missing
     semi-colon ~;~ at the end of the ~class~ definition.
@@ -3102,3 +3113,120 @@ variable. The function works on the same storage.
 
 
 * Week 16: More on classes in C++ / Summary
+
+- [ ] Review questions
+- [ ] Review exercise
+- [ ] Destructors
+- [ ] The ~this~ pointer
+- [ ] The ~static~ member
+- [ ] Object lifecycle in C++
+
+** Review: Initializer lists, constructors
+
+1. What should be improved in this code?
+   #+begin_src C++
+   class Book {
+   private:
+     string title;
+     int pages;
+   public:
+     Book(string t, int p) {
+       title = t;
+       pages = p;
+     }
+   };
+   #+end_src
+   #+begin_quote
+   The constructor works, but it does not use an initializer list.
+   For this exercise, the preferred style is:
+
+   Book(string t, int p) : title(t), pages(p) {}
+   #+end_quote
+
+2. What's wrong with this code?
+   #+begin_src C++
+   class Ticket {
+   private:
+     string event;
+     double price;
+     int seatNumber;
+   public:
+     Ticket(string e, double p, int s)
+       : event(e), price(p) {
+     }
+   };
+   #+end_src
+   #+begin_quote
+   =seatNumber= is not initialized. *Every member* needed by the =Ticket=
+   object should be initialized in the constructor.
+   #+end_quote
+
+3. What's wrong with this code?
+   #+begin_src C++
+   class Laptop {
+   private:
+     string brand;
+     double price;
+     const int serialNumber;
+   public:
+     Laptop(string b, double p, int s) {
+       brand = b;
+       price = p;
+       serialNumber = s;
+     }
+   };
+   #+end_src
+   #+begin_quote
+   =serialNumber= is const, so it cannot be assigned inside the =Laptop=
+   constructor body. It must be initialized in the initializer list.
+   #+end_quote
+
+4. What's wrong with this code?
+   #+begin_src C++
+   class Course {
+   private:
+     string name;
+     const int number;
+   public:
+     Course(string n, int num)
+       : name(n), number(num) {
+       number = 101;
+     }
+   };
+   #+end_src
+   #+begin_quote
+   =number= is ~const~. It may be initialized once in the initializer
+   list, but it cannot be changed later in the constructor body.
+   #+end_quote
+
+5. What's wrong with this code?
+   #+begin_src C++ :main no :includes :results none
+     #include <iostream>
+     #include <string>
+     using namespace std;
+
+     class Package {
+     private:
+       string recipient;
+       double weight;
+       const int trackingNumber;
+     public:
+       Package(string r, double w, int t)
+         : recipient(r), weight(w), trackingNumber(t) {
+       }
+
+       void printPackage() {
+         cout << "Package " << trackingNumber
+              << " for " << recipient
+              << " weighs " << weight;
+       }
+     };
+
+     int main() {}
+   #+end_src
+
+   #+begin_quote
+   *Nothing is wrong.* This is the pattern needed for the BankAccount
+   exercise: private data, const ID-like member, initializer list, and
+   a print method.
+   #+end_quote
