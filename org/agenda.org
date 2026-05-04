@@ -3115,6 +3115,7 @@ variable. The function works on the same storage.
 * Week 16: More on classes in C++ / Summary
 
 - [ ] Grading done (except bonus assignments - until May 8)
+- [ ] Please finish your course evaluations now! (14/21 missing)
 - [ ] Review questions
 - [ ] Review exercise
 - [ ] Destructors

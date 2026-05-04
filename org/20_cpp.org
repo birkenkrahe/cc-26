@@ -620,6 +620,10 @@
 
 ** Starter code
 
+https://onecompiler.com/cpp/44mxmm498
+
+https://tinyurl.com/bank-account-initializer
+
 #+begin_src C++
 #include <iostream>
 #include <string>
@@ -664,10 +668,6 @@ Account 1002 owned by Bob has balance 1200.5
 
 
 ** Solution
-
-https://onecompiler.com/cpp/44mxmm498
-
-https://tinyurl.com/bank-account-initializer
 
 #+begin_src C++ :results output
   #include <iostream>
@@ -819,6 +819,8 @@ https://tinyurl.com/bank-account-initializer
 
 - Starter code: [[https://onecompiler.com/cpp/43h2mrae6][onecompiler.com/cpp/43h2mrae6]]
 
+  https://tinyurl.com/two-players
+  
   #+begin_src C++ :main no :includes :results output
     #include <iostream>
     using namespace std;
@@ -930,8 +932,8 @@ https://tinyurl.com/bank-account-initializer
     private:
       int health;
     public:
-      Player(int health) {
-        this->health = health; // LHS: ptr to member, RHS: parameter
+      Player(int h) {
+        this->health = h; // LHS: ptr to member, RHS: parameter
       }
       int getHealth() { return this->health; }
     };
@@ -983,7 +985,11 @@ https://tinyurl.com/bank-account-initializer
   2) Create a 4-cylinder =kia= =Car= with 140 mph max =speed=.
   3) Create a 6-cylinder =ford= =Car= with 200 mph max =speed=.
 
-- The Starter code is here: https://onecompiler.com/cpp/43h48uajv
+- The Starter code is here:
+
+  https://onecompiler.com/cpp/43h48uajv
+
+  https://tinyurl.com/this-pointer
 
   #+begin_src C++ :main no :includes :results output
     #include <iostream>
@@ -1025,7 +1031,7 @@ https://tinyurl.com/bank-account-initializer
       Car(int cyl, int speed) : cyl(cyl), speed(speed) {
         // PRINT Car's cylinder and max speed values
         cout << "Car created with " << this->cyl
-             << " and "             << this-> speed
+             << " and "             << this->speed
              << " mph max speed." << endl;
       }
       // Destructor
@@ -1046,6 +1052,7 @@ https://tinyurl.com/bank-account-initializer
   : Car created with 6 and 200 mph max speed.
   : Car destroyed.
   : Car destroyed.
+
 
 * ~static~ members are shared across all instances
 
@@ -1130,7 +1137,11 @@ https://tinyurl.com/bank-account-initializer
   Enemies active: 0
   #+end_example
 
-- Starter code: [[https://onecompiler.com/cpp/43h3pgda6][onecompiler.com/cpp/43h3pgda6]]
+- Starter code:
+  [[https://onecompiler.com/cpp/43h3pgda6][onecompiler.com/cpp/43h3pgda6]]
+  
+  https://tinyurl.com/enemy-class
+  
   #+begin_src C++ :main no :results output
     #include <iostream>
     using namespace std;
@@ -1154,7 +1165,8 @@ https://tinyurl.com/bank-account-initializer
     // END main
   #+end_src
 
-- Solution:
+- Solution: https://tinyurl.com/enemy-class-solution
+  
   #+begin_src C++ :main no :results output
     #include <iostream>
     using namespace std;
@@ -1206,43 +1218,30 @@ https://tinyurl.com/bank-account-initializer
 
 * Summary: Object Lifecycle in C++
 
-- *Construction*: Objects are automatically initialized using a
-  *constructor* when declared.
-  + Example: =Player John(100);= runs the =Player(int)= constructor.
-  + Constructors can take parameters or use initializer lists for
-    clean, direct setup.
+- *Construction*: Constructor runs when an object is declared.
+  + Initializes members (optionally via initializer lists).
 
-- *Usage / Lifetime*: Objects remain alive and usable for the duration
-  of their *scope*.
-  + Methods like =takeDamage()= or =getHealth()= operate on the object
-    during this phase.
-  + The ~this~ pointer refers to the current object and is used to
-    access members clearly.
+- *Lifetime (Scope)*: Object exists within its scope.
+  + Methods operate on it; =this= refers to the current object.
 
-- *Destruction*: When an object goes *out of scope*, its *destructor* is
-  automatically called.
-  + Used to log destruction or clean up memory/resources.
-  + Order of destruction is the reverse of construction — last-in,
-    first-out (LIFO).
+- *Destruction*: Destructor runs automatically at end of scope.
+  + Cleans up resources.
+  + Order is LIFO (reverse of construction).
 
-- *Static Members & Lifecycle Awareness*:
-  + Use static counters (e.g., =Player::count=) to track how many
-    objects are alive.
-  + Static methods (like =getCount()=) can observe lifecycle changes
-    from outside any object.
+- *RAII Principle*:
+  + Resources are acquired in the constructor and released in the destructor.
+  + Scope therefore determines resource lifetime.
 
-- *Scopes Reveal Lifecycle Timing*:
-  + Wrapping object creation in a nested block (= { ... } =) shows
-    *when* the destructor runs.
-  + Helpful for visualizing stack-based memory and RAII (Resource
-    Acquisition Is Initialization).
+- *Static Members*:
+  + Track or observe object state (e.g., =Player::count=).
+  + Independent of any single instance.
+
+- *Scopes as a Tool*:
+  + Nested blocks (= { ... } =) reveal when destruction happens.
 
 - *Why It Matters*:
-  + Predictable object lifetimes help avoid memory leaks and bugs.
-  + C++ gives fine-grained control — unlike garbage-collected
-    languages.
-  + Mastering lifecycle is foundational for managing resources,
-    especially in larger programs.
+  + Predictable lifetimes → fewer leaks and bugs.
+  + Foundation for safe resource management in C++.
 
 * Footnotes
 
