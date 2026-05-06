@@ -3111,52 +3111,53 @@ variable. The function works on the same storage.
     semi-colon ~;~ at the end of the ~class~ definition.
     #+end_quote
 
+* Week 16: More on classes in C++ / Summary and Outlook
 
-* Week 16: More on classes in C++ / Summary
-
-- [ ] Grading done (except bonus assignments - until May 8)
-- [ ] Please finish your course evaluations now! (14/21 missing)
-- [ ] Review questions
-- [ ] Review exercise
-- [ ] Destructors
+- [X] Grading done (except bonus assignments - until May 8)
+- [X] Please finish your course evaluations now! (14/21 missing)
+- [X] Review questions
+- [X] Review exercise (OneCompiler.com)
+- [X] Destructors
 - [ ] The ~this~ pointer
 - [ ] The ~static~ member
-- [ ] Object lifecycle in C++
+- [ ] Object lifecycle in C++ (RAII)
+- [ ] Outlook & Summary of Class
 
-** Review: Initializer lists, constructors
+** DONE Review: Initializer lists, constructors
 
 1. What should be improved in this code?
    #+begin_src C++
-   class Book {
-   private:
-     string title;
-     int pages;
-   public:
-     Book(string t, int p) {
-       title = t;
-       pages = p;
-     }
-   };
+     class Book {
+     private:
+       string title;
+       int pages;
+     public:
+       Book(string t, int p) {
+         title = t;
+         pages = p;
+       }
+     };
    #+end_src
+
    #+begin_quote
    The constructor works, but it does not use an initializer list.
    For this exercise, the preferred style is:
 
-   Book(string t, int p) : title(t), pages(p) {}
+   =Book(string t, int p) : title(t), pages(p) {}=
    #+end_quote
 
 2. What's wrong with this code?
    #+begin_src C++
-   class Ticket {
-   private:
-     string event;
-     double price;
-     int seatNumber;
-   public:
-     Ticket(string e, double p, int s)
-       : event(e), price(p) {
-     }
-   };
+     class Ticket {
+     private:
+       string event;
+       double price;
+       int seatNumber;
+     public:
+       Ticket(string e, double p, int s)
+         : event(e), price(p) {
+       }
+     };
    #+end_src
    #+begin_quote
    =seatNumber= is not initialized. *Every member* needed by the =Ticket=
@@ -3165,19 +3166,22 @@ variable. The function works on the same storage.
 
 3. What's wrong with this code?
    #+begin_src C++
-   class Laptop {
-   private:
-     string brand;
-     double price;
-     const int serialNumber;
-   public:
-     Laptop(string b, double p, int s) {
-       brand = b;
-       price = p;
-       serialNumber = s;
-     }
-   };
+     class Laptop {
+     private:
+       const string brand;
+       double price;
+       const int serialNumber;
+     public:
+       Laptop(string b, double p, int s) {
+         brand = b;
+         price = p;
+         serialNumber = s;
+       }
+     };
    #+end_src
+
+   #+RESULTS:
+
    #+begin_quote
    =serialNumber= is const, so it cannot be assigned inside the =Laptop=
    constructor body. It must be initialized in the initializer list.
@@ -3185,16 +3189,16 @@ variable. The function works on the same storage.
 
 4. What's wrong with this code?
    #+begin_src C++
-   class Course {
-   private:
-     string name;
-     const int number;
-   public:
-     Course(string n, int num)
-       : name(n), number(num) {
-       number = 101;
-     }
-   };
+     class Course {
+     private:
+       const string name;
+       const int number;
+     public:
+       Course(string n, int num)
+         : name(n), number(num) {
+         number = 101;
+       }
+     };
    #+end_src
    #+begin_quote
    =number= is ~const~. It may be initialized once in the initializer
@@ -3232,3 +3236,177 @@ variable. The function works on the same storage.
    exercise: private data, const ID-like member, initializer list, and
    a print method.
    #+end_quote
+
+** Self-assessment I (5 min)
+
+1) Open the self-assessment spreadsheet: [[https://tinyurl.com/what-do-you-know][tinyurl.com/what-do-you-know]].
+2) Find the number you've been assigned and the corresponding row.
+3) Assess your skills for each category honestly.
+
+** Coding exercise - can you write code? (15 min)
+
+Open Onecompiler.com/cpp (with the C++ template).
+
+Write a program that:
+1) stores 5 integers in an array =arr= using a constant =SIZE=
+2) computes the sum of the array elements using a =for= loop and stores it in =sum=
+3) prints the sum using ~printf~ (include a newline)
+4) gets an integer from the keyboard using ~cin~
+5) stores the input value in a variable named =num=
+6) prints the value of =num= using ~cout~
+7) checks whether =num= is even or odd
+8) if =num= is even, prints ="Number is even."=
+9) if =num= is odd, prints ="Number is odd."=
+10) defines a pointer to an integer named =ptr=
+11) stores the address of =num= in =ptr=
+12) prints the value of =num + 1= using =ptr= (with ~cout~)
+
+Sample output:
+#+begin_example
+The sum is 150
+The number is 101
+Number is odd.
+101 plus one is 102
+#+end_example
+
+*** Solution to the integration exercise
+
+#+begin_src C++ :cmdline < input :main no :includes :results output :exports both
+  #include <iostream>
+  using namespace std;
+  // Define a constant SIZE of value 5
+  #define SIZE 5
+
+  int main()
+  {
+    /********** arrays, loop, output **********/
+    // STORE 5 integers 100,..,500 in an array `arr` using SIZE
+    int arr[SIZE]={10,20,30,40,50};
+    // SET sum to zero
+    int sum = 0;
+    // COMPUTE the `sum` of the array elements using a FOR loop
+    for (int i=0; i<SIZE; i++) sum+=arr[i];
+    // PRINT the result using `printf` (with a newline)
+    printf("The sum is %d\n", sum); // RESULT should print `150`
+
+    /********** input, conditional, operators **********/
+    // GET an integer number `num` from the keyboard using `cin`
+    // STORE the number in a variable named `num`
+    int num;
+    cin >> num;
+    // PRINT the number using `cout`: "The number is " (with newline)
+    cout << "The number is " << num << endl;
+    // CHECK if `num` is even or odd
+    // IF `num` is even, print "Number is even." (with `cout`)
+    if (num%2==0) cout << "Number is even." << endl;
+    // IF `num` is odd, print "Number is odd." (with `cout`)
+    else cout << "Number is odd." << endl;
+
+    /********** pointer, address-of **********/
+    // DEFINE a pointer-to-integer `ptr`
+    int *ptr = nullptr;
+    // STORE the address-of `num` in `ptr`
+    ptr = &num;
+    // PRINT `num +1` using the `ptr` (with `cout`)
+    cout << num << " plus one is " << *ptr + 1;
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: The sum is 150
+: The number is 101
+: Number is odd.
+: 101 plus one is 102
+
+Input:
+#+begin_src bash :results output :exports both
+  echo 101 > input
+#+end_src
+
+** Reading exercise - can you reason about code? (10 min)
+
+Answer the questions below about this program:
+
+#+begin_src cpp
+  #include <iostream>
+  using namespace std;
+
+  class Counter {
+  private:
+    int value;
+  public:
+    Counter(int v) { value = v; }
+    void increment() { value = value + 1; }
+    int getValue() { return value; }
+  };
+
+  int add(int a, int b) {
+    return a + b;
+  }
+
+  int main() {
+    Counter c(5);
+    c.increment();
+    int result = add(c.getValue(), 3);
+    cout << result << endl;
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: 9
+
+Questions:
+
+1. What value is printed by this program? Describe the flow.
+
+2. What is the purpose of the class =Counter= in this program?
+
+3. How do the function =add= and the method =getValue= interact in =main=?
+
+4. What effect does the call to =increment()= have on the program?
+
+5. What would happen if we changed =Counter c(5)= to =Counter c(0)= ?
+
+*** Solution
+
+Questions:
+
+1. What value is printed by this program?
+   #+begin_quote
+   The program prints 9 because the object =c= is initialized with value 5,
+   then =increment()= increases it to 6, and finally the function =add= adds
+   3 to produce 9.
+   #+end_quote
+
+2. What is the purpose of the class =Counter= in this program?
+   #+begin_quote
+   The class =Counter= stores an integer value and provides operations
+   to modify it (=increment=) and access it (=getValue=).
+   #+end_quote
+
+3. How do the function =add= and the method =getValue= interact in =main=?
+   #+begin_quote
+   The method =getValue= returns the current value of the object =c=,
+   which is then passed as an argument to the function =add= together
+   with 3 to compute the result.
+   #+end_quote
+
+4. What effect does the call to =increment()= have on the program?
+   #+begin_quote
+   The call to =increment()= increases the stored value from 5 to 6;
+   without it, the value would remain 5 and the program would print 8
+   instead of 9.
+   #+end_quote
+
+5. What would happen if we changed =Counter c(5)= to =Counter c(0)= ?
+   #+begin_quote
+   The program would print 4 instead of 9. The object =c= would start
+   with the value 0, then =increment()= would increase it to 1, and
+   =add(c.getValue(), 3)= would add 3 to produce 4.
+   #+end_quote
+
+** Self assessment II (5 min)
+
+Revisit your earlier self-assessment in the light of the evidence.
